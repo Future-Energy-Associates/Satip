@@ -1,0 +1,1259 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.7">
+    
+    
+      
+        <title>Pipelines - Data-Hub Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.19753c6b.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.196e0c26.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#000000">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="black" data-md-color-accent="">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#end-to-end-pipeline" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href=".." title="Data-Hub Documentation" class="md-header-nav__button md-logo" aria-label="Data-Hub Documentation">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Data-Hub Documentation
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Pipelines
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/Future-Energy-Associates/data-hub/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Future-Energy-Associates/data-hub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+
+  
+
+<nav class="md-tabs md-tabs--active" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+    
+    <a href=".." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+      
+      <a href="../103_loading/" class="md-tabs__link">
+        User Guide
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+      
+      <a href="../about/OCF/" class="md-tabs__link">
+        About
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+      
+        
+      
+      <a href="../00_utils/" class="md-tabs__link md-tabs__link--active">
+        Development
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Data-Hub Documentation" class="md-nav__button md-logo" aria-label="Data-Hub Documentation">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Data-Hub Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/Future-Energy-Associates/data-hub/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Future-Energy-Associates/data-hub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" >
+    <label class="md-nav__link" for="nav-2">
+      User Guide
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="User Guide" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        User Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../103_loading/" class="md-nav__link">
+      Loading from Zarr
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" >
+    <label class="md-nav__link" for="nav-3">
+      About
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="About" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        About
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../about/OCF/" class="md-nav__link">
+      Parsers
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    <label class="md-nav__link" for="nav-4">
+      Development
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Development" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Development
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../00_utils/" class="md-nav__link">
+      Utilities
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../01_eumetsat/" class="md-nav__link">
+      Downloading
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../02_reproj/" class="md-nav__link">
+      Reprojection
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../03_zarr/" class="md-nav__link">
+      Saving with Zarr
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../04_gcp/" class="md-nav__link">
+      GCP Analytics
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Pipelines
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      Pipelines
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#user-inputs" class="md-nav__link">
+    User Inputs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#loading-environment-variables" class="md-nav__link">
+    Loading Environment Variables
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dagster-pipeline" class="md-nav__link">
+    Dagster Pipeline
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#user-inputs" class="md-nav__link">
+    User Inputs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#loading-environment-variables" class="md-nav__link">
+    Loading Environment Variables
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dagster-pipeline" class="md-nav__link">
+    Dagster Pipeline
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/Future-Energy-Associates/data-hub/edit/master/docs/05_pipeline.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="end-to-end-pipeline">End-to-End Pipeline<a class="headerlink" href="#end-to-end-pipeline" title="Permanent link">&para;</a></h1>
+<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+
+<span class="kn">from</span> <span class="nn">satip</span> <span class="kn">import</span> <span class="n">eumetsat</span><span class="p">,</span> <span class="n">reproj</span><span class="p">,</span> <span class="n">io</span><span class="p">,</span> <span class="n">gcp_helpers</span>
+<span class="kn">from</span> <span class="nn">dagster</span> <span class="kn">import</span> <span class="n">execute_pipeline</span><span class="p">,</span> <span class="n">pipeline</span><span class="p">,</span> <span class="n">solid</span><span class="p">,</span> <span class="n">Field</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">dotenv</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\google\auth\_default.py:69: UserWarning: Your application has authenticated using end user credentials from Google Cloud SDK without a quota project. You might receive a &quot;quota exceeded&quot; or &quot;API not enabled&quot; error. We recommend you rerun `gcloud auth application-default login` and make sure a quota project is added. Or you can use service accounts instead. For more information about service accounts, see https://cloud.google.com/docs/authentication/
+  warnings.warn(_CLOUD_SDK_CREDENTIALS_WARNING)
+Downloading: 100%|â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ| 1/1 [00:00&lt;00:00,  3.21rows/s]
+</code></pre></div>
+<p><br></p>
+<h3 id="user-inputs">User Inputs<a class="headerlink" href="#user-inputs" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">data_dir</span> <span class="o">=</span> <span class="s1">&#39;../data/raw&#39;</span>
+<span class="n">sorted_dir</span> <span class="o">=</span> <span class="s1">&#39;../data/sorted&#39;</span>
+<span class="n">debug_fp</span> <span class="o">=</span> <span class="s1">&#39;../logs/EUMETSAT_download.txt&#39;</span>
+<span class="n">env_vars_fp</span> <span class="o">=</span> <span class="s1">&#39;../.env&#39;</span>
+<span class="n">metadata_db_fp</span> <span class="o">=</span> <span class="s1">&#39;../data/EUMETSAT_metadata.db&#39;</span>
+<span class="n">new_grid_fp</span><span class="o">=</span><span class="s1">&#39;../data/intermediate/new_grid_4km_TM.json&#39;</span>
+<span class="n">new_coords_fp</span> <span class="o">=</span> <span class="s1">&#39;../data/intermediate/reproj_coords_TM_4km.csv&#39;</span>
+<span class="n">zarr_bucket</span> <span class="o">=</span> <span class="s1">&#39;solar-pv-nowcasting-data/satellite/EUMETSAT/SEVIRI_RSS/full_extent_TM_int16&#39;</span>
+</code></pre></div>
+<p><br></p>
+<h3 id="loading-environment-variables">Loading Environment Variables<a class="headerlink" href="#loading-environment-variables" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
+<span class="n">user_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;USER_KEY&#39;</span><span class="p">)</span>
+<span class="n">user_secret</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;USER_SECRET&#39;</span><span class="p">)</span>
+<span class="n">slack_id</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;SLACK_ID&#39;</span><span class="p">)</span>
+<span class="n">slack_webhook_url</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;SLACK_WEBHOOK_URL&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p><br></p>
+<h3 id="dagster-pipeline">Dagster Pipeline<a class="headerlink" href="#dagster-pipeline" title="Permanent link">&para;</a></h3>
+<p>We're now going to combine these steps into a pipeline using <code>dagster</code></p>
+<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
+<span class="nd">@solid</span><span class="p">(</span>
+    <span class="n">config_schema</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;user_key&#39;</span><span class="p">:</span> <span class="n">Field</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">default_value</span><span class="o">=</span><span class="n">user_key</span><span class="p">,</span> <span class="n">is_required</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+        <span class="s1">&#39;user_secret&#39;</span><span class="p">:</span> <span class="n">Field</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">default_value</span><span class="o">=</span><span class="n">user_secret</span><span class="p">,</span> <span class="n">is_required</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+        <span class="s1">&#39;slack_webhook_url&#39;</span><span class="p">:</span> <span class="n">Field</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">default_value</span><span class="o">=</span><span class="n">slack_webhook_url</span><span class="p">,</span> <span class="n">is_required</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+        <span class="s1">&#39;slack_id&#39;</span><span class="p">:</span> <span class="n">Field</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">default_value</span><span class="o">=</span><span class="n">slack_id</span><span class="p">,</span> <span class="n">is_required</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">download_latest_eumetsat_files</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">metadata_db_fp</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">debug_fp</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">table_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">project_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">start_date</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">start_date</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+        <span class="n">sql_query</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;select * from </span><span class="si">{</span><span class="n">table_id</span><span class="si">}</span><span class="s1"> where result_time = (select max(result_time) from </span><span class="si">{</span><span class="n">table_id</span><span class="si">}</span><span class="s1">)&#39;</span>
+        <span class="n">start_date</span> <span class="o">=</span> <span class="n">gcp_helpers</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">sql_query</span><span class="p">,</span> <span class="n">project_id</span><span class="p">)[</span><span class="s1">&#39;result_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="n">end_date</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M&#39;</span><span class="p">)</span>
+
+    <span class="n">dm</span> <span class="o">=</span> <span class="n">eumetsat</span><span class="o">.</span><span class="n">DownloadManager</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">solid_config</span><span class="p">[</span><span class="s1">&#39;user_key&#39;</span><span class="p">],</span> <span class="n">context</span><span class="o">.</span><span class="n">solid_config</span><span class="p">[</span><span class="s1">&#39;user_secret&#39;</span><span class="p">],</span> <span class="n">data_dir</span><span class="p">,</span> <span class="n">metadata_db_fp</span><span class="p">,</span> <span class="n">debug_fp</span><span class="p">,</span> <span class="n">slack_webhook_url</span><span class="o">=</span><span class="n">context</span><span class="o">.</span><span class="n">solid_config</span><span class="p">[</span><span class="s1">&#39;slack_webhook_url&#39;</span><span class="p">],</span> <span class="n">slack_id</span><span class="o">=</span><span class="n">context</span><span class="o">.</span><span class="n">solid_config</span><span class="p">[</span><span class="s1">&#39;slack_id&#39;</span><span class="p">])</span>
+    <span class="n">df_new_metadata</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">download_datasets</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">df_new_metadata</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">df_new_metadata</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;result_time&#39;</span><span class="p">,</span> <span class="s1">&#39;file_name&#39;</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">df_new_metadata</span> <span class="o">=</span> <span class="n">df_new_metadata</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="c1"># the first entry is the last one we downloaded</span>
+
+    <span class="k">return</span> <span class="n">df_new_metadata</span>
+
+<span class="nd">@solid</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">df_metadata_to_dt_to_fp_map</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">df_new_metadata</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Here we&#39;ll then identify downloaded files in </span>
+<span class="sd">    the metadata dataframe and return a mapping</span>
+<span class="sd">    between datetimes and filenames</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">datetime_to_filename</span> <span class="o">=</span> <span class="p">(</span><span class="n">df_new_metadata</span>
+                            <span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;result_time&#39;</span><span class="p">)</span>
+                            <span class="p">[</span><span class="s1">&#39;file_name&#39;</span><span class="p">]</span>
+                            <span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+                            <span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+                           <span class="p">)</span>
+
+    <span class="n">datetime_to_filepath</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">datetime</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">data_dir</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">.nat&quot;</span> 
+        <span class="k">for</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">filename</span> 
+        <span class="ow">in</span> <span class="n">datetime_to_filename</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">filename</span> <span class="o">!=</span> <span class="p">{}</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">datetime_to_filepath</span>
+
+<span class="nd">@solid</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">reproject_datasets</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">datetime_to_filepath</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">new_coords_fp</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">new_grid_fp</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="n">reprojector</span> <span class="o">=</span> <span class="n">reproj</span><span class="o">.</span><span class="n">Reprojector</span><span class="p">(</span><span class="n">new_coords_fp</span><span class="p">,</span> <span class="n">new_grid_fp</span><span class="p">)</span>
+
+    <span class="n">reprojected_dss</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="n">reprojector</span>
+         <span class="o">.</span><span class="n">reproject</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">reproj_library</span><span class="o">=</span><span class="s1">&#39;pyresample&#39;</span><span class="p">)</span>
+         <span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">add_constant_coord_to_da</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">datetime</span><span class="p">))</span>
+        <span class="p">)</span>
+        <span class="k">for</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">filepath</span> 
+        <span class="ow">in</span> <span class="n">datetime_to_filepath</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+    <span class="p">]</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">reprojected_dss</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">ds_combined_reproj</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">reprojected_dss</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">coords</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">data_vars</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ds_combined_reproj</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">()</span>
+
+<span class="nd">@solid</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">compress_and_save_datasets</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">ds_combined_reproj</span><span class="p">,</span> <span class="n">zarr_bucket</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">var_name</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s1">&#39;stacked_eumetsat_data&#39;</span><span class="p">):</span>
+    <span class="c1"># Handle case where no new data exists</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ds_combined_reproj</span><span class="o">.</span><span class="n">dims</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span>
+
+    <span class="c1"># Compressing the datasets</span>
+    <span class="n">compressor</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">Compressor</span><span class="p">()</span>
+
+    <span class="n">var_name</span> <span class="o">=</span> <span class="n">var_name</span>
+    <span class="n">da_compressed</span> <span class="o">=</span> <span class="n">compressor</span><span class="o">.</span><span class="n">compress</span><span class="p">(</span><span class="n">ds_combined_reproj</span><span class="p">[</span><span class="n">var_name</span><span class="p">])</span>
+
+    <span class="c1"># Saving to Zarr</span>
+    <span class="n">ds_compressed</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">save_da_to_zarr</span><span class="p">(</span><span class="n">da_compressed</span><span class="p">,</span> <span class="n">zarr_bucket</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">ds_compressed</span>
+
+<span class="nd">@solid</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">save_metadata</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">df_new_metadata</span><span class="p">,</span> <span class="n">table_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">project_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="n">gcp_helpers</span><span class="o">.</span><span class="n">write_metadata_to_gcp</span><span class="p">(</span><span class="n">df_new_metadata</span><span class="p">,</span> <span class="n">table_id</span><span class="p">,</span> <span class="n">project_id</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
+<span class="nd">@pipeline</span>
+<span class="k">def</span> <span class="nf">download_latest_data_pipeline</span><span class="p">():</span>  
+    <span class="c1"># Retrieving data, reprojecting, compressing, and saving to GCP</span>
+    <span class="n">df_new_metadata</span> <span class="o">=</span> <span class="n">download_latest_eumetsat_files</span><span class="p">()</span>
+    <span class="n">datetime_to_filepath</span> <span class="o">=</span> <span class="n">df_metadata_to_dt_to_fp_map</span><span class="p">(</span><span class="n">df_new_metadata</span><span class="p">)</span>
+    <span class="n">ds_combined_reproj</span> <span class="o">=</span> <span class="n">reproject_datasets</span><span class="p">(</span><span class="n">datetime_to_filepath</span><span class="p">)</span>
+    <span class="n">ds_combined_compressed</span> <span class="o">=</span> <span class="n">compress_and_save_datasets</span><span class="p">(</span><span class="n">ds_combined_reproj</span><span class="p">)</span>
+    <span class="n">save_metadata</span><span class="p">(</span><span class="n">df_new_metadata</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">run_config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;solids&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;download_latest_eumetsat_files&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;inputs&#39;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s1">&#39;data_dir&#39;</span><span class="p">:</span> <span class="s2">&quot;../data/raw&quot;</span><span class="p">,</span>
+                <span class="s1">&#39;metadata_db_fp&#39;</span><span class="p">:</span> <span class="s2">&quot;../data/EUMETSAT_metadata.db&quot;</span><span class="p">,</span>
+                <span class="s1">&#39;debug_fp&#39;</span><span class="p">:</span> <span class="s2">&quot;../logs/EUMETSAT_download.txt&quot;</span><span class="p">,</span>
+                <span class="s1">&#39;table_id&#39;</span><span class="p">:</span> <span class="s2">&quot;eumetsat.metadata&quot;</span><span class="p">,</span>
+                <span class="s1">&#39;project_id&#39;</span><span class="p">:</span> <span class="s2">&quot;solar-pv-nowcasting&quot;</span><span class="p">,</span>
+                <span class="s1">&#39;start_date&#39;</span><span class="p">:</span> <span class="s2">&quot;2020-12-16 19:30&quot;</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+        <span class="s1">&#39;df_metadata_to_dt_to_fp_map&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;inputs&#39;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s1">&#39;data_dir&#39;</span><span class="p">:</span> <span class="s2">&quot;../data/raw&quot;</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s1">&#39;reproject_datasets&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;inputs&#39;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s1">&#39;new_coords_fp&#39;</span><span class="p">:</span> <span class="s2">&quot;../data/intermediate/reproj_coords_TM_4km.csv&quot;</span><span class="p">,</span>
+                <span class="s1">&#39;new_grid_fp&#39;</span><span class="p">:</span> <span class="s2">&quot;../data/intermediate/new_grid_4km_TM.json&quot;</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s1">&#39;compress_and_save_datasets&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;inputs&#39;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s1">&#39;zarr_bucket&#39;</span><span class="p">:</span> <span class="s2">&quot;solar-pv-nowcasting-data/satellite/EUMETSAT/SEVIRI_RSS/full_extent_TM_int16&quot;</span><span class="p">,</span>
+                <span class="s1">&#39;var_name&#39;</span><span class="p">:</span> <span class="s2">&quot;stacked_eumetsat_data&quot;</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s1">&#39;save_metadata&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;inputs&#39;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s1">&#39;table_id&#39;</span><span class="p">:</span> <span class="s2">&quot;eumetsat.metadata&quot;</span><span class="p">,</span>
+                <span class="s1">&#39;project_id&#39;</span><span class="p">:</span> <span class="s2">&quot;solar-pv-nowcasting&quot;</span>
+            <span class="p">},</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">execute_pipeline</span><span class="p">(</span><span class="n">download_latest_data_pipeline</span><span class="p">,</span> <span class="n">run_config</span><span class="o">=</span><span class="n">run_config</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>2020-12-16 20:00:18 - dagster - DEBUG - download_latest_data_pipeline - 843966a6-a689-430d-97e0-7c937aefc85e - 20040 - ENGINE_EVENT - Starting initialization of resources [asset_store].
+2020-12-16 20:00:18 - dagster - DEBUG - download_latest_data_pipeline - 843966a6-a689-430d-97e0-7c937aefc85e - 20040 - ENGINE_EVENT - Finished initialization of resources [asset_store].
+2020-12-16 20:00:18 - dagster - DEBUG - download_latest_data_pipeline - 843966a6-a689-430d-97e0-7c937aefc85e - 20040 - PIPELINE_START - Started execution of pipeline &quot;download_latest_data_pipeline&quot;.
+2020-12-16 20:00:18 - dagster - DEBUG - download_latest_data_pipeline - 843966a6-a689-430d-97e0-7c937aefc85e - 20040 - ENGINE_EVENT - Executing steps in process (pid: 20040)
+2020-12-16 20:00:18 - dagster - DEBUG - download_latest_data_pipeline - 843966a6-a689-430d-97e0-7c937aefc85e - 20040 - download_latest_eumetsat_files.compute - STEP_START - Started execution of step &quot;download_latest_eumetsat_files.compute&quot;.
+2020-12-16 20:00:18 - dagster - DEBUG - download_latest_data_pipeline - 843966a6-a689-430d-97e0-7c937aefc85e - 20040 - download_latest_eumetsat_files.compute - STEP_INPUT - Got input &quot;data_dir&quot; of type &quot;String&quot;. (Type check passed).
+2020-12-16 20:00:18 - dagster - DEBUG - download_latest_data_pipeline - 843966a6-a689-430d-97e0-7c937aefc85e - 20040 - download_latest_eumetsat_files.compute - STEP_INPUT - Got input &quot;metadata_db_fp&quot; of type &quot;String&quot;. (Type check passed).
+2020-12-16 20:00:18 - dagster - DEBUG - download_latest_data_pipeline - 843966a6-a689-430d-97e0-7c937aefc85e - 20040 - download_latest_eumetsat_files.compute - STEP_INPUT - Got input &quot;debug_fp&quot; of type &quot;String&quot;. (Type check passed).
+2020-12-16 20:00:18 - dagster - DEBUG - download_latest_data_pipeline - 843966a6-a689-430d-97e0-7c937aefc85e - 20040 - download_latest_eumetsat_files.compute - STEP_INPUT - Got input &quot;start_date&quot; of type &quot;String&quot;. (Type check passed).
+2020-12-16 20:00:19 - dagster - ERROR - download_latest_data_pipeline - 843966a6-a689-430d-97e0-7c937aefc85e - 20040 - download_latest_eumetsat_files.compute - STEP_FAILURE - Execution of step &quot;download_latest_eumetsat_files.compute&quot; failed.
+
+AttributeError: &#39;DagsterLogManager&#39; object has no attribute &#39;setLevel&#39;
+
+  File &quot;C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\errors.py&quot;, line 180, in user_code_error_boundary
+    yield
+  File &quot;C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\execution\plan\execute_step.py&quot;, line 475, in _user_event_sequence_for_step_compute_fn
+    for event in iterate_with_context(raise_interrupts_immediately, gen):
+  File &quot;C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\dagster\utils\__init__.py&quot;, line 443, in iterate_with_context
+    next_output = next(iterator)
+  File &quot;C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\execution\plan\compute.py&quot;, line 105, in _execute_core_compute
+    for step_output in _yield_compute_results(compute_context, inputs, compute_fn):
+  File &quot;C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\execution\plan\compute.py&quot;, line 76, in _yield_compute_results
+    for event in user_event_sequence:
+  File &quot;C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\definitions\decorators\solid.py&quot;, line 227, in compute
+    result = fn(context, **kwargs)
+  File &quot;&lt;ipython-input-5-968917ba6d74&gt;&quot;, line 16, in download_latest_eumetsat_files
+    dm = eumetsat.DownloadManager(context.solid_config[&#39;user_key&#39;], context.solid_config[&#39;user_secret&#39;], data_dir, metadata_db_fp, debug_fp, slack_webhook_url=context.solid_config[&#39;slack_webhook_url&#39;], slack_id=context.solid_config[&#39;slack_id&#39;], logger_name=context.log)
+  File &quot;c:\users\ayrto\desktop\freelance work\fea\work\ocf\satip\satip\eumetsat.py&quot;, line 312, in __init__
+    self.logger = utils.set_up_logging(logger_name, log_fp,
+  File &quot;c:\users\ayrto\desktop\freelance work\fea\work\ocf\satip\satip\utils.py&quot;, line 133, in set_up_logging
+    logger.setLevel(getattr(logging, main_logging_level))
+
+2020-12-16 20:00:19 - dagster - ERROR - download_latest_data_pipeline - 843966a6-a689-430d-97e0-7c937aefc85e - 20040 - PIPELINE_FAILURE - Execution of pipeline &quot;download_latest_data_pipeline&quot; failed. An exception was thrown during execution.
+
+AttributeError: &#39;DagsterLogManager&#39; object has no attribute &#39;setLevel&#39;
+
+  File &quot;C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\execution\api.py&quot;, line 665, in _pipeline_execution_iterator
+    for event in pipeline_context.executor.execute(pipeline_context, execution_plan):
+  File &quot;C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\executor\in_process.py&quot;, line 36, in execute
+    for event in inner_plan_execution_iterator(pipeline_context, execution_plan):
+  File &quot;C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\execution\plan\execute_plan.py&quot;, line 77, in inner_plan_execution_iterator
+    for step_event in check.generator(
+  File &quot;C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\execution\plan\execute_plan.py&quot;, line 272, in _dagster_event_sequence_for_step
+    raise dagster_user_error.user_exception
+  File &quot;C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\errors.py&quot;, line 180, in user_code_error_boundary
+    yield
+  File &quot;C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\execution\plan\execute_step.py&quot;, line 475, in _user_event_sequence_for_step_compute_fn
+    for event in iterate_with_context(raise_interrupts_immediately, gen):
+  File &quot;C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\dagster\utils\__init__.py&quot;, line 443, in iterate_with_context
+    next_output = next(iterator)
+  File &quot;C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\execution\plan\compute.py&quot;, line 105, in _execute_core_compute
+    for step_output in _yield_compute_results(compute_context, inputs, compute_fn):
+  File &quot;C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\execution\plan\compute.py&quot;, line 76, in _yield_compute_results
+    for event in user_event_sequence:
+  File &quot;C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\definitions\decorators\solid.py&quot;, line 227, in compute
+    result = fn(context, **kwargs)
+  File &quot;&lt;ipython-input-5-968917ba6d74&gt;&quot;, line 16, in download_latest_eumetsat_files
+    dm = eumetsat.DownloadManager(context.solid_config[&#39;user_key&#39;], context.solid_config[&#39;user_secret&#39;], data_dir, metadata_db_fp, debug_fp, slack_webhook_url=context.solid_config[&#39;slack_webhook_url&#39;], slack_id=context.solid_config[&#39;slack_id&#39;], logger_name=context.log)
+  File &quot;c:\users\ayrto\desktop\freelance work\fea\work\ocf\satip\satip\eumetsat.py&quot;, line 312, in __init__
+    self.logger = utils.set_up_logging(logger_name, log_fp,
+  File &quot;c:\users\ayrto\desktop\freelance work\fea\work\ocf\satip\satip\utils.py&quot;, line 133, in set_up_logging
+    logger.setLevel(getattr(logging, main_logging_level))
+
+
+
+
+---------------------------------------------------------------------------
+
+DagsterExecutionStepExecutionError        Traceback (most recent call last)
+
+~\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\execution\plan\execute_plan.py in _dagster_event_sequence_for_step(step_context, retries)
+    211 
+--&gt; 212         for step_event in check.generator(step_events):
+    213             yield step_event
+
+
+~\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\execution\plan\execute_step.py in core_dagster_event_sequence_for_step(step_context, prior_attempt_count)
+    285         # timer block above in order for time to be recorded accurately.
+--&gt; 286         for user_event in check.generator(
+    287             _step_output_error_checked_user_event_sequence(step_context, user_event_sequence)
+
+
+~\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\execution\plan\execute_step.py in _step_output_error_checked_user_event_sequence(step_context, user_event_sequence)
+     58 
+---&gt; 59     for user_event in user_event_sequence:
+     60         if not isinstance(user_event, Output):
+
+
+~\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\execution\plan\execute_step.py in _user_event_sequence_for_step_compute_fn(step_context, evaluated_inputs)
+    475         for event in iterate_with_context(raise_interrupts_immediately, gen):
+--&gt; 476             yield event
+    477
+
+
+~\anaconda3\envs\satip_dev\lib\contextlib.py in __exit__(self, type, value, traceback)
+    130             try:
+--&gt; 131                 self.gen.throw(type, value, traceback)
+    132             except StopIteration as exc:
+
+
+~\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\errors.py in user_code_error_boundary(error_cls, msg_fn, control_flow_exceptions, **kwargs)
+    189         # with the error reported further up the stack
+--&gt; 190         raise_from(
+    191             error_cls(msg_fn(), user_exception=e, original_exc_info=sys.exc_info(), **kwargs), e
+
+
+~\anaconda3\envs\satip_dev\lib\site-packages\future\utils\__init__.py in raise_from(exc, cause)
+    402         execstr = &quot;raise __python_future_raise_from_exc from __python_future_raise_from_cause&quot;
+--&gt; 403         exec(execstr, myglobals, mylocals)
+    404
+
+
+~\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\errors.py in &lt;module&gt;
+
+
+DagsterExecutionStepExecutionError: Error occurred during the execution of step:
+        step key: &quot;download_latest_eumetsat_files.compute&quot;
+        solid invocation: &quot;download_latest_eumetsat_files&quot;
+        solid definition: &quot;download_latest_eumetsat_files&quot;
+
+
+
+During handling of the above exception, another exception occurred:
+
+
+AttributeError                            Traceback (most recent call last)
+
+    [... skipping hidden 1 frame]
+
+
+&lt;ipython-input-7-79fdcc951128&gt; in &lt;module&gt;
+     36 
+---&gt; 37 execute_pipeline(download_latest_data_pipeline, run_config=run_config)
+
+
+~\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\execution\api.py in execute_pipeline(pipeline, run_config, mode, preset, tags, solid_selection, instance, raise_on_error)
+    323     with _ephemeral_instance_if_missing(instance) as execute_instance:
+--&gt; 324         return _logged_execute_pipeline(
+    325             pipeline,
+
+
+~\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\telemetry.py in wrap(*args, **kwargs)
+     88         log_action(instance=instance, action=f.__name__ + &quot;_started&quot;, client_time=start_time)
+---&gt; 89         result = f(*args, **kwargs)
+     90         end_time = datetime.datetime.now()
+
+
+~\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\execution\api.py in _logged_execute_pipeline(pipeline, instance, run_config, mode, preset, tags, solid_selection, raise_on_error)
+    374 
+--&gt; 375     return execute_run(pipeline, pipeline_run, instance, raise_on_error=raise_on_error)
+    376
+
+
+~\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\execution\api.py in execute_run(pipeline, pipeline_run, instance, raise_on_error)
+    176     )
+--&gt; 177     event_list = list(_execute_run_iterable)
+    178     pipeline_context = _execute_run_iterable.pipeline_context
+
+
+~\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\execution\api.py in __iter__(self)
+    726                 if self.pipeline_context:  # False if we had a pipeline init failure
+--&gt; 727                     for event in self.iterator(
+    728                         execution_plan=self.execution_plan, pipeline_context=self.pipeline_context,
+
+
+~\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\execution\api.py in _pipeline_execution_iterator(pipeline_context, execution_plan)
+    664     try:
+--&gt; 665         for event in pipeline_context.executor.execute(pipeline_context, execution_plan):
+    666             if event.is_step_failure:
+
+
+~\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\executor\in_process.py in execute(self, pipeline_context, execution_plan)
+     35         with time_execution_scope() as timer_result:
+---&gt; 36             for event in inner_plan_execution_iterator(pipeline_context, execution_plan):
+     37                 yield event
+
+
+~\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\execution\plan\execute_plan.py in inner_plan_execution_iterator(pipeline_context, execution_plan)
+     76                 else:
+---&gt; 77                     for step_event in check.generator(
+     78                         _dagster_event_sequence_for_step(step_context, retries)
+
+
+~\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\execution\plan\execute_plan.py in _dagster_event_sequence_for_step(step_context, retries)
+    271         if step_context.raise_on_error:
+--&gt; 272             raise dagster_user_error.user_exception
+    273
+
+
+~\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\errors.py in user_code_error_boundary(error_cls, msg_fn, control_flow_exceptions, **kwargs)
+    179     try:
+--&gt; 180         yield
+    181     except control_flow_exceptions as cf:
+
+
+~\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\execution\plan\execute_step.py in _user_event_sequence_for_step_compute_fn(step_context, evaluated_inputs)
+    474         # Allow interrupts again during each step of the execution
+--&gt; 475         for event in iterate_with_context(raise_interrupts_immediately, gen):
+    476             yield event
+
+
+~\anaconda3\envs\satip_dev\lib\site-packages\dagster\utils\__init__.py in iterate_with_context(context_manager_class, iterator)
+    442             try:
+--&gt; 443                 next_output = next(iterator)
+    444             except StopIteration:
+
+
+~\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\execution\plan\compute.py in _execute_core_compute(compute_context, inputs, compute_fn)
+    104     all_results = []
+--&gt; 105     for step_output in _yield_compute_results(compute_context, inputs, compute_fn):
+    106         yield step_output
+
+
+~\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\execution\plan\compute.py in _yield_compute_results(compute_context, inputs, compute_fn)
+     75 
+---&gt; 76     for event in user_event_sequence:
+     77         if isinstance(event, (Output, AssetMaterialization, Materialization, ExpectationResult)):
+
+
+~\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\definitions\decorators\solid.py in compute(context, input_defs)
+    226 
+--&gt; 227         result = fn(context, **kwargs)
+    228
+
+
+&lt;ipython-input-5-968917ba6d74&gt; in download_latest_eumetsat_files(context, data_dir, metadata_db_fp, debug_fp, start_date)
+     15 
+---&gt; 16     dm = eumetsat.DownloadManager(context.solid_config[&#39;user_key&#39;], context.solid_config[&#39;user_secret&#39;], data_dir, metadata_db_fp, debug_fp, slack_webhook_url=context.solid_config[&#39;slack_webhook_url&#39;], slack_id=context.solid_config[&#39;slack_id&#39;], logger_name=context.log)
+     17     df_new_metadata = dm.download_datasets(start_date, end_date)
+
+
+c:\users\ayrto\desktop\freelance work\fea\work\ocf\satip\satip\eumetsat.py in __init__(self, user_key, user_secret, data_dir, metadata_db_fp, log_fp, main_logging_level, slack_logging_level, slack_webhook_url, slack_id, bucket_name, bucket_prefix, logger_name)
+    311         # Configuring the logger
+--&gt; 312         self.logger = utils.set_up_logging(logger_name, log_fp,
+    313                                            main_logging_level, slack_logging_level,
+
+
+c:\users\ayrto\desktop\freelance work\fea\work\ocf\satip\satip\utils.py in set_up_logging(name, log_dir, main_logging_level, slack_logging_level, slack_webhook_url, slack_id)
+    132 
+--&gt; 133     logger.setLevel(getattr(logging, main_logging_level))
+    134
+
+
+AttributeError: &#39;DagsterLogManager&#39; object has no attribute &#39;setLevel&#39;
+
+
+The above exception was the direct cause of the following exception:
+
+
+DagsterExecutionStepExecutionError        Traceback (most recent call last)
+
+~\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\execution\plan\execute_plan.py in _dagster_event_sequence_for_step(step_context, retries)
+    211 
+--&gt; 212         for step_event in check.generator(step_events):
+    213             yield step_event
+
+
+~\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\execution\plan\execute_step.py in core_dagster_event_sequence_for_step(step_context, prior_attempt_count)
+    285         # timer block above in order for time to be recorded accurately.
+--&gt; 286         for user_event in check.generator(
+    287             _step_output_error_checked_user_event_sequence(step_context, user_event_sequence)
+
+
+~\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\execution\plan\execute_step.py in _step_output_error_checked_user_event_sequence(step_context, user_event_sequence)
+     58 
+---&gt; 59     for user_event in user_event_sequence:
+     60         if not isinstance(user_event, Output):
+
+
+~\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\execution\plan\execute_step.py in _user_event_sequence_for_step_compute_fn(step_context, evaluated_inputs)
+    475         for event in iterate_with_context(raise_interrupts_immediately, gen):
+--&gt; 476             yield event
+    477
+
+
+~\anaconda3\envs\satip_dev\lib\contextlib.py in __exit__(self, type, value, traceback)
+    130             try:
+--&gt; 131                 self.gen.throw(type, value, traceback)
+    132             except StopIteration as exc:
+
+
+~\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\errors.py in user_code_error_boundary(error_cls, msg_fn, control_flow_exceptions, **kwargs)
+    189         # with the error reported further up the stack
+--&gt; 190         raise_from(
+    191             error_cls(msg_fn(), user_exception=e, original_exc_info=sys.exc_info(), **kwargs), e
+
+
+~\anaconda3\envs\satip_dev\lib\site-packages\future\utils\__init__.py in raise_from(exc, cause)
+    402         execstr = &quot;raise __python_future_raise_from_exc from __python_future_raise_from_cause&quot;
+--&gt; 403         exec(execstr, myglobals, mylocals)
+    404
+
+
+~\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\errors.py in &lt;module&gt;
+
+
+DagsterExecutionStepExecutionError: Error occurred during the execution of step:
+        step key: &quot;download_latest_eumetsat_files.compute&quot;
+        solid invocation: &quot;download_latest_eumetsat_files&quot;
+        solid definition: &quot;download_latest_eumetsat_files&quot;
+
+
+
+During handling of the above exception, another exception occurred:
+
+
+AttributeError                            Traceback (most recent call last)
+
+&lt;ipython-input-7-79fdcc951128&gt; in &lt;module&gt;
+     35 }
+     36 
+---&gt; 37 execute_pipeline(download_latest_data_pipeline, run_config=run_config)
+
+
+~\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\execution\api.py in execute_pipeline(pipeline, run_config, mode, preset, tags, solid_selection, instance, raise_on_error)
+    322 
+    323     with _ephemeral_instance_if_missing(instance) as execute_instance:
+--&gt; 324         return _logged_execute_pipeline(
+    325             pipeline,
+    326             instance=execute_instance,
+
+
+~\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\telemetry.py in wrap(*args, **kwargs)
+     87         start_time = datetime.datetime.now()
+     88         log_action(instance=instance, action=f.__name__ + &quot;_started&quot;, client_time=start_time)
+---&gt; 89         result = f(*args, **kwargs)
+     90         end_time = datetime.datetime.now()
+     91         log_action(
+
+
+~\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\execution\api.py in _logged_execute_pipeline(pipeline, instance, run_config, mode, preset, tags, solid_selection, raise_on_error)
+    373     )
+    374 
+--&gt; 375     return execute_run(pipeline, pipeline_run, instance, raise_on_error=raise_on_error)
+    376 
+    377
+
+
+~\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\execution\api.py in execute_run(pipeline, pipeline_run, instance, raise_on_error)
+    175         ),
+    176     )
+--&gt; 177     event_list = list(_execute_run_iterable)
+    178     pipeline_context = _execute_run_iterable.pipeline_context
+    179
+
+
+~\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\execution\api.py in __iter__(self)
+    725             try:
+    726                 if self.pipeline_context:  # False if we had a pipeline init failure
+--&gt; 727                     for event in self.iterator(
+    728                         execution_plan=self.execution_plan, pipeline_context=self.pipeline_context,
+    729                     ):
+
+
+~\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\execution\api.py in _pipeline_execution_iterator(pipeline_context, execution_plan)
+    663     generator_closed = False
+    664     try:
+--&gt; 665         for event in pipeline_context.executor.execute(pipeline_context, execution_plan):
+    666             if event.is_step_failure:
+    667                 failed_steps.append(event.step_key)
+
+
+~\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\executor\in_process.py in execute(self, pipeline_context, execution_plan)
+     34 
+     35         with time_execution_scope() as timer_result:
+---&gt; 36             for event in inner_plan_execution_iterator(pipeline_context, execution_plan):
+     37                 yield event
+     38
+
+
+~\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\execution\plan\execute_plan.py in inner_plan_execution_iterator(pipeline_context, execution_plan)
+     75                     active_execution.mark_skipped(step.key)
+     76                 else:
+---&gt; 77                     for step_event in check.generator(
+     78                         _dagster_event_sequence_for_step(step_context, retries)
+     79                     ):
+
+
+~\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\execution\plan\execute_plan.py in _dagster_event_sequence_for_step(step_context, retries)
+    270 
+    271         if step_context.raise_on_error:
+--&gt; 272             raise dagster_user_error.user_exception
+    273 
+    274     # case (4) in top comment
+
+
+~\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\errors.py in user_code_error_boundary(error_cls, msg_fn, control_flow_exceptions, **kwargs)
+    178     )
+    179     try:
+--&gt; 180         yield
+    181     except control_flow_exceptions as cf:
+    182         # A control flow exception has occurred and should be propagated
+
+
+~\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\execution\plan\execute_step.py in _user_event_sequence_for_step_compute_fn(step_context, evaluated_inputs)
+    473 
+    474         # Allow interrupts again during each step of the execution
+--&gt; 475         for event in iterate_with_context(raise_interrupts_immediately, gen):
+    476             yield event
+    477
+
+
+~\anaconda3\envs\satip_dev\lib\site-packages\dagster\utils\__init__.py in iterate_with_context(context_manager_class, iterator)
+    441         with context_manager_class():
+    442             try:
+--&gt; 443                 next_output = next(iterator)
+    444             except StopIteration:
+    445                 return
+
+
+~\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\execution\plan\compute.py in _execute_core_compute(compute_context, inputs, compute_fn)
+    103 
+    104     all_results = []
+--&gt; 105     for step_output in _yield_compute_results(compute_context, inputs, compute_fn):
+    106         yield step_output
+    107         if isinstance(step_output, Output):
+
+
+~\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\execution\plan\compute.py in _yield_compute_results(compute_context, inputs, compute_fn)
+     74         return
+     75 
+---&gt; 76     for event in user_event_sequence:
+     77         if isinstance(event, (Output, AssetMaterialization, Materialization, ExpectationResult)):
+     78             yield event
+
+
+~\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\definitions\decorators\solid.py in compute(context, input_defs)
+    225             kwargs[input_name] = input_defs[input_name]
+    226 
+--&gt; 227         result = fn(context, **kwargs)
+    228 
+    229         if inspect.isgenerator(result):
+
+
+&lt;ipython-input-5-968917ba6d74&gt; in download_latest_eumetsat_files(context, data_dir, metadata_db_fp, debug_fp, start_date)
+     14     end_date = pd.Timestamp.now().strftime(&#39;%Y-%m-%d %H:%M&#39;)
+     15 
+---&gt; 16     dm = eumetsat.DownloadManager(context.solid_config[&#39;user_key&#39;], context.solid_config[&#39;user_secret&#39;], data_dir, metadata_db_fp, debug_fp, slack_webhook_url=context.solid_config[&#39;slack_webhook_url&#39;], slack_id=context.solid_config[&#39;slack_id&#39;], logger_name=context.log)
+     17     df_new_metadata = dm.download_datasets(start_date, end_date)
+     18
+
+
+c:\users\ayrto\desktop\freelance work\fea\work\ocf\satip\satip\eumetsat.py in __init__(self, user_key, user_secret, data_dir, metadata_db_fp, log_fp, main_logging_level, slack_logging_level, slack_webhook_url, slack_id, bucket_name, bucket_prefix, logger_name)
+    310 
+    311         # Configuring the logger
+--&gt; 312         self.logger = utils.set_up_logging(logger_name, log_fp,
+    313                                            main_logging_level, slack_logging_level,
+    314                                            slack_webhook_url, slack_id)
+
+
+c:\users\ayrto\desktop\freelance work\fea\work\ocf\satip\satip\utils.py in set_up_logging(name, log_dir, main_logging_level, slack_logging_level, slack_webhook_url, slack_id)
+    131     assert slack_logging_level in logging_levels, f&quot;slack_logging_level must be one of {&#39;, &#39;.join(logging_levels)}&quot;
+    132 
+--&gt; 133     logger.setLevel(getattr(logging, main_logging_level))
+    134 
+    135     # Defining global formatter
+
+
+AttributeError: &#39;DagsterLogManager&#39; object has no attribute &#39;setLevel&#39;
+</code></pre></div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../04_gcp/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                GCP Analytics
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.0ac82a11.min.js"></script>
+      <script src="../assets/javascripts/bundle.f81dfb4d.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: ['header.autohide', 'navigation.tabs', 'navigation.instant', 'search.suggest'],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../javascripts/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

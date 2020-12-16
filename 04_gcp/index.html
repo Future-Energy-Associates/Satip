@@ -1,0 +1,1041 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.7">
+    
+    
+      
+        <title>GCP Analytics - Data-Hub Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.19753c6b.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.196e0c26.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#000000">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="black" data-md-color-accent="">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#eumetsat-and-gcp" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href=".." title="Data-Hub Documentation" class="md-header-nav__button md-logo" aria-label="Data-Hub Documentation">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Data-Hub Documentation
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              GCP Analytics
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/Future-Energy-Associates/data-hub/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Future-Energy-Associates/data-hub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+
+  
+
+<nav class="md-tabs md-tabs--active" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+    
+    <a href=".." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+      
+      <a href="../103_loading/" class="md-tabs__link">
+        User Guide
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+      
+      <a href="../about/OCF/" class="md-tabs__link">
+        About
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+      
+        
+      
+      <a href="../00_utils/" class="md-tabs__link md-tabs__link--active">
+        Development
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Data-Hub Documentation" class="md-nav__button md-logo" aria-label="Data-Hub Documentation">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Data-Hub Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/Future-Energy-Associates/data-hub/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Future-Energy-Associates/data-hub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" >
+    <label class="md-nav__link" for="nav-2">
+      User Guide
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="User Guide" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        User Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../103_loading/" class="md-nav__link">
+      Loading from Zarr
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" >
+    <label class="md-nav__link" for="nav-3">
+      About
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="About" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        About
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../about/OCF/" class="md-nav__link">
+      Parsers
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    <label class="md-nav__link" for="nav-4">
+      Development
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Development" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Development
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../00_utils/" class="md-nav__link">
+      Utilities
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../01_eumetsat/" class="md-nav__link">
+      Downloading
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../02_reproj/" class="md-nav__link">
+      Reprojection
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../03_zarr/" class="md-nav__link">
+      Saving with Zarr
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        GCP Analytics
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      GCP Analytics
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    Setup
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#some-gcp-helpers" class="md-nav__link">
+    Some GCP Helpers
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-input" class="md-nav__link">
+    User input
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#write-metadata-to-bigquery" class="md-nav__link">
+    Write metadata to bigquery
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../05_pipeline/" class="md-nav__link">
+      Pipelines
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    Setup
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#some-gcp-helpers" class="md-nav__link">
+    Some GCP Helpers
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-input" class="md-nav__link">
+    User input
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#write-metadata-to-bigquery" class="md-nav__link">
+    Write metadata to bigquery
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/Future-Energy-Associates/data-hub/edit/master/docs/04_gcp.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="eumetsat-and-gcp">EUMETSAT and GCP<a class="headerlink" href="#eumetsat-and-gcp" title="Permanent link">&para;</a></h1>
+<h3 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h3>
+<h2 id="some-gcp-helpers">Some GCP Helpers<a class="headerlink" href="#some-gcp-helpers" title="Permanent link">&para;</a></h2>
+<p>First need a couple of helper functions to work with Google Cloud Platform.<br />
+Ideally the principles will transfer easily to other cloud providers if necessary. </p>
+<h2 id="user-input">User input<a class="headerlink" href="#user-input" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="n">BUCKET_NAME</span> <span class="o">=</span> <span class="s2">&quot;solar-pv-nowcasting-data&quot;</span>
+<span class="n">PREFIX</span> <span class="o">=</span> <span class="s2">&quot;satellite/EUMETSAT/SEVIRI_RSS/native/2020&quot;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">blobs</span> <span class="o">=</span> <span class="n">list_blobs_with_prefix</span><span class="p">(</span><span class="n">BUCKET_NAME</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="n">PREFIX</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;There are </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">blobs</span><span class="p">)</span><span class="si">}</span><span class="s1"> files&#39;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>There are 2 files
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">blobs</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>[&#39;satellite/EUMETSAT/SEVIRI_RSS/native/2020/01/01/12/04/MSG3-SEVI-MSG15-0100-NA-20200101120418.186000000Z-NA.nat.bz2&#39;,
+ &#39;satellite/EUMETSAT/SEVIRI_RSS/native/2020/01/01/12/09/MSG3-SEVI-MSG15-0100-NA-20200101120916.896000000Z-NA.nat.bz2&#39;]
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">storage_client</span> <span class="o">=</span> <span class="n">storage</span><span class="o">.</span><span class="n">Client</span><span class="p">()</span>
+
+<span class="n">PREFIX</span> <span class="o">=</span> <span class="s2">&quot;satellite/EUMETSAT/SEVIRI_RSS/native/2018/&quot;</span>
+
+<span class="c1"># Note: Client.list_blobs requires at least package version 1.17.0.</span>
+<span class="n">blobs_</span> <span class="o">=</span> <span class="n">storage_client</span><span class="o">.</span><span class="n">list_blobs</span><span class="p">(</span><span class="n">BUCKET_NAME</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="n">PREFIX</span><span class="p">)</span>
+
+<span class="n">sizes</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">blob</span> <span class="ow">in</span> <span class="n">blobs_</span><span class="p">:</span>
+    <span class="n">sizes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>---------------------------------------------------------------------------
+
+KeyboardInterrupt                         Traceback (most recent call last)
+
+&lt;ipython-input-20-8607175daf03&gt; in &lt;module&gt;
+      8 sizes = []
+      9 
+---&gt; 10 for blob in blobs_:
+     11     sizes.append(blob.size)
+
+
+~/software/anaconda3/envs/satip_dev/lib/python3.8/site-packages/google/api_core/page_iterator.py in _items_iter(self)
+    210     def _items_iter(self):
+    211         &quot;&quot;&quot;Iterator for each item returned.&quot;&quot;&quot;
+--&gt; 212         for page in self._page_iter(increment=False):
+    213             for item in page:
+    214                 self.num_results += 1
+
+
+~/software/anaconda3/envs/satip_dev/lib/python3.8/site-packages/google/api_core/page_iterator.py in _page_iter(self, increment)
+    247                 self.num_results += page.num_items
+    248             yield page
+--&gt; 249             page = self._next_page()
+    250 
+    251     @abc.abstractmethod
+
+
+~/software/anaconda3/envs/satip_dev/lib/python3.8/site-packages/google/api_core/page_iterator.py in _next_page(self)
+    367         &quot;&quot;&quot;
+    368         if self._has_next_page():
+--&gt; 369             response = self._get_next_page_response()
+    370             items = response.get(self._items_key, ())
+    371             page = Page(self, items, self.item_to_value, raw_page=response)
+
+
+~/software/anaconda3/envs/satip_dev/lib/python3.8/site-packages/google/api_core/page_iterator.py in _get_next_page_response(self)
+    416         params = self._get_query_params()
+    417         if self._HTTP_METHOD == &quot;GET&quot;:
+--&gt; 418             return self.api_request(
+    419                 method=self._HTTP_METHOD, path=self.path, query_params=params
+    420             )
+
+
+~/software/anaconda3/envs/satip_dev/lib/python3.8/site-packages/google/cloud/storage/_http.py in api_request(self, *args, **kwargs)
+     61             if retry:
+     62                 call = retry(call)
+---&gt; 63         return call()
+
+
+~/software/anaconda3/envs/satip_dev/lib/python3.8/site-packages/google/api_core/retry.py in retry_wrapped_func(*args, **kwargs)
+    279                 self._initial, self._maximum, multiplier=self._multiplier
+    280             )
+--&gt; 281             return retry_target(
+    282                 target,
+    283                 self._predicate,
+
+
+~/software/anaconda3/envs/satip_dev/lib/python3.8/site-packages/google/api_core/retry.py in retry_target(target, predicate, sleep_generator, deadline, on_error)
+    182     for sleep in sleep_generator:
+    183         try:
+--&gt; 184             return target()
+    185 
+    186         # pylint: disable=broad-except
+
+
+~/software/anaconda3/envs/satip_dev/lib/python3.8/site-packages/google/cloud/_http.py in api_request(self, method, path, query_params, data, content_type, headers, api_base_url, api_version, expect_json, _target_object, timeout)
+    422             content_type = &quot;application/json&quot;
+    423 
+--&gt; 424         response = self._make_request(
+    425             method=method,
+    426             url=url,
+
+
+~/software/anaconda3/envs/satip_dev/lib/python3.8/site-packages/google/cloud/_http.py in _make_request(self, method, url, data, content_type, headers, target_object, timeout)
+    286         headers[&quot;User-Agent&quot;] = self.user_agent
+    287 
+--&gt; 288         return self._do_request(
+    289             method, url, headers, data, target_object, timeout=timeout
+    290         )
+
+
+~/software/anaconda3/envs/satip_dev/lib/python3.8/site-packages/google/cloud/_http.py in _do_request(self, method, url, headers, data, target_object, timeout)
+    324         :returns: The HTTP response.
+    325         &quot;&quot;&quot;
+--&gt; 326         return self.http.request(
+    327             url=url, method=method, headers=headers, data=data, timeout=timeout
+    328         )
+
+
+~/software/anaconda3/envs/satip_dev/lib/python3.8/site-packages/google/auth/transport/requests.py in request(self, method, url, data, headers, max_allowed_time, timeout, **kwargs)
+    462 
+    463         with TimeoutGuard(remaining_time) as guard:
+--&gt; 464             response = super(AuthorizedSession, self).request(
+    465                 method,
+    466                 url,
+
+
+~/software/anaconda3/envs/satip_dev/lib/python3.8/site-packages/requests/sessions.py in request(self, method, url, params, data, headers, cookies, files, auth, timeout, allow_redirects, proxies, hooks, stream, verify, cert, json)
+    540         }
+    541         send_kwargs.update(settings)
+--&gt; 542         resp = self.send(prep, **send_kwargs)
+    543 
+    544         return resp
+
+
+~/software/anaconda3/envs/satip_dev/lib/python3.8/site-packages/requests/sessions.py in send(self, request, **kwargs)
+    695 
+    696         if not stream:
+--&gt; 697             r.content
+    698 
+    699         return r
+
+
+~/software/anaconda3/envs/satip_dev/lib/python3.8/site-packages/requests/models.py in content(self)
+    829                 self._content = None
+    830             else:
+--&gt; 831                 self._content = b&#39;&#39;.join(self.iter_content(CONTENT_CHUNK_SIZE)) or b&#39;&#39;
+    832 
+    833         self._content_consumed = True
+
+
+~/software/anaconda3/envs/satip_dev/lib/python3.8/site-packages/requests/models.py in generate()
+    751             if hasattr(self.raw, &#39;stream&#39;):
+    752                 try:
+--&gt; 753                     for chunk in self.raw.stream(chunk_size, decode_content=True):
+    754                         yield chunk
+    755                 except ProtocolError as e:
+
+
+~/software/anaconda3/envs/satip_dev/lib/python3.8/site-packages/urllib3/response.py in stream(self, amt, decode_content)
+    573         else:
+    574             while not is_fp_closed(self._fp):
+--&gt; 575                 data = self.read(amt=amt, decode_content=decode_content)
+    576 
+    577                 if data:
+
+
+~/software/anaconda3/envs/satip_dev/lib/python3.8/site-packages/urllib3/response.py in read(self, amt, decode_content, cache_content)
+    516             else:
+    517                 cache_content = False
+--&gt; 518                 data = self._fp.read(amt) if not fp_closed else b&quot;&quot;
+    519                 if (
+    520                     amt != 0 and not data
+
+
+~/software/anaconda3/envs/satip_dev/lib/python3.8/http/client.py in read(self, amt)
+    456             # Amount is given, implement using readinto
+    457             b = bytearray(amt)
+--&gt; 458             n = self.readinto(b)
+    459             return memoryview(b)[:n].tobytes()
+    460         else:
+
+
+~/software/anaconda3/envs/satip_dev/lib/python3.8/http/client.py in readinto(self, b)
+    500         # connection, and the user is reading more bytes than will be provided
+    501         # (for example, reading in 1k chunks)
+--&gt; 502         n = self.fp.readinto(b)
+    503         if not n and b:
+    504             # Ideally, we would raise IncompleteRead if the content-length
+
+
+~/software/anaconda3/envs/satip_dev/lib/python3.8/socket.py in readinto(self, b)
+    667         while True:
+    668             try:
+--&gt; 669                 return self._sock.recv_into(b)
+    670             except timeout:
+    671                 self._timeout_occurred = True
+
+
+~/software/anaconda3/envs/satip_dev/lib/python3.8/ssl.py in recv_into(self, buffer, nbytes, flags)
+   1239                   &quot;non-zero flags not allowed in calls to recv_into() on %s&quot; %
+   1240                   self.__class__)
+-&gt; 1241             return self.read(nbytes, buffer)
+   1242         else:
+   1243             return super().recv_into(buffer, nbytes, flags)
+
+
+~/software/anaconda3/envs/satip_dev/lib/python3.8/ssl.py in read(self, len, buffer)
+   1097         try:
+   1098             if buffer is not None:
+-&gt; 1099                 return self._sslobj.read(len, buffer)
+   1100             else:
+   1101                 return self._sslobj.read(len)
+
+
+KeyboardInterrupt:
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nb">sum</span><span class="p">(</span><span class="n">sizes</span><span class="p">)</span> <span class="o">/</span> <span class="mf">1e9</span>
+</code></pre></div>
+<p>2018 contains 2.4TB of data</p>
+<p>Note that using the storage client to return blobs returns an iterable of blob metadata objects.<br />
+From those we've extracted the names. We can go backwards from the names to interact with the blobs. </p>
+<div class="highlight"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">blobs</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;blobs&#39;</span><span class="p">])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;blobs&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.nat.bz2&#39;</span><span class="p">)]</span> <span class="c1"># only compressed data files</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;datetime&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;blobs&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">slice</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">37</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mi">53</span><span class="p">),</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;%Y/%m/</span><span class="si">%d</span><span class="s2">/%H/%M&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">months_in_order</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;January&#39;</span><span class="p">,</span> <span class="s1">&#39;February&#39;</span><span class="p">,</span> <span class="s1">&#39;March&#39;</span><span class="p">,</span> <span class="s1">&#39;April&#39;</span><span class="p">,</span> <span class="s1">&#39;May&#39;</span><span class="p">,</span> <span class="s1">&#39;June&#39;</span><span class="p">,</span> <span class="s1">&#39;July&#39;</span><span class="p">,</span> <span class="s1">&#39;August&#39;</span><span class="p">,</span> <span class="s1">&#39;September&#39;</span><span class="p">,</span> <span class="s1">&#39;October&#39;</span><span class="p">,</span> <span class="s1">&#39;November&#39;</span><span class="p">,</span> <span class="s1">&#39;December&#39;</span><span class="p">]</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">blobs_by_month</span> <span class="o">=</span> <span class="n">df</span>\
+        <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;datetime&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span><span class="p">)</span>\
+        <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">month</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;datetime&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month_name</span><span class="p">())</span>\
+        <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">count</span><span class="p">()[</span><span class="s1">&#39;blobs&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span>\
+        <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>\
+        <span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s1">&#39;blobs&#39;</span><span class="p">)</span>\
+        <span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">months_in_order</span><span class="p">)</span>
+
+<span class="n">blobs_by_month</span>
+</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>year</th>
+      <th>2020</th>
+    </tr>
+    <tr>
+      <th>month</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>January</th>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>February</th>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>March</th>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>April</th>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>May</th>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>June</th>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>July</th>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>August</th>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>September</th>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>October</th>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>November</th>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>December</th>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="highlight"><pre><span></span><code><span class="c1"># credit: https://dfrieds.com/data-visualizations/visualize-historical-time-comparisons.html</span>
+
+<span class="n">figure</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">blobs_by_month</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=.</span><span class="mi">5</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Greys&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Count of .nat.bz files in Storage by Month and Year&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">1.01</span><span class="p">)</span>
+<span class="n">axes</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;month&quot;</span><span class="p">,</span> <span class="n">labelpad</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">axes</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="n">labelpad</span><span class="o">=</span><span class="mi">16</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">);</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">filenames</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;blobs&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.bz2&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">filenames</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>1         MSG3-SEVI-MSG15-0100-NA-20180531000417.2340000...
+2         MSG3-SEVI-MSG15-0100-NA-20180531000917.4680000...
+3         MSG3-SEVI-MSG15-0100-NA-20180531001417.7010000...
+4         MSG3-SEVI-MSG15-0100-NA-20180531001917.9350000...
+5         MSG3-SEVI-MSG15-0100-NA-20180531002416.3640000...
+                                ...                        
+170664    MSG3-SEVI-MSG15-0100-NA-20191231233418.2450000...
+170665    MSG3-SEVI-MSG15-0100-NA-20191231233916.9530000...
+170666    MSG3-SEVI-MSG15-0100-NA-20191231234415.6620000...
+170667    MSG3-SEVI-MSG15-0100-NA-20191231234914.3700000...
+170668    MSG3-SEVI-MSG15-0100-NA-20191231235414.2810000...
+Name: blobs, Length: 170667, dtype: object
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">PREFIX</span> <span class="o">=</span> <span class="s2">&quot;satellite/EUMETSAT/SEVIRI_RSS/native/2019/10/01&quot;</span>
+<span class="n">filenames</span> <span class="o">=</span> <span class="n">get_eumetsat_filenames</span><span class="p">(</span><span class="n">BUCKET_NAME</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="n">PREFIX</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nb">len</span><span class="p">(</span><span class="n">filenames</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>68202
+</code></pre></div>
+<h2 id="write-metadata-to-bigquery">Write metadata to bigquery<a class="headerlink" href="#write-metadata-to-bigquery" title="Permanent link">&para;</a></h2>
+<p>For cloud storage functions, storing metadata in a RDBS seems useful. BigQuery is a low hassle way to achieve this and can scale to lots of data with ease.<br />
+Downsides are rather inflexible migrations and updates.  </p>
+<div class="highlight"><pre><span></span><code><span class="c1"># write_metadata_to_gcp(df, &#39;test&#39;, &#39;solar-pv-nowcasting&#39;)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>---------------------------------------------------------------------------
+
+NotFoundException                         Traceback (most recent call last)
+
+&lt;ipython-input-29-4f7fbf24d98f&gt; in &lt;module&gt;
+----&gt; 1 write_metadata_to_gcp(df, &#39;test&#39;, &#39;solar-pv-nowcasting&#39;)
+
+
+&lt;ipython-input-28-9e358fc4b48b&gt; in write_metadata_to_gcp(df, table_id, project_id, credentials, append)
+     13         )
+     14     else:
+---&gt; 15         pandas_gbq.to_gbq(
+     16             df,
+     17             table_id,
+
+
+~/software/anaconda3/envs/satip_dev/lib/python3.8/site-packages/pandas_gbq/gbq.py in to_gbq(dataframe, destination_table, project_id, chunksize, reauth, if_exists, auth_local_webserver, table_schema, location, progress_bar, credentials, verbose, private_key)
+   1133 
+   1134     if &quot;.&quot; not in destination_table:
+-&gt; 1135         raise NotFoundException(
+   1136             &quot;Invalid Table Name. Should be of the form &#39;datasetId.tableId&#39; &quot;
+   1137         )
+
+
+NotFoundException: Invalid Table Name. Should be of the form &#39;datasetId.tableId&#39;
+
+
+Downloading: 100%|â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ| 1/1 [00:00&lt;00:00,  1.30rows/s]
+
+
+
+
+
+&#39;2020-12-03 19:14&#39;
+</code></pre></div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../03_zarr/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Saving with Zarr
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../05_pipeline/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Pipelines
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.0ac82a11.min.js"></script>
+      <script src="../assets/javascripts/bundle.f81dfb4d.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: ['header.autohide', 'navigation.tabs', 'navigation.instant', 'search.suggest'],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../javascripts/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
