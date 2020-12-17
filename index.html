@@ -14,7 +14,7 @@
     
     
       
-        <title>Data-Hub Documentation</title>
+        <title>Satip Documentation</title>
       
     
     
@@ -74,7 +74,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid" aria-label="Header">
-    <a href="." title="Data-Hub Documentation" class="md-header-nav__button md-logo" aria-label="Data-Hub Documentation">
+    <a href="." title="Satip Documentation" class="md-header-nav__button md-logo" aria-label="Satip Documentation">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -87,7 +87,7 @@
       
         <div class="md-header-nav__ellipsis">
           <span class="md-header-nav__topic md-ellipsis">
-            Data-Hub Documentation
+            Satip Documentation
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
@@ -222,13 +222,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="Data-Hub Documentation" class="md-nav__button md-logo" aria-label="Data-Hub Documentation">
+    <a href="." title="Satip Documentation" class="md-nav__button md-logo" aria-label="Satip Documentation">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
 
     </a>
-    Data-Hub Documentation
+    Satip Documentation
   </label>
   
     <div class="md-nav__source">
@@ -260,9 +260,59 @@
       
     
     
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Home
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
     <a href="." class="md-nav__link md-nav__link--active">
       Home
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    Installation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#development-set-up" class="md-nav__link">
+    Development Set-Up
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#publishing-to-pypi" class="md-nav__link">
+    Publishing to PyPi
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pipeline" class="md-nav__link">
+    Pipeline
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -479,6 +529,42 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    Installation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#development-set-up" class="md-nav__link">
+    Development Set-Up
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#publishing-to-pypi" class="md-nav__link">
+    Publishing to PyPi
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pipeline" class="md-nav__link">
+    Pipeline
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -496,7 +582,38 @@
                 
                 <h1 id="welcome-to-the-satip-documentation-site">Welcome to the Satip Documentation Site<a class="headerlink" href="#welcome-to-the-satip-documentation-site" title="Permanent link">&para;</a></h1>
 <p><br></p>
+<blockquote>
+<p>Satip is a library for <b>sat</b>ellite <b>i</b>mage <b>p</b>rocessing, and provides all of the functionality necessary for retrieving, transforming and storing EUMETSAT data</p>
+</blockquote>
 <p>This site provides user-guides, developer documentation and other information about the <code>satip</code> module</p>
+<p><br></p>
+<h3 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h3>
+<p>To install the <code>satip</code> library please run:</p>
+<div class="highlight"><pre><span></span><code>pip install satip
+</code></pre></div>
+<p><br></p>
+<h3 id="development-set-up">Development Set-Up<a class="headerlink" href="#development-set-up" title="Permanent link">&para;</a></h3>
+<p>To create a new environment you can follow the following code blocks or run the <code>setup_env</code> batch script located in the batch_scripts directory.</p>
+<div class="highlight"><pre><span></span><code>git clone
+conda env create -f environment.yml
+conda activate sat_image_processing
+</code></pre></div>
+<p>We'll also install Jupyter lab interactive plotting for matplotlib</p>
+<p>See the <a href="https://github.com/matplotlib/jupyter-matplotlib">jupyter-matplotlib docs for more info</a>.  The short version is to run these commands from within the <code>sat_image_processing</code> env:</p>
+<div class="highlight"><pre><span></span><code>jupyter labextension install @jupyter-widgets/jupyterlab-manager
+jupyter labextension install jupyter-matplotlib
+</code></pre></div>
+<p><br></p>
+<h3 id="publishing-to-pypi">Publishing to PyPi<a class="headerlink" href="#publishing-to-pypi" title="Permanent link">&para;</a></h3>
+<p>To publish the <code>satip</code> module to PyPi simply run the following from the batch_scripts directory</p>
+<div class="highlight"><pre><span></span><code>pypi_publish &lt;anaconda_dir&gt;
+</code></pre></div>
+<p>Where <code>&lt;anaconda_dir&gt;</code> is the path to your anaconda directory - e.g. C:\Users\User\anaconda3</p>
+<p>When prompted you should enter your PyPi username and password</p>
+<p>After this you will be able to install the latest version of satip using <code>pip install satip</code></p>
+<p><br></p>
+<h3 id="pipeline">Pipeline<a class="headerlink" href="#pipeline" title="Permanent link">&para;</a></h3>
+<p>To run the <em>dagster</em> pipeline for continuous data retrieval you can use: <code>dagster pipeline execute -m satip.mario -c pipeline_inputs.yaml</code></p>
                 
               
               
