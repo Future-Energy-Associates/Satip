@@ -173,7 +173,7 @@
     <li class="md-tabs__item">
       
       
-      <a href="../103_loading/" class="md-tabs__link">
+      <a href="../101_downloading/" class="md-tabs__link">
         User Guide
       </a>
     </li>
@@ -286,6 +286,30 @@
 
 
   <li class="md-nav__item">
+    <a href="../101_downloading/" class="md-nav__link">
+      Downloading from EUMETSAT
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../102_reprojecting/" class="md-nav__link">
+      Reprojecting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../103_loading/" class="md-nav__link">
       Loading from Zarr
     </a>
@@ -324,7 +348,7 @@
 
   <li class="md-nav__item">
     <a href="../about/OCF/" class="md-nav__link">
-      Parsers
+      OCF
     </a>
   </li>
 
@@ -428,48 +452,6 @@
         <li class="md-nav__item">
   <a href="#downloading-data" class="md-nav__link">
     Downloading Data
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#trying-out-bucket-files" class="md-nav__link">
-    Trying out bucket files
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#logging" class="md-nav__link">
-    Logging
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#helper-utils" class="md-nav__link">
-    Helper utils
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#download-files-from-gcp" class="md-nav__link">
-    Download files from GCP
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#compress-and-move-files" class="md-nav__link">
-    Compress and move files
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sync-to-gcp-storage" class="md-nav__link">
-    Sync to GCP Storage
   </a>
   
 </li>
@@ -585,48 +567,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#trying-out-bucket-files" class="md-nav__link">
-    Trying out bucket files
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#logging" class="md-nav__link">
-    Logging
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#helper-utils" class="md-nav__link">
-    Helper utils
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#download-files-from-gcp" class="md-nav__link">
-    Download files from GCP
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#compress-and-move-files" class="md-nav__link">
-    Compress and move files
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sync-to-gcp-storage" class="md-nav__link">
-    Sync to GCP Storage
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -647,7 +587,7 @@
                 <h1 id="eumetsat-api-wrapper-development">EUMETSAT API Wrapper Development<a class="headerlink" href="#eumetsat-api-wrapper-development" title="Permanent link">&para;</a></h1>
 <div class="highlight"><pre><span></span><code>C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\google\auth\_default.py:69: UserWarning: Your application has authenticated using end user credentials from Google Cloud SDK without a quota project. You might receive a &quot;quota exceeded&quot; or &quot;API not enabled&quot; error. We recommend you rerun `gcloud auth application-default login` and make sure a quota project is added. Or you can use service accounts instead. For more information about service accounts, see https://cloud.google.com/docs/authentication/
   warnings.warn(_CLOUD_SDK_CREDENTIALS_WARNING)
-Downloading: 100%|â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ| 1/1 [00:00&lt;00:00,  1.41rows/s]
+Downloading: 100%|â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ| 1/1 [00:00&lt;00:00,  1.09rows/s]
 </code></pre></div>
 <p><br></p>
 <h3 id="user-input">User Input<a class="headerlink" href="#user-input" title="Permanent link">&para;</a></h3>
@@ -716,8 +656,7 @@ Downloading: 100%|â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–�
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">datasets</span><span class="p">)</span><span class="si">}</span><span class="s1"> datasets have been identified&#39;</span><span class="p">)</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>1728 datasets have been identified
-CPU times: user 200 ms, sys: 17.9 ms, total: 218 ms
-Wall time: 1.27 s
+Wall time: 1.19 s
 </code></pre></div>
 <p><br></p>
 <p>Finally we'll create a helper function for converting the dataset ids into their file urls.</p>
@@ -729,7 +668,7 @@ Wall time: 1.27 s
 
 <span class="n">example_data_link</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>&#39;https://api.eumetsat.int/data/download/products/MSG3-SEVI-MSG15-0100-NA-20201001000414.060000000Z-NA&#39;
+<div class="highlight"><pre><span></span><code>&#39;https://api.eumetsat.int/data/download/products/MSG3-SEVI-MSG15-0100-NA-20191001000415.000000000Z-NA&#39;
 </code></pre></div>
 <p><br></p>
 <h3 id="downloading-data">Downloading Data<a class="headerlink" href="#downloading-data" title="Permanent link">&para;</a></h3>
@@ -744,13 +683,6 @@ Wall time: 1.27 s
 <p>We're now ready to create a download manager that will handle all of the querying, processing and retrieving for us</p>
 <p><br></p>
 <p>We'll now see what it looks like when we initialise the download manager</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># dm = DownloadManager(user_key, user_secret, data_dir, metadata_db_fp, debug_fp)</span>
-<span class="c1"># start_date = &#39;2019-10-01 00:00&#39;</span>
-<span class="c1"># end_date = &#39;2019-10-01 00:05&#39;</span>
-
-<span class="c1"># if download_data == True:</span>
-<span class="c1">#     dm.download_datasets(start_date, end_date)</span>
-</code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="n">dm</span> <span class="o">=</span> <span class="n">DownloadManager</span><span class="p">(</span><span class="n">user_key</span><span class="p">,</span> <span class="n">user_secret</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">,</span> <span class="n">metadata_db_fp</span><span class="p">,</span> <span class="n">debug_fp</span><span class="p">,</span> 
                      <span class="n">slack_webhook_url</span><span class="o">=</span><span class="n">slack_webhook_url</span><span class="p">,</span> <span class="n">slack_id</span><span class="o">=</span><span class="n">slack_id</span><span class="p">)</span>
 
@@ -764,17 +696,165 @@ Wall time: 1.27 s
 
 <span class="n">df_metadata</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </code></pre></div>
+<div class="highlight"><pre><span></span><code>2020-12-16 23:12:02,565 - INFO - ********** Download Manager Initialised **************
+2020-12-16 23:12:03,112 - INFO - 1 files queried, 1 found in ../data/raw, 0 to download.
+2020-12-16 23:12:03,115 - INFO - No files will be downloaded. Set DownloadManager bucket_name argument for local download
+</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>start_date</th>
+      <th>end_date</th>
+      <th>result_time</th>
+      <th>platform_short_name</th>
+      <th>platform_orbit_type</th>
+      <th>instrument_name</th>
+      <th>sensor_op_mode</th>
+      <th>center_srs_name</th>
+      <th>center_position</th>
+      <th>file_name</th>
+      <th>file_size</th>
+      <th>missing_pct</th>
+      <th>downloaded</th>
+    </tr>
+    <tr>
+      <th>id</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>2020-10-01 12:05:09.428</td>
+      <td>2020-10-01 12:09:15.775</td>
+      <td>2020-10-01 12:09:15.775</td>
+      <td>MSG3</td>
+      <td>GEO</td>
+      <td>SEVIRI</td>
+      <td>RSS</td>
+      <td>EPSG:4326</td>
+      <td>0 9.5</td>
+      <td>MSG3-SEVI-MSG15-0100-NA-20201001120915.7750000...</td>
+      <td>99819</td>
+      <td>0.0</td>
+      <td>2020-11-13 10:32:40.853958</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2020-10-01 12:10:09.249</td>
+      <td>2020-10-01 12:14:15.596</td>
+      <td>2020-10-01 12:14:15.596</td>
+      <td>MSG3</td>
+      <td>GEO</td>
+      <td>SEVIRI</td>
+      <td>RSS</td>
+      <td>EPSG:4326</td>
+      <td>0 9.5</td>
+      <td>MSG3-SEVI-MSG15-0100-NA-20201001121415.5960000...</td>
+      <td>99819</td>
+      <td>0.0</td>
+      <td>2020-11-13 10:32:56.874131</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2020-10-01 12:15:09.071</td>
+      <td>2020-10-01 12:19:15.417</td>
+      <td>2020-10-01 12:19:15.417</td>
+      <td>MSG3</td>
+      <td>GEO</td>
+      <td>SEVIRI</td>
+      <td>RSS</td>
+      <td>EPSG:4326</td>
+      <td>0 9.5</td>
+      <td>MSG3-SEVI-MSG15-0100-NA-20201001121915.4170000...</td>
+      <td>99819</td>
+      <td>0.0</td>
+      <td>2020-11-13 10:33:13.998136</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2020-10-01 12:20:08.892</td>
+      <td>2020-10-01 12:24:15.239</td>
+      <td>2020-10-01 12:24:15.239</td>
+      <td>MSG3</td>
+      <td>GEO</td>
+      <td>SEVIRI</td>
+      <td>RSS</td>
+      <td>EPSG:4326</td>
+      <td>0 9.5</td>
+      <td>MSG3-SEVI-MSG15-0100-NA-20201001122415.2390000...</td>
+      <td>99819</td>
+      <td>0.0</td>
+      <td>2020-11-13 10:33:30.656217</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2020-10-01 12:25:08.714</td>
+      <td>2020-10-01 12:29:15.060</td>
+      <td>2020-10-01 12:29:15.060</td>
+      <td>MSG3</td>
+      <td>GEO</td>
+      <td>SEVIRI</td>
+      <td>RSS</td>
+      <td>EPSG:4326</td>
+      <td>0 9.5</td>
+      <td>MSG3-SEVI-MSG15-0100-NA-20201001122915.0600000...</td>
+      <td>99819</td>
+      <td>0.0</td>
+      <td>2020-11-13 10:33:46.352754</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
 <p><br></p>
 <p>The <code>get_size</code> function was adapted from <a href="https://stackoverflow.com/questions/1392413/calculating-a-directorys-size-using-python">this stackoverflow answer</a></p>
 <div class="highlight"><pre><span></span><code><span class="n">data_dir_size</span> <span class="o">=</span> <span class="n">get_dir_size</span><span class="p">(</span><span class="n">data_dir</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The data directory is currently </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">data_dir_size</span><span class="o">/</span><span class="mi">1_000_000_000</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1"> Gb&#39;</span><span class="p">)</span>
 </code></pre></div>
+<div class="highlight"><pre><span></span><code>The data directory is currently 30.36 Gb
+</code></pre></div>
+<p><br>
+<br>
+<br>
+<br></p>
+<h1 id="need-to-clean-notebook-below-here">Need to Clean Notebook Below Here<a class="headerlink" href="#need-to-clean-notebook-below-here" title="Permanent link">&para;</a></h1>
+<p><br>
+<br>
+<br>
+<br></p>
 <h2 id="trying-out-bucket-files">Trying out bucket files<a class="headerlink" href="#trying-out-bucket-files" title="Permanent link">&para;</a></h2>
 <p>If GCP flags are passed (<code>bucket_name</code> and <code>bucket_prefix</code>), when downloading the <code>DownloadManager</code> should first check to see if the files already exist in the specified bucket.<br />
 If the files already exist, then don't download them.  </p>
 <div class="highlight"><pre><span></span><code><span class="n">BUCKET_NAME</span> <span class="o">=</span> <span class="s2">&quot;solar-pv-nowcasting-data&quot;</span>
-<span class="c1"># PREFIX = &quot;satellite/EUMETSAT/SEVIRI_RSS/native/&quot;</span>
 <span class="n">PREFIX</span> <span class="o">=</span> <span class="s2">&quot;satellite/EUMETSAT/SEVIRI_RSS/native/2020&quot;</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="n">dm</span> <span class="o">=</span> <span class="n">DownloadManager</span><span class="p">(</span><span class="n">user_key</span><span class="p">,</span> <span class="n">user_secret</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">,</span> <span class="n">metadata_db_fp</span><span class="p">,</span> <span class="n">debug_fp</span><span class="p">,</span> <span class="n">bucket_name</span><span class="o">=</span><span class="n">BUCKET_NAME</span><span class="p">,</span> <span class="n">bucket_prefix</span><span class="o">=</span><span class="n">PREFIX</span><span class="p">)</span>

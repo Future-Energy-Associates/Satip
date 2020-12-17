@@ -173,7 +173,7 @@
     <li class="md-tabs__item">
       
       
-      <a href="../103_loading/" class="md-tabs__link">
+      <a href="../101_downloading/" class="md-tabs__link">
         User Guide
       </a>
     </li>
@@ -286,6 +286,30 @@
 
 
   <li class="md-nav__item">
+    <a href="../101_downloading/" class="md-nav__link">
+      Downloading from EUMETSAT
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../102_reprojecting/" class="md-nav__link">
+      Reprojecting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../103_loading/" class="md-nav__link">
       Loading from Zarr
     </a>
@@ -324,7 +348,7 @@
 
   <li class="md-nav__item">
     <a href="../about/OCF/" class="md-nav__link">
-      Parsers
+      OCF
     </a>
   </li>
 
@@ -631,7 +655,7 @@
 
 <span class="n">scene</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>&lt;satpy.scene.Scene at 0x1911d108580&gt;
+<div class="highlight"><pre><span></span><code>&lt;satpy.scene.Scene at 0x294fae42e50&gt;
 </code></pre></div>
 <p><br></p>
 <p>We can get a list of the available datasets (bands)</p>
@@ -1033,7 +1057,7 @@ Attributes:
     calibration:                            reflectance
     modifiers:                              ()
     _satpy_id:                              DataID(name=&#x27;HRV&#x27;, wavelength=Wav...
-    ancillary_variables:                    []</pre><div class='xr-wrap' hidden><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'reshape-3b944f9ca9a40a223ab6382d90bfb37d'</div><ul class='xr-dim-list'><li><span class='xr-has-index'>y</span>: 4176</li><li><span class='xr-has-index'>x</span>: 5568</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-d81909ca-a5ec-4dd5-93c7-c4c7dcccd25f' class='xr-array-in' type='checkbox' checked><label for='section-d81909ca-a5ec-4dd5-93c7-c4c7dcccd25f' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>dask.array&lt;chunksize=(1392, 5568), meta=np.ndarray&gt;</span></div><div class='xr-array-data'><table>
+    ancillary_variables:                    []</pre><div class='xr-wrap' hidden><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'reshape-3b944f9ca9a40a223ab6382d90bfb37d'</div><ul class='xr-dim-list'><li><span class='xr-has-index'>y</span>: 4176</li><li><span class='xr-has-index'>x</span>: 5568</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-ad262609-2bbd-4fca-8918-0218e4d9c21e' class='xr-array-in' type='checkbox' checked><label for='section-ad262609-2bbd-4fca-8918-0218e4d9c21e' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>dask.array&lt;chunksize=(1392, 5568), meta=np.ndarray&gt;</span></div><div class='xr-array-data'><table>
 <tr>
 <td>
 <table>
@@ -1070,7 +1094,7 @@ Attributes:
 </svg>
 </td>
 </tr>
-</table></div></div></li><li class='xr-section-item'><input id='section-ac471bd9-e7b8-49e4-aad0-0a02a709d3de' class='xr-section-summary-in' type='checkbox'  checked><label for='section-ac471bd9-e7b8-49e4-aad0-0a02a709d3de' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>crs</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>object</div><div class='xr-var-preview xr-preview'>PROJCRS[&quot;unknown&quot;,BASEGEOGCRS[&quot;u...</div><input id='attrs-8631da2a-b789-4fb2-918e-ac4d6237039e' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-8631da2a-b789-4fb2-918e-ac4d6237039e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-176c3f6a-c880-4cab-b38a-38a905b38e27' class='xr-var-data-in' type='checkbox'><label for='data-176c3f6a-c880-4cab-b38a-38a905b38e27' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(&lt;Projected CRS: PROJCRS[&quot;unknown&quot;,BASEGEOGCRS[&quot;unknown&quot;,DATUM[&quot;unk ...&gt;
+</table></div></div></li><li class='xr-section-item'><input id='section-be78b272-a827-49ad-bbd4-e67a22f11f81' class='xr-section-summary-in' type='checkbox'  checked><label for='section-be78b272-a827-49ad-bbd4-e67a22f11f81' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>crs</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>object</div><div class='xr-var-preview xr-preview'>PROJCRS[&quot;unknown&quot;,BASEGEOGCRS[&quot;u...</div><input id='attrs-24a4516d-47d6-4b84-a529-9b9a27d0c80c' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-24a4516d-47d6-4b84-a529-9b9a27d0c80c' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-dfe2da16-3982-4740-a746-8618e52c8eb0' class='xr-var-data-in' type='checkbox'><label for='data-dfe2da16-3982-4740-a746-8618e52c8eb0' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(&lt;Projected CRS: PROJCRS[&quot;unknown&quot;,BASEGEOGCRS[&quot;unknown&quot;,DATUM[&quot;unk ...&gt;
 Name: unknown
 Axis Info [cartesian]:
 - E[east]: Easting (metre)
@@ -1083,9 +1107,9 @@ Coordinate Operation:
 Datum: unknown
 - Ellipsoid: unknown
 - Prime Meridian: Greenwich
-, dtype=object)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>y</span></div><div class='xr-var-dims'>(y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>1.395e+06 1.396e+06 ... 5.571e+06</div><input id='attrs-b3303e3e-58ca-46b6-bce5-7ee2a1a61e00' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-b3303e3e-58ca-46b6-bce5-7ee2a1a61e00' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-17c12456-f7b3-493b-aeda-4fafcb09f9d5' class='xr-var-data-in' type='checkbox'><label for='data-17c12456-f7b3-493b-aeda-4fafcb09f9d5' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>meter</dd></dl></div><div class='xr-var-data'><pre>array([1395187.416673, 1396187.551022, 1397187.68537 , ..., 5568748.054504,
-       5569748.188853, 5570748.323202])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>x</span></div><div class='xr-var-dims'>(x)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>3.164e+06 3.163e+06 ... -2.403e+06</div><input id='attrs-446f97c5-8613-41cb-b39e-3c14f87a42fd' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-446f97c5-8613-41cb-b39e-3c14f87a42fd' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-6c4d7a5a-a5f2-4f57-b912-20801fbc2cc7' class='xr-var-data-in' type='checkbox'><label for='data-6c4d7a5a-a5f2-4f57-b912-20801fbc2cc7' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>meter</dd></dl></div><div class='xr-var-data'><pre>array([ 3164425.079823,  3163424.945474,  3162424.811125, ..., -2401322.571635,
-       -2402322.705984, -2403322.840333])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-08418693-4b48-4258-af0d-1d5fd02ba309' class='xr-section-summary-in' type='checkbox'  ><label for='section-08418693-4b48-4258-af0d-1d5fd02ba309' class='xr-section-summary' >Attributes: <span>(17)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>orbital_parameters :</span></dt><dd>{&#x27;projection_longitude&#x27;: 9.5, &#x27;projection_latitude&#x27;: 0.0, &#x27;projection_altitude&#x27;: 35785831.0}</dd><dt><span>sun_earth_distance_correction_applied :</span></dt><dd>True</dd><dt><span>sun_earth_distance_correction_factor :</span></dt><dd>0.9697642568677852</dd><dt><span>units :</span></dt><dd>%</dd><dt><span>wavelength :</span></dt><dd>0.7â€¯ÂµmÂ (0.5-0.9â€¯Âµm)</dd><dt><span>standard_name :</span></dt><dd>toa_bidirectional_reflectance</dd><dt><span>platform_name :</span></dt><dd>Meteosat-9</dd><dt><span>sensor :</span></dt><dd>seviri</dd><dt><span>start_time :</span></dt><dd>2020-12-08 09:00:08.206321</dd><dt><span>end_time :</span></dt><dd>2020-12-08 09:05:08.329479</dd><dt><span>area :</span></dt><dd>Area ID: geos_seviri_hrv
+, dtype=object)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>y</span></div><div class='xr-var-dims'>(y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>1.395e+06 1.396e+06 ... 5.571e+06</div><input id='attrs-bec74a8d-3724-442d-93c8-52349b020eac' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-bec74a8d-3724-442d-93c8-52349b020eac' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-c42e9782-c97e-4139-b747-66f0c2e3e096' class='xr-var-data-in' type='checkbox'><label for='data-c42e9782-c97e-4139-b747-66f0c2e3e096' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>meter</dd></dl></div><div class='xr-var-data'><pre>array([1395187.416673, 1396187.551022, 1397187.68537 , ..., 5568748.054504,
+       5569748.188853, 5570748.323202])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>x</span></div><div class='xr-var-dims'>(x)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>3.164e+06 3.163e+06 ... -2.403e+06</div><input id='attrs-3cb7ed9e-a4f5-443d-8076-214e3b04b819' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-3cb7ed9e-a4f5-443d-8076-214e3b04b819' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-57d04bb2-132c-4a43-bfac-a49dff670d0f' class='xr-var-data-in' type='checkbox'><label for='data-57d04bb2-132c-4a43-bfac-a49dff670d0f' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>meter</dd></dl></div><div class='xr-var-data'><pre>array([ 3164425.079823,  3163424.945474,  3162424.811125, ..., -2401322.571635,
+       -2402322.705984, -2403322.840333])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-294d7518-d732-4a0f-98de-547f0a52450d' class='xr-section-summary-in' type='checkbox'  ><label for='section-294d7518-d732-4a0f-98de-547f0a52450d' class='xr-section-summary' >Attributes: <span>(17)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>orbital_parameters :</span></dt><dd>{&#x27;projection_longitude&#x27;: 9.5, &#x27;projection_latitude&#x27;: 0.0, &#x27;projection_altitude&#x27;: 35785831.0}</dd><dt><span>sun_earth_distance_correction_applied :</span></dt><dd>True</dd><dt><span>sun_earth_distance_correction_factor :</span></dt><dd>0.9697642568677852</dd><dt><span>units :</span></dt><dd>%</dd><dt><span>wavelength :</span></dt><dd>0.7â€¯ÂµmÂ (0.5-0.9â€¯Âµm)</dd><dt><span>standard_name :</span></dt><dd>toa_bidirectional_reflectance</dd><dt><span>platform_name :</span></dt><dd>Meteosat-9</dd><dt><span>sensor :</span></dt><dd>seviri</dd><dt><span>start_time :</span></dt><dd>2020-12-08 09:00:08.206321</dd><dt><span>end_time :</span></dt><dd>2020-12-08 09:05:08.329479</dd><dt><span>area :</span></dt><dd>Area ID: geos_seviri_hrv
 Description: SEVIRI high resolution channel area
 Projection ID: seviri_hrv
 Projection: {&#x27;a&#x27;: &#x27;6378169&#x27;, &#x27;h&#x27;: &#x27;35785831&#x27;, &#x27;lon_0&#x27;: &#x27;9.5&#x27;, &#x27;no_defs&#x27;: &#x27;None&#x27;, &#x27;proj&#x27;: &#x27;geos&#x27;, &#x27;rf&#x27;: &#x27;295.488065897014&#x27;, &#x27;type&#x27;: &#x27;crs&#x27;, &#x27;units&#x27;: &#x27;m&#x27;, &#x27;x_0&#x27;: &#x27;0&#x27;, &#x27;y_0&#x27;: &#x27;0&#x27;}
@@ -1166,7 +1190,7 @@ Area extent: (3164925.147, 5571248.3904, -2403822.9075, 1394687.3495)</dd><dt><s
   <rdf:RDF xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2020-12-16T20:22:49.021885</dc:date>
+    <dc:date>2020-12-16T23:15:15.552296</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -1199,7 +1223,7 @@ L 7.2 170.28
 " style="fill:#ffffff;"/>
    </g>
    <g id="PathCollection_1">
-    <path clip-path="url(#p4afb405bb7)" d="M 64.164393 39.917195 
+    <path clip-path="url(#p82c2cc087c)" d="M 64.164393 39.917195 
 L 63.860271 41.299359 
 L 61.225519 43.168999 
 L 56.42198 44.573751 
@@ -1212,7 +1236,7 @@ L 64.252596 37.505267
 L 66.030268 38.558925 
 L 64.164393 39.917195 
 " style="fill:none;stroke:#000000;"/>
-    <path clip-path="url(#p4afb405bb7)" d="M 178.497312 88.102676 
+    <path clip-path="url(#p82c2cc087c)" d="M 178.497312 88.102676 
 L 180.687263 88.252691 
 L 183.067069 87.459912 
 L 181.530603 88.688229 
@@ -1223,7 +1247,7 @@ L 176.69224 88.893433
 L 178.315951 88.839399 
 L 178.497312 88.102676 
 " style="fill:none;stroke:#000000;"/>
-    <path clip-path="url(#p4afb405bb7)" d="M 157.709797 87.518371 
+    <path clip-path="url(#p82c2cc087c)" d="M 157.709797 87.518371 
 L 157.536222 88.435596 
 L 152.899609 88.555455 
 L 152.814657 88.034185 
@@ -1235,7 +1259,7 @@ L 155.98371 87.292418
 L 156.03826 87.837852 
 L 157.709797 87.518371 
 " style="fill:none;stroke:#000000;"/>
-    <path clip-path="url(#p4afb405bb7)" d="M 98.651945 69.893575 
+    <path clip-path="url(#p82c2cc087c)" d="M 98.651945 69.893575 
 L 100.233914 69.025393 
 L 102.12819 71.018707 
 L 101.693958 74.818 
@@ -1246,7 +1270,7 @@ L 97.606297 71.367532
 L 96.92111 69.757363 
 L 98.651945 69.893575 
 " style="fill:none;stroke:#000000;"/>
-    <path clip-path="url(#p4afb405bb7)" d="M 98.836418 65.143792 
+    <path clip-path="url(#p82c2cc087c)" d="M 98.836418 65.143792 
 L 100.809485 64.118811 
 L 101.329036 66.429541 
 L 100.298333 68.55288 
@@ -1254,14 +1278,14 @@ L 98.885972 67.991071
 L 98.199426 66.14973 
 L 98.836418 65.143792 
 " style="fill:none;stroke:#000000;"/>
-    <path clip-path="url(#p4afb405bb7)" d="M 107.607694 35.083532 
+    <path clip-path="url(#p82c2cc087c)" d="M 107.607694 35.083532 
 L 108.427038 35.979942 
 L 107.191366 37.446568 
 L 104.693768 36.399189 
 L 104.33569 35.65219 
 L 107.607694 35.083532 
 " style="fill:none;stroke:#000000;"/>
-    <path clip-path="url(#p4afb405bb7)" d="M 72.754099 31.490067 
+    <path clip-path="url(#p82c2cc087c)" d="M 72.754099 31.490067 
 L 75.266577 31.271515 
 L 72.16966 33.108301 
 L 74.407436 32.807817 
@@ -1306,7 +1330,7 @@ L 68.875134 32.801813
 L 71.217762 31.423904 
 L 72.754099 31.490067 
 " style="fill:none;stroke:#000000;"/>
-    <path clip-path="url(#p4afb405bb7)" d="M 64.672614 21.882372 
+    <path clip-path="url(#p82c2cc087c)" d="M 64.672614 21.882372 
 L 63.339887 22.610265 
 L 63.969739 23.272559 
 L 60.839579 24.309241 
@@ -1327,7 +1351,7 @@ L 59.300687 22.725358
 L 62.464999 21.971341 
 L 64.672614 21.882372 
 " style="fill:none;stroke:#000000;"/>
-    <path clip-path="url(#p4afb405bb7)" d="M 144.83448 17.718004 
+    <path clip-path="url(#p82c2cc087c)" d="M 144.83448 17.718004 
 L 144.734018 17.70058 
 L 145.600869 17.959836 
 L 147.32214 18.462346 
@@ -1348,7 +1372,7 @@ L 141.59287 17.155346
 L 141.544169 17.08296 
 L 141.596102 17.069898 
 " style="fill:none;stroke:#000000;"/>
-    <path clip-path="url(#p4afb405bb7)" d="M 112.694123 13.552115 
+    <path clip-path="url(#p82c2cc087c)" d="M 112.694123 13.552115 
 L 112.351956 13.576087 
 L 110.52323 13.513272 
 L 108.389053 13.425346 
@@ -1361,7 +1385,7 @@ L 109.33171 13.382655
 L 111.097932 13.461639 
 L 112.694123 13.552115 
 " style="fill:none;stroke:#000000;"/>
-    <path clip-path="url(#p4afb405bb7)" d="M 113.23539 13.867051 
+    <path clip-path="url(#p82c2cc087c)" d="M 113.23539 13.867051 
 L 111.8521 13.905965 
 L 110.245661 13.798058 
 L 110.591154 13.751842 
@@ -1370,7 +1394,7 @@ L 111.269569 13.674945
 L 111.9081 13.768375 
 L 113.23539 13.867051 
 " style="fill:none;stroke:#000000;"/>
-    <path clip-path="url(#p4afb405bb7)" d="M 104.986253 13.339573 
+    <path clip-path="url(#p82c2cc087c)" d="M 104.986253 13.339573 
 L 105.105926 13.309139 
 L 106.049085 13.323418 
 L 107.072572 13.37708 
@@ -1389,7 +1413,7 @@ L 103.563137 13.289595
 L 104.022539 13.32833 
 L 104.986253 13.339573 
 " style="fill:none;stroke:#000000;"/>
-    <path clip-path="url(#p4afb405bb7)" d="M 118.464281 77.958148 
+    <path clip-path="url(#p82c2cc087c)" d="M 118.464281 77.958148 
 L 120.924009 77.727352 
 L 119.972372 80.073174 
 L 120.557978 81.018433 
@@ -1401,11 +1425,11 @@ L 111.269866 77.948197
 L 115.139503 78.250052 
 L 118.464281 77.958148 
 " style="fill:none;stroke:#000000;"/>
-    <path clip-path="url(#p4afb405bb7)" d="M 179.31973 62.353598 
+    <path clip-path="url(#p82c2cc087c)" d="M 179.31973 62.353598 
 L 182.705362 63.52938 
 L 187.142398 65.979089 
 " style="fill:none;stroke:#000000;"/>
-    <path clip-path="url(#p4afb405bb7)" d="M 7.200002 127.351983 
+    <path clip-path="url(#p82c2cc087c)" d="M 7.200002 127.351983 
 L 8.455117 126.084894 
 L 9.722416 125.447506 
 L 11.098215 123.272373 
@@ -1875,7 +1899,7 @@ L 158.904345 21.156467
 L 156.846855 20.582777 
 L 156.846855 20.582777 
 " style="fill:none;stroke:#000000;"/>
-    <path clip-path="url(#p4afb405bb7)" d="M 166.147892 23.314824 
+    <path clip-path="url(#p82c2cc087c)" d="M 166.147892 23.314824 
 L 166.1594 23.318491 
 L 170.477616 24.760358 
 L 173.06513 25.660245 
@@ -1889,12 +1913,12 @@ L 175.906884 26.690116
 L 173.749125 25.898378 
 L 172.309736 25.381769 
 " style="fill:none;stroke:#000000;"/>
-    <path clip-path="url(#p4afb405bb7)" d="M 171.573359 25.123719 
+    <path clip-path="url(#p82c2cc087c)" d="M 171.573359 25.123719 
 L 171.002002 24.927297 
 L 169.064713 24.267387 
 L 168.759097 24.165242 
 " style="fill:none;stroke:#000000;"/>
-    <path clip-path="url(#p4afb405bb7)" d="M 224.692075 152.998871 
+    <path clip-path="url(#p82c2cc087c)" d="M 224.692075 152.998871 
 L 223.18181 151.842387 
 L 220.830637 148.515801 
 L 219.273841 145.332471 
@@ -1948,7 +1972,7 @@ L 218.576665 161.063259
 L 223.663777 164.974878 
 L 224.692075 166.086416 
 " style="fill:none;stroke:#000000;"/>
-    <path clip-path="url(#p4afb405bb7)" d="M 224.692074 87.150624 
+    <path clip-path="url(#p82c2cc087c)" d="M 224.692074 87.150624 
 L 223.877551 86.951087 
 L 221.440935 85.278447 
 L 218.924223 84.439194 
@@ -1997,7 +2021,7 @@ L 223.513367 78.410534
 L 224.304251 80.318185 
 L 224.692075 80.519733 
 " style="fill:none;stroke:#000000;"/>
-    <path clip-path="url(#p4afb405bb7)" d="M 83.593439 13.939751 
+    <path clip-path="url(#p82c2cc087c)" d="M 83.593439 13.939751 
 L 84.111904 13.898132 
 L 82.119353 14.079338 
 L 80.420678 14.266087 
@@ -2066,13 +2090,13 @@ L 32.718087 24.44843
 L 33.123415 24.300607 
 L 33.504486 24.173235 
 " style="fill:none;stroke:#000000;"/>
-    <path clip-path="url(#p4afb405bb7)" d="M 37.781934 22.798938 
+    <path clip-path="url(#p82c2cc087c)" d="M 37.781934 22.798938 
 L 38.002024 22.744913 
 L 38.898825 22.456371 
 " style="fill:none;stroke:#000000;"/>
    </g>
    <g id="LineCollection_1">
-    <path clip-path="url(#p4afb405bb7)" d="M 7.2 52.204341 
+    <path clip-path="url(#p82c2cc087c)" d="M 7.2 52.204341 
 L 8.478522 50.836459 
 L 9.895499 49.359324 
 L 11.323033 47.911493 
@@ -2119,7 +2143,7 @@ L 73.90961 14.956606
 L 74.165827 14.92375 
 L 74.165828 14.92375 
 " style="fill:none;stroke:#b0b0b0;stroke-width:0.8;"/>
-    <path clip-path="url(#p4afb405bb7)" d="M 61.32859 170.279998 
+    <path clip-path="url(#p82c2cc087c)" d="M 61.32859 170.279998 
 L 61.448124 167.654402 
 L 61.58057 164.890001 
 L 61.719207 162.138232 
@@ -2220,7 +2244,7 @@ L 93.602086 13.692454
 L 94.029532 13.551876 
 L 94.456493 13.441419 
 " style="fill:none;stroke:#b0b0b0;stroke-width:0.8;"/>
-    <path clip-path="url(#p4afb405bb7)" d="M 184.780685 170.28 
+    <path clip-path="url(#p82c2cc087c)" d="M 184.780685 170.28 
 L 184.582315 168.215309 
 L 184.306775 165.475789 
 L 184.018332 162.748461 
@@ -2321,7 +2345,7 @@ L 117.119774 14.039626
 L 116.215733 13.87905 
 L 115.312543 13.748613 
 " style="fill:none;stroke:#b0b0b0;stroke-width:0.8;"/>
-    <path clip-path="url(#p4afb405bb7)" d="M 224.692076 66.291258 
+    <path clip-path="url(#p82c2cc087c)" d="M 224.692076 66.291258 
 L 223.201108 64.645367 
 L 221.633734 62.957908 
 L 220.051012 61.297041 
@@ -2370,13 +2394,13 @@ L 143.800647 17.519012
 L 141.85173 17.120754 
 L 140.838949 16.925846 
 " style="fill:none;stroke:#b0b0b0;stroke-width:0.8;"/>
-    <path clip-path="url(#p4afb405bb7)" style="fill:none;stroke:#b0b0b0;stroke-width:0.8;"/>
-    <path clip-path="url(#p4afb405bb7)" style="fill:none;stroke:#b0b0b0;stroke-width:0.8;"/>
-    <path clip-path="url(#p4afb405bb7)" style="fill:none;stroke:#b0b0b0;stroke-width:0.8;"/>
-    <path clip-path="url(#p4afb405bb7)" style="fill:none;stroke:#b0b0b0;stroke-width:0.8;"/>
+    <path clip-path="url(#p82c2cc087c)" style="fill:none;stroke:#b0b0b0;stroke-width:0.8;"/>
+    <path clip-path="url(#p82c2cc087c)" style="fill:none;stroke:#b0b0b0;stroke-width:0.8;"/>
+    <path clip-path="url(#p82c2cc087c)" style="fill:none;stroke:#b0b0b0;stroke-width:0.8;"/>
+    <path clip-path="url(#p82c2cc087c)" style="fill:none;stroke:#b0b0b0;stroke-width:0.8;"/>
    </g>
    <g id="LineCollection_2">
-    <path clip-path="url(#p4afb405bb7)" d="M 7.200005 142.486079 
+    <path clip-path="url(#p82c2cc087c)" d="M 7.200005 142.486079 
 L 10.23715 142.392424 
 L 18.830049 142.147581 
 L 27.637551 141.926061 
@@ -2404,7 +2428,7 @@ L 219.377459 143.383599
 L 224.692071 143.619406 
 L 224.692075 143.619406 
 " style="fill:none;stroke:#b0b0b0;stroke-width:0.8;"/>
-    <path clip-path="url(#p4afb405bb7)" d="M 7.200003 106.312356 
+    <path clip-path="url(#p82c2cc087c)" d="M 7.200003 106.312356 
 L 10.629499 106.14393 
 L 18.275394 105.796859 
 L 26.128946 105.479012 
@@ -2434,7 +2458,7 @@ L 215.860489 107.522
 L 222.404269 107.980091 
 L 224.692075 108.150347 
 " style="fill:none;stroke:#b0b0b0;stroke-width:0.8;"/>
-    <path clip-path="url(#p4afb405bb7)" d="M 7.200002 75.64741 
+    <path clip-path="url(#p82c2cc087c)" d="M 7.200002 75.64741 
 L 9.410948 75.484078 
 L 15.715234 75.048044 
 L 22.221633 74.641226 
@@ -2470,7 +2494,7 @@ L 222.902291 78.273209
 L 224.692072 78.487653 
 L 224.692075 78.487654 
 " style="fill:none;stroke:#b0b0b0;stroke-width:0.8;"/>
-    <path clip-path="url(#p4afb405bb7)" d="M 7.200003 51.792354 
+    <path clip-path="url(#p82c2cc087c)" d="M 7.200003 51.792354 
 L 10.77296 51.389978 
 L 15.475295 50.900569 
 L 20.366358 50.435262 
@@ -2514,7 +2538,7 @@ L 219.701732 55.60943
 L 222.54421 56.240123 
 L 224.692076 56.763995 
 " style="fill:none;stroke:#b0b0b0;stroke-width:0.8;"/>
-    <path clip-path="url(#p4afb405bb7)" d="M 7.200001 36.48091 
+    <path clip-path="url(#p82c2cc087c)" d="M 7.200001 36.48091 
 L 8.570684 36.14369 
 L 10.910432 35.61243 
 L 13.428227 35.092401 
@@ -2572,7 +2596,7 @@ L 203.162076 39.15228
 L 204.309243 39.726316 
 L 204.361241 39.754887 
 " style="fill:none;stroke:#b0b0b0;stroke-width:0.8;"/>
-    <path clip-path="url(#p4afb405bb7)" d="M 34.574558 23.820094 
+    <path clip-path="url(#p82c2cc087c)" d="M 34.574558 23.820094 
 L 35.67366 23.477574 
 L 37.07238 23.083168 
 L 38.591614 22.696153 
@@ -2641,7 +2665,7 @@ L 7.2 170.28
   </g>
  </g>
  <defs>
-  <clipPath id="p4afb405bb7">
+  <clipPath id="p82c2cc087c">
    <path d="M 7.2 170.28 
 L 7.2 7.2 
 L 224.692076 7.2 
@@ -2673,7 +2697,7 @@ L 7.2 170.28
 <span class="n">scene</span> <span class="o">=</span> <span class="n">load_scene</span><span class="p">(</span><span class="n">native_fp</span><span class="p">)</span>
 <span class="n">scene</span><span class="o">.</span><span class="n">load</span><span class="p">([</span><span class="s1">&#39;HRV&#39;</span><span class="p">])</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>Wall time: 464 ms
+<div class="highlight"><pre><span></span><code>Wall time: 1.18 s
 
 
 C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\pyproj\crs\crs.py:543: UserWarning: You will likely lose important projection information when converting to a PROJ string from another format. See: https://proj.org/faq.html#what-is-the-best-format-for-describing-coordinate-reference-systems
@@ -2689,7 +2713,7 @@ C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\pyproj\crs\crs.py:543:
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="s1">&#39;50m&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>&lt;cartopy.mpl.feature_artist.FeatureArtist at 0x1912aa1d1f0&gt;
+<div class="highlight"><pre><span></span><code>&lt;cartopy.mpl.feature_artist.FeatureArtist at 0x2948c808e50&gt;
 </code></pre></div>
 <p><img alt="png" src="../img/nbs/output_22_1.png" /></p>
 <p><br></p>
@@ -2712,7 +2736,7 @@ C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\pyproj\crs\crs.py:543:
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="s1">&#39;50m&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>&lt;cartopy.mpl.feature_artist.FeatureArtist at 0x1912ac2b430&gt;
+<div class="highlight"><pre><span></span><code>&lt;cartopy.mpl.feature_artist.FeatureArtist at 0x2948c809f40&gt;
 </code></pre></div>
 <p><img alt="png" src="../img/nbs/output_24_1.png" /></p>
 <p><br></p>
@@ -2803,7 +2827,7 @@ C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\pyproj\crs\crs.py:543:
   <rdf:RDF xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2020-12-16T20:23:04.493284</dc:date>
+    <dc:date>2020-12-16T23:15:54.380829</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -2836,7 +2860,7 @@ L 7.2 170.28
 " style="fill:#ffffff;"/>
    </g>
    <g id="PathCollection_1">
-    <path clip-path="url(#p1a9b158a53)" d="M 66.930454 74.556112 
+    <path clip-path="url(#p6af88d2914)" d="M 66.930454 74.556112 
 L 67.021396 76.344429 
 L 65.688257 78.452078 
 L 62.826144 79.625229 
@@ -2849,7 +2873,7 @@ L 66.457284 71.256451
 L 67.850921 72.921704 
 L 66.930454 74.556112 
 " style="fill:none;stroke:#000000;"/>
-    <path clip-path="url(#p1a9b158a53)" d="M 25.333635 7.200001 
+    <path clip-path="url(#p6af88d2914)" d="M 25.333635 7.200001 
 L 25.182856 7.920256 
 L 25.352537 9.591068 
 L 23.879482 12.017921 
@@ -2874,7 +2898,7 @@ L 9.9653 11.789727
 L 10.409136 8.667682 
 L 10.972934 7.200001 
 " style="fill:none;stroke:#000000;"/>
-    <path clip-path="url(#p1a9b158a53)" d="M 143.752045 108.614297 
+    <path clip-path="url(#p6af88d2914)" d="M 143.752045 108.614297 
 L 145.28896 108.068825 
 L 146.906046 106.540445 
 L 145.911758 108.2067 
@@ -2885,7 +2909,7 @@ L 142.56053 109.886245
 L 143.67871 109.351548 
 L 143.752045 108.614297 
 " style="fill:none;stroke:#000000;"/>
-    <path clip-path="url(#p1a9b158a53)" d="M 129.835083 113.450056 
+    <path clip-path="url(#p6af88d2914)" d="M 129.835083 113.450056 
 L 129.78681 114.276401 
 L 126.826599 115.316719 
 L 126.736659 114.891604 
@@ -2897,7 +2921,7 @@ L 128.709216 113.619626
 L 128.782224 114.076747 
 L 129.835083 113.450056 
 " style="fill:none;stroke:#000000;"/>
-    <path clip-path="url(#p1a9b158a53)" d="M 92.354392 106.237849 
+    <path clip-path="url(#p6af88d2914)" d="M 92.354392 106.237849 
 L 93.212362 105.372919 
 L 94.533721 107.008227 
 L 94.625862 110.315947 
@@ -2908,7 +2932,7 @@ L 91.873883 107.589327
 L 91.309279 106.214328 
 L 92.354392 106.237849 
 " style="fill:none;stroke:#000000;"/>
-    <path clip-path="url(#p1a9b158a53)" d="M 91.983574 101.951716 
+    <path clip-path="url(#p6af88d2914)" d="M 91.983574 101.951716 
 L 93.054738 100.878968 
 L 93.605623 102.967068 
 L 93.204125 104.947853 
@@ -2916,14 +2940,14 @@ L 92.305611 104.532344
 L 91.707928 102.90965 
 L 91.983574 101.951716 
 " style="fill:none;stroke:#000000;"/>
-    <path clip-path="url(#p1a9b158a53)" d="M 93.089423 67.850203 
+    <path clip-path="url(#p6af88d2914)" d="M 93.089423 67.850203 
 L 93.756866 69.000854 
 L 93.272611 71.143936 
 L 91.562027 70.001829 
 L 91.203765 69.010932 
 L 93.089423 67.850203 
 " style="fill:none;stroke:#000000;"/>
-    <path clip-path="url(#p1a9b158a53)" d="M 70.546001 63.170746 
+    <path clip-path="url(#p6af88d2914)" d="M 70.546001 63.170746 
 L 72.118015 63.046221 
 L 70.574877 65.653612 
 L 71.947203 65.385429 
@@ -2968,7 +2992,7 @@ L 68.351339 64.829876
 L 69.527018 62.903619 
 L 70.546001 63.170746 
 " style="fill:none;stroke:#000000;"/>
-    <path clip-path="url(#p1a9b158a53)" d="M 61.703077 42.052639 
+    <path clip-path="url(#p6af88d2914)" d="M 61.703077 42.052639 
 L 61.101053 43.569604 
 L 61.862249 45.491022 
 L 60.084729 47.03567 
@@ -2989,7 +3013,7 @@ L 58.200606 42.318209
 L 60.141998 41.477378 
 L 61.703077 42.052639 
 " style="fill:none;stroke:#000000;"/>
-    <path clip-path="url(#p1a9b158a53)" d="M 110.280962 7.200002 
+    <path clip-path="url(#p6af88d2914)" d="M 110.280962 7.200002 
 L 110.949073 8.235193 
 L 112.287848 10.619936 
 L 114.113276 11.738376 
@@ -3005,12 +3029,12 @@ L 109.25688 9.315598
 L 108.610076 9.652521 
 L 107.867097 7.2 
 " style="fill:none;stroke:#000000;"/>
-    <path clip-path="url(#p1a9b158a53)" d="M 84.293788 7.2 
+    <path clip-path="url(#p6af88d2914)" d="M 84.293788 7.2 
 L 84.919785 7.477486 
 L 84.95672 7.200001 
 L 84.95672 7.2 
 " style="fill:none;stroke:#000000;"/>
-    <path clip-path="url(#p1a9b158a53)" d="M 87.352741 7.2 
+    <path clip-path="url(#p6af88d2914)" d="M 87.352741 7.2 
 L 87.352952 7.200073 
 L 87.360109 8.694803 
 L 86.272415 9.503243 
@@ -3020,7 +3044,7 @@ L 83.955646 9.144758
 L 83.16199 8.19815 
 L 84.087698 7.200001 
 " style="fill:none;stroke:#000000;"/>
-    <path clip-path="url(#p1a9b158a53)" d="M 88.574216 12.707719 
+    <path clip-path="url(#p6af88d2914)" d="M 88.574216 12.707719 
 L 87.878113 14.114062 
 L 86.785188 13.916274 
 L 86.898687 13.186233 
@@ -3029,7 +3053,7 @@ L 87.114755 11.704756
 L 87.661212 12.491269 
 L 88.574216 12.707719 
 " style="fill:none;stroke:#000000;"/>
-    <path clip-path="url(#p1a9b158a53)" d="M 82.679838 10.005644 
+    <path clip-path="url(#p6af88d2914)" d="M 82.679838 10.005644 
 L 82.619085 9.140911 
 L 83.203275 8.883068 
 L 83.989492 9.547933 
@@ -3048,14 +3072,14 @@ L 81.638156 9.402451
 L 82.071867 10.195239 
 L 82.679838 10.005644 
 " style="fill:none;stroke:#000000;"/>
-    <path clip-path="url(#p1a9b158a53)" d="M 7.479339 7.2 
+    <path clip-path="url(#p6af88d2914)" d="M 7.479339 7.2 
 L 7.200001 7.781751 
 " style="fill:none;stroke:#000000;"/>
-    <path clip-path="url(#p1a9b158a53)" d="M 7.200001 19.293135 
+    <path clip-path="url(#p6af88d2914)" d="M 7.200001 19.293135 
 L 7.527792 19.331336 
 L 7.200001 19.753975 
 " style="fill:none;stroke:#000000;"/>
-    <path clip-path="url(#p1a9b158a53)" d="M 104.889934 111.541174 
+    <path clip-path="url(#p6af88d2914)" d="M 104.889934 111.541174 
 L 106.345909 111.073992 
 L 105.964373 113.155621 
 L 106.39003 113.878984 
@@ -3067,11 +3091,11 @@ L 100.592813 112.231073
 L 102.925668 112.126746 
 L 104.889934 111.541174 
 " style="fill:none;stroke:#000000;"/>
-    <path clip-path="url(#p1a9b158a53)" d="M 142.026347 81.375988 
+    <path clip-path="url(#p6af88d2914)" d="M 142.026347 81.375988 
 L 144.500757 81.201979 
 L 147.893517 81.978365 
 " style="fill:none;stroke:#000000;"/>
-    <path clip-path="url(#p1a9b158a53)" d="M 37.502367 159.053493 
+    <path clip-path="url(#p6af88d2914)" d="M 37.502367 159.053493 
 L 37.333377 157.760119 
 L 37.699855 156.515346 
 L 37.203415 155.242752 
@@ -3550,7 +3574,7 @@ L 123.404635 7.925733
 L 125.130045 7.200001 
 L 125.130045 7.200001 
 " style="fill:none;stroke:#000000;"/>
-    <path clip-path="url(#p1a9b158a53)" d="M 173.753576 143.64529 
+    <path clip-path="url(#p6af88d2914)" d="M 173.753576 143.64529 
 L 171.91722 142.079185 
 L 170.992484 140.146299 
 L 170.576812 138.389811 
@@ -3595,7 +3619,7 @@ L 170.694153 151.632924
 L 172.511408 152.346104 
 L 173.753575 153.861494 
 " style="fill:none;stroke:#000000;"/>
-    <path clip-path="url(#p1a9b158a53)" d="M 33.563398 170.28 
+    <path clip-path="url(#p6af88d2914)" d="M 33.563398 170.28 
 L 33.147973 169.921188 
 L 34.285166 169.521901 
 L 35.63328 167.82141 
@@ -3605,11 +3629,11 @@ L 37.022707 163.965174
 L 37.53737 161.593663 
 L 37.502367 159.053493 
 " style="fill:none;stroke:#000000;"/>
-    <path clip-path="url(#p1a9b158a53)" d="M 173.753576 70.041126 
+    <path clip-path="url(#p6af88d2914)" d="M 173.753576 70.041126 
 L 173.281026 69.37755 
 L 173.753577 68.374763 
 " style="fill:none;stroke:#000000;"/>
-    <path clip-path="url(#p1a9b158a53)" d="M 173.753577 84.648152 
+    <path clip-path="url(#p6af88d2914)" d="M 173.753577 84.648152 
 L 172.608263 83.820144 
 L 171.67443 82.625301 
 L 171.963411 81.533351 
@@ -3646,7 +3670,7 @@ L 172.737398 70.201022
 L 173.753576 70.766558 
 L 173.753577 70.766559 
 " style="fill:none;stroke:#000000;"/>
-    <path clip-path="url(#p1a9b158a53)" d="M 70.26554 7.200001 
+    <path clip-path="url(#p6af88d2914)" d="M 70.26554 7.200001 
 L 69.459458 7.703061 
 L 69.074811 8.186937 
 L 67.661748 8.175397 
@@ -3731,7 +3755,7 @@ L 42.934371 7.200001
 " style="fill:none;stroke:#000000;"/>
    </g>
    <g id="LineCollection_1">
-    <path clip-path="url(#p1a9b158a53)" d="M 7.200001 27.085971 
+    <path clip-path="url(#p6af88d2914)" d="M 7.200001 27.085971 
 L 7.389138 26.958394 
 L 8.989152 25.88351 
 L 10.58498 24.819033 
@@ -3754,7 +3778,7 @@ L 35.6092 8.946381
 L 37.145734 8.012314 
 L 38.486914 7.2 
 " style="fill:none;stroke:#b0b0b0;stroke-width:0.8;"/>
-    <path clip-path="url(#p1a9b158a53)" d="M 7.200001 76.559062 
+    <path clip-path="url(#p6af88d2914)" d="M 7.200001 76.559062 
 L 8.126852 75.024721 
 L 9.128558 73.384858 
 L 10.135489 71.754941 
@@ -3804,7 +3828,7 @@ L 56.323988 8.837495
 L 57.432627 7.486847 
 L 57.668439 7.200001 
 " style="fill:none;stroke:#b0b0b0;stroke-width:0.8;"/>
-    <path clip-path="url(#p1a9b158a53)" d="M 27.094125 170.279999 
+    <path clip-path="url(#p6af88d2914)" d="M 27.094125 170.279999 
 L 27.234125 168.763753 
 L 27.408396 166.953344 
 L 27.590245 165.144332 
@@ -3902,7 +3926,7 @@ L 67.330179 9.158766
 L 67.915766 7.525593 
 L 68.032656 7.200001 
 " style="fill:none;stroke:#b0b0b0;stroke-width:0.8;"/>
-    <path clip-path="url(#p1a9b158a53)" d="M 76.00355 170.28 
+    <path clip-path="url(#p6af88d2914)" d="M 76.00355 170.28 
 L 76.00355 169.314551 
 L 76.00355 167.598104 
 L 76.00355 165.881543 
@@ -3999,7 +4023,7 @@ L 76.00355 10.664716
 L 76.00355 8.932731 
 L 76.00355 7.200676 
 " style="fill:none;stroke:#b0b0b0;stroke-width:0.8;"/>
-    <path clip-path="url(#p1a9b158a53)" d="M 124.912975 170.279999 
+    <path clip-path="url(#p6af88d2914)" d="M 124.912975 170.279999 
 L 124.772975 168.763753 
 L 124.598704 166.953344 
 L 124.416855 165.144332 
@@ -4097,7 +4121,7 @@ L 84.676921 9.158766
 L 84.091334 7.525593 
 L 83.974444 7.200001 
 " style="fill:none;stroke:#b0b0b0;stroke-width:0.8;"/>
-    <path clip-path="url(#p1a9b158a53)" d="M 173.753577 139.646066 
+    <path clip-path="url(#p6af88d2914)" d="M 173.753577 139.646066 
 L 173.693663 139.455323 
 L 173.042996 137.417344 
 L 172.376792 135.390497 
@@ -4182,7 +4206,7 @@ L 95.683112 8.837495
 L 94.574473 7.486847 
 L 94.338661 7.200001 
 " style="fill:none;stroke:#b0b0b0;stroke-width:0.8;"/>
-    <path clip-path="url(#p1a9b158a53)" d="M 173.753577 48.192521 
+    <path clip-path="url(#p6af88d2914)" d="M 173.753577 48.192521 
 L 172.496086 47.197599 
 L 170.820338 45.884666 
 L 169.148953 44.589415 
@@ -4224,7 +4248,7 @@ L 113.520186 7.2
 " style="fill:none;stroke:#b0b0b0;stroke-width:0.8;"/>
    </g>
    <g id="LineCollection_2">
-    <path clip-path="url(#p1a9b158a53)" d="M 7.200001 152.409865 
+    <path clip-path="url(#p6af88d2914)" d="M 7.200001 152.409865 
 L 10.901714 153.080061 
 L 14.766017 153.736179 
 L 18.594701 154.343155 
@@ -4271,7 +4295,7 @@ L 167.174362 147.44651
 L 171.387579 146.325545 
 L 173.753575 145.668557 
 " style="fill:none;stroke:#b0b0b0;stroke-width:0.8;"/>
-    <path clip-path="url(#p1a9b158a53)" d="M 7.200002 123.962176 
+    <path clip-path="url(#p6af88d2914)" d="M 7.200002 123.962176 
 L 9.665944 124.695946 
 L 13.157883 125.681961 
 L 16.629653 126.601971 
@@ -4323,7 +4347,7 @@ L 169.144239 114.911518
 L 172.823191 113.228645 
 L 173.753575 112.788559 
 " style="fill:none;stroke:#b0b0b0;stroke-width:0.8;"/>
-    <path clip-path="url(#p1a9b158a53)" d="M 7.200001 94.349903 
+    <path clip-path="url(#p6af88d2914)" d="M 7.200001 94.349903 
 L 9.387851 95.348066 
 L 12.33763 96.628619 
 L 15.287618 97.836798 
@@ -4383,7 +4407,7 @@ L 170.29167 79.166486
 L 173.13768 76.980463 
 L 173.753576 76.491495 
 " style="fill:none;stroke:#b0b0b0;stroke-width:0.8;"/>
-    <path clip-path="url(#p1a9b158a53)" d="M 7.2 62.125541 
+    <path clip-path="url(#p6af88d2914)" d="M 7.2 62.125541 
 L 7.739508 62.526689 
 L 9.944244 64.112404 
 L 12.173119 65.631821 
@@ -4461,7 +4485,7 @@ L 173.338317 29.242808
 L 173.753576 28.461927 
 L 173.753577 28.461926 
 " style="fill:none;stroke:#b0b0b0;stroke-width:0.8;"/>
-    <path clip-path="url(#p1a9b158a53)" d="M 7.2 20.657065 
+    <path clip-path="url(#p6af88d2914)" d="M 7.2 20.657065 
 L 7.243479 20.733717 
 L 8.316977 22.561791 
 L 9.4387 24.352194 
@@ -4555,7 +4579,7 @@ L 149.714736 10.114198
 L 150.4364 8.077902 
 L 150.72656 7.2 
 " style="fill:none;stroke:#b0b0b0;stroke-width:0.8;"/>
-    <path clip-path="url(#p1a9b158a53)" d="M 30.479021 7.2 
+    <path clip-path="url(#p6af88d2914)" d="M 30.479021 7.2 
 L 30.83753 7.898083 
 L 31.486819 9.09739 
 L 32.167975 10.276669 
@@ -4643,7 +4667,7 @@ L 120.834319 8.527198
 L 121.46814 7.318634 
 L 121.528078 7.200001 
 " style="fill:none;stroke:#b0b0b0;stroke-width:0.8;"/>
-    <path clip-path="url(#p1a9b158a53)" d="M 64.347917 7.2 
+    <path clip-path="url(#p6af88d2914)" d="M 64.347917 7.2 
 L 64.696052 7.379124 
 L 65.290618 7.669398 
 L 65.89245 7.943786 
@@ -4695,7 +4719,7 @@ L 7.2 170.28
   </g>
  </g>
  <defs>
-  <clipPath id="p1a9b158a53">
+  <clipPath id="p6af88d2914">
    <path d="M 7.2 170.28 
 L 7.2 7.2 
 L 173.753577 7.2 
@@ -4723,7 +4747,7 @@ C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_bas
   a = op(a[slice1], a[slice2])
 
 
-Wall time: 2.59 s
+Wall time: 8.86 s
 </code></pre></div>
 <p><br></p>
 <p>We'll quickly check that the reprojection looks ok</p>
@@ -4745,7 +4769,7 @@ C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\dask\core.py:121: Runt
 
 
 
-&lt;cartopy.mpl.feature_artist.FeatureArtist at 0x1912bf95190&gt;
+&lt;cartopy.mpl.feature_artist.FeatureArtist at 0x2948d7e00d0&gt;
 </code></pre></div>
 <p><img alt="png" src="../img/nbs/output_35_2.png" /></p>
 <p><br></p>
@@ -4774,7 +4798,7 @@ C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\dask\core.py:121: Runt
 
 <span class="n">df_proj_points</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>Wall time: 2.77 s
+<div class="highlight"><pre><span></span><code>Wall time: 5.41 s
 </code></pre></div>
 <div>
 <style scoped>
@@ -4853,19 +4877,19 @@ C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\dask\core.py:121: Runt
 <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df_proj_points</span><span class="p">[</span><span class="s1">&#39;x_reproj&#39;</span><span class="p">][::</span><span class="mi">10</span><span class="p">],</span> <span class="n">df_proj_points</span><span class="p">[</span><span class="s1">&#39;y_reproj&#39;</span><span class="p">][::</span><span class="mi">10</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>&lt;timed exec&gt;:2: UserWarning: The default value for the *approx* keyword argument to TransverseMercator will change from True to False after 0.18.
-C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\dask\core.py:121: RuntimeWarning: invalid value encountered in sin
-  return func(*(_execute_task(a, cache) for a in args))
 C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\dask\core.py:121: RuntimeWarning: invalid value encountered in cos
   return func(*(_execute_task(a, cache) for a in args))
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\dask\core.py:121: RuntimeWarning: invalid value encountered in sin
+  return func(*(_execute_task(a, cache) for a in args))
 
 
-Wall time: 30.7 s
+Wall time: 27.8 s
 
 
 
 
 
-&lt;matplotlib.collections.PathCollection at 0x1910024cd00&gt;
+&lt;matplotlib.collections.PathCollection at 0x294fb0be3a0&gt;
 </code></pre></div>
 <p><img alt="png" src="../img/nbs/output_39_3.png" /></p>
 <p><br></p>
@@ -5419,7 +5443,7 @@ Attributes:
     calibration:                            reflectance
     modifiers:                              ()
     _satpy_id:                              DataID(name=&#x27;HRV&#x27;, wavelength=Wav...
-    ancillary_variables:                    []</pre><div class='xr-wrap' hidden><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'my_index-25c95e08ed138cbd282b6596ed55c066'</div><ul class='xr-dim-list'><li><span class='xr-has-index'>y</span>: 1831</li><li><span class='xr-has-index'>x</span>: 1870</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-75a7c3cb-ce3f-4d94-8523-b2bfc48c47ef' class='xr-array-in' type='checkbox' checked><label for='section-75a7c3cb-ce3f-4d94-8523-b2bfc48c47ef' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>dask.array&lt;chunksize=(1831, 1870), meta=np.ndarray&gt;</span></div><div class='xr-array-data'><table>
+    ancillary_variables:                    []</pre><div class='xr-wrap' hidden><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'my_index-25c95e08ed138cbd282b6596ed55c066'</div><ul class='xr-dim-list'><li><span class='xr-has-index'>y</span>: 1831</li><li><span class='xr-has-index'>x</span>: 1870</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-77e13003-33d7-42fb-a045-b7cc4e978072' class='xr-array-in' type='checkbox' checked><label for='section-77e13003-33d7-42fb-a045-b7cc4e978072' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>dask.array&lt;chunksize=(1831, 1870), meta=np.ndarray&gt;</span></div><div class='xr-array-data'><table>
 <tr>
 <td>
 <table>
@@ -5454,7 +5478,7 @@ Attributes:
 </svg>
 </td>
 </tr>
-</table></div></div></li><li class='xr-section-item'><input id='section-e746b412-7bb9-4c63-81f1-9319de2d322b' class='xr-section-summary-in' type='checkbox'  checked><label for='section-e746b412-7bb9-4c63-81f1-9319de2d322b' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>crs</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>object</div><div class='xr-var-preview xr-preview'>PROJCRS[&quot;unknown&quot;,BASEGEOGCRS[&quot;u...</div><input id='attrs-625a79f2-a038-490c-8810-1f534547f72a' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-625a79f2-a038-490c-8810-1f534547f72a' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-a7964b09-96af-4245-8824-950439923105' class='xr-var-data-in' type='checkbox'><label for='data-a7964b09-96af-4245-8824-950439923105' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(&lt;Projected CRS: PROJCRS[&quot;unknown&quot;,BASEGEOGCRS[&quot;unknown&quot;,DATUM[&quot;Unk ...&gt;
+</table></div></div></li><li class='xr-section-item'><input id='section-584cdfbb-94bb-436c-ab31-71efda3ea3bd' class='xr-section-summary-in' type='checkbox'  checked><label for='section-584cdfbb-94bb-436c-ab31-71efda3ea3bd' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>crs</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>object</div><div class='xr-var-preview xr-preview'>PROJCRS[&quot;unknown&quot;,BASEGEOGCRS[&quot;u...</div><input id='attrs-2882d840-ac48-4ea1-a41d-3cbdc0852c29' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-2882d840-ac48-4ea1-a41d-3cbdc0852c29' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-26a2260d-9a0b-4121-8797-b091563b3ba1' class='xr-var-data-in' type='checkbox'><label for='data-26a2260d-9a0b-4121-8797-b091563b3ba1' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(&lt;Projected CRS: PROJCRS[&quot;unknown&quot;,BASEGEOGCRS[&quot;unknown&quot;,DATUM[&quot;Unk ...&gt;
 Name: unknown
 Axis Info [cartesian]:
 - E[east]: Easting (metre)
@@ -5467,7 +5491,7 @@ Coordinate Operation:
 Datum: Unknown based on WGS84 ellipsoid
 - Ellipsoid: WGS 84
 - Prime Meridian: Greenwich
-, dtype=object)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>y</span></div><div class='xr-var-dims'>(y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>9.012e+06 9.008e+06 ... 1.692e+06</div><input id='attrs-69578ef6-a945-4089-b644-d072eee273c4' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-69578ef6-a945-4089-b644-d072eee273c4' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-013a8477-cd69-4d48-aab7-f41253eb2d38' class='xr-var-data-in' type='checkbox'><label for='data-013a8477-cd69-4d48-aab7-f41253eb2d38' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>metre</dd></dl></div><div class='xr-var-data'><pre>array([9012000., 9008000., 9004000., ..., 1700000., 1696000., 1692000.])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>x</span></div><div class='xr-var-dims'>(x)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-3.088e+06 -3.084e+06 ... 4.388e+06</div><input id='attrs-0e343faf-f8f5-44b2-9296-29254c03ec4e' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-0e343faf-f8f5-44b2-9296-29254c03ec4e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-f3e8232c-bc20-42d1-a5ef-7171bf6d9482' class='xr-var-data-in' type='checkbox'><label for='data-f3e8232c-bc20-42d1-a5ef-7171bf6d9482' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>metre</dd></dl></div><div class='xr-var-data'><pre>array([-3088000., -3084000., -3080000., ...,  4380000.,  4384000.,  4388000.])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-dfb6b613-3d03-496b-8501-8a5af19c6555' class='xr-section-summary-in' type='checkbox'  ><label for='section-dfb6b613-3d03-496b-8501-8a5af19c6555' class='xr-section-summary' >Attributes: <span>(17)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>orbital_parameters :</span></dt><dd>{&#x27;projection_longitude&#x27;: 9.5, &#x27;projection_latitude&#x27;: 0.0, &#x27;projection_altitude&#x27;: 35785831.0}</dd><dt><span>sun_earth_distance_correction_applied :</span></dt><dd>True</dd><dt><span>sun_earth_distance_correction_factor :</span></dt><dd>0.9697642568677852</dd><dt><span>units :</span></dt><dd>%</dd><dt><span>wavelength :</span></dt><dd>0.7â€¯ÂµmÂ (0.5-0.9â€¯Âµm)</dd><dt><span>standard_name :</span></dt><dd>toa_bidirectional_reflectance</dd><dt><span>platform_name :</span></dt><dd>Meteosat-9</dd><dt><span>sensor :</span></dt><dd>seviri</dd><dt><span>start_time :</span></dt><dd>2020-12-08 09:00:08.206321</dd><dt><span>end_time :</span></dt><dd>2020-12-08 09:05:08.329479</dd><dt><span>area :</span></dt><dd>Area ID: TM
+, dtype=object)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>y</span></div><div class='xr-var-dims'>(y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>9.012e+06 9.008e+06 ... 1.692e+06</div><input id='attrs-948816fd-dce8-4899-a909-1dd029f03f32' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-948816fd-dce8-4899-a909-1dd029f03f32' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-b909c86a-e8f8-4631-b0f7-d15fe2d9646e' class='xr-var-data-in' type='checkbox'><label for='data-b909c86a-e8f8-4631-b0f7-d15fe2d9646e' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>metre</dd></dl></div><div class='xr-var-data'><pre>array([9012000., 9008000., 9004000., ..., 1700000., 1696000., 1692000.])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>x</span></div><div class='xr-var-dims'>(x)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-3.088e+06 -3.084e+06 ... 4.388e+06</div><input id='attrs-73f17606-cb6e-4da7-8f33-e51df5f6c167' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-73f17606-cb6e-4da7-8f33-e51df5f6c167' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-c85378f0-d705-4996-88f8-f3b891d9ad59' class='xr-var-data-in' type='checkbox'><label for='data-c85378f0-d705-4996-88f8-f3b891d9ad59' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>metre</dd></dl></div><div class='xr-var-data'><pre>array([-3088000., -3084000., -3080000., ...,  4380000.,  4384000.,  4388000.])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-5cfc7e6c-3a34-410b-8086-8060ca3b654f' class='xr-section-summary-in' type='checkbox'  ><label for='section-5cfc7e6c-3a34-410b-8086-8060ca3b654f' class='xr-section-summary' >Attributes: <span>(17)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>orbital_parameters :</span></dt><dd>{&#x27;projection_longitude&#x27;: 9.5, &#x27;projection_latitude&#x27;: 0.0, &#x27;projection_altitude&#x27;: 35785831.0}</dd><dt><span>sun_earth_distance_correction_applied :</span></dt><dd>True</dd><dt><span>sun_earth_distance_correction_factor :</span></dt><dd>0.9697642568677852</dd><dt><span>units :</span></dt><dd>%</dd><dt><span>wavelength :</span></dt><dd>0.7â€¯ÂµmÂ (0.5-0.9â€¯Âµm)</dd><dt><span>standard_name :</span></dt><dd>toa_bidirectional_reflectance</dd><dt><span>platform_name :</span></dt><dd>Meteosat-9</dd><dt><span>sensor :</span></dt><dd>seviri</dd><dt><span>start_time :</span></dt><dd>2020-12-08 09:00:08.206321</dd><dt><span>end_time :</span></dt><dd>2020-12-08 09:05:08.329479</dd><dt><span>area :</span></dt><dd>Area ID: TM
 Description: Transverse Mercator
 Projection ID: TM
 Projection: {&#x27;ellps&#x27;: &#x27;WGS84&#x27;, &#x27;k&#x27;: &#x27;1&#x27;, &#x27;lat_0&#x27;: &#x27;0&#x27;, &#x27;lon_0&#x27;: &#x27;0&#x27;, &#x27;no_defs&#x27;: &#x27;None&#x27;, &#x27;proj&#x27;: &#x27;tmerc&#x27;, &#x27;type&#x27;: &#x27;crs&#x27;, &#x27;units&#x27;: &#x27;m&#x27;, &#x27;x_0&#x27;: &#x27;0&#x27;, &#x27;y_0&#x27;: &#x27;0&#x27;}
@@ -5538,7 +5562,7 @@ Area extent: (-3090000, 1690000, 4390000, 9014000)</dd><dt><span>name :</span></
 
 <span class="n">df_new_coords</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>Wall time: 1.51 s
+<div class="highlight"><pre><span></span><code>Wall time: 3.36 s
 </code></pre></div>
 <div>
 <style scoped>
@@ -5607,7 +5631,7 @@ Area extent: (-3090000, 1690000, 4390000, 9014000)</dd><dt><span>name :</span></
 
 <span class="n">hlp</span><span class="o">.</span><span class="n">hide_spines</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>Wall time: 55.9 ms
+<div class="highlight"><pre><span></span><code>Wall time: 98.8 ms
 </code></pre></div>
 <p><img alt="png" src="../img/nbs/output_59_1.png" /></p>
 <p><br></p>
@@ -5663,7 +5687,7 @@ Area extent: (-3090000, 1690000, 4390000, 9014000)</dd><dt><span>name :</span></
 
 <span class="n">da_reproj</span> <span class="o">=</span> <span class="n">reproj_to_xarray</span><span class="p">(</span><span class="n">da</span><span class="p">,</span> <span class="n">df_new_coords</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="n">df_new_coords</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="n">new_grid</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>710 ms Â± 39.4 ms per loop (mean Â± std. dev. of 7 runs, 1 loop each)
+<div class="highlight"><pre><span></span><code>1.78 s Â± 239 ms per loop (mean Â± std. dev. of 7 runs, 1 loop each)
 </code></pre></div>
 <p><br></p>
 <p>Most importantly we'll carry out a visual check that the reprojection was carried out properly.</p>
@@ -5684,7 +5708,7 @@ Area extent: (-3090000, 1690000, 4390000, 9014000)</dd><dt><span>name :</span></
 
 
 
-&lt;cartopy.mpl.feature_artist.FeatureArtist at 0x1912ac7b040&gt;
+&lt;cartopy.mpl.feature_artist.FeatureArtist at 0x2948c866b50&gt;
 </code></pre></div>
 <p><img alt="png" src="../img/nbs/output_69_2.png" /></p>
 <div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
@@ -5781,7 +5805,7 @@ Area extent: (-3090000, 1690000, 4390000, 9014000)</dd><dt><span>name :</span></
 <span class="n">reprojector</span> <span class="o">=</span> <span class="n">Reprojector</span><span class="p">(</span><span class="n">new_coords_fp</span><span class="p">,</span> <span class="n">new_grid_fp</span><span class="p">)</span>
 <span class="n">ds_reproj</span> <span class="o">=</span> <span class="n">reprojector</span><span class="o">.</span><span class="n">reproject</span><span class="p">(</span><span class="n">native_fp</span><span class="p">,</span> <span class="n">reproj_library</span><span class="o">=</span><span class="s1">&#39;pyinterp&#39;</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>6.06 s Â± 528 ms per loop (mean Â± std. dev. of 7 runs, 1 loop each)
+<div class="highlight"><pre><span></span><code>15.9 s Â± 2.24 s per loop (mean Â± std. dev. of 7 runs, 1 loop each)
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="o">%%</span><span class="n">capture</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">stdout</span>
 <span class="o">%%</span><span class="n">timeit</span> 
@@ -5789,9 +5813,11 @@ Area extent: (-3090000, 1690000, 4390000, 9014000)</dd><dt><span>name :</span></
 <span class="n">reprojector</span> <span class="o">=</span> <span class="n">Reprojector</span><span class="p">()</span>
 <span class="n">ds_reproj</span> <span class="o">=</span> <span class="n">reprojector</span><span class="o">.</span><span class="n">reproject</span><span class="p">(</span><span class="n">native_fp</span><span class="p">,</span> <span class="n">reproj_library</span><span class="o">=</span><span class="s1">&#39;pyresample&#39;</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>4.9 s Â± 590 ms per loop (mean Â± std. dev. of 7 runs, 1 loop each)
+<div class="highlight"><pre><span></span><code>9.24 s Â± 1.18 s per loop (mean Â± std. dev. of 7 runs, 1 loop each)
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="n">ds_reproj</span> <span class="o">=</span> <span class="n">reprojector</span><span class="o">.</span><span class="n">reproject</span><span class="p">(</span><span class="n">native_fp</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="o">%%</span><span class="n">capture</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">stdout</span>
+
+<span class="n">ds_reproj</span> <span class="o">=</span> <span class="n">reprojector</span><span class="o">.</span><span class="n">reproject</span><span class="p">(</span><span class="n">native_fp</span><span class="p">)</span>
 
 <span class="c1"># Plotting</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
@@ -5801,94 +5827,20 @@ Area extent: (-3090000, 1690000, 4390000, 9014000)</dd><dt><span>name :</span></
 
 <span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="s1">&#39;50m&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\pyproj\crs\crs.py:543: UserWarning: You will likely lose important projection information when converting to a PROJ string from another format. See: https://proj.org/faq.html#what-is-the-best-format-for-describing-coordinate-reference-systems
-  proj_string = self.to_proj4()
-C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\pyproj\crs\crs.py:543: UserWarning: You will likely lose important projection information when converting to a PROJ string from another format. See: https://proj.org/faq.html#what-is-the-best-format-for-describing-coordinate-reference-systems
-  proj_string = self.to_proj4()
-C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\pyproj\crs\crs.py:543: UserWarning: You will likely lose important projection information when converting to a PROJ string from another format. See: https://proj.org/faq.html#what-is-the-best-format-for-describing-coordinate-reference-systems
-  proj_string = self.to_proj4()
-C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\pyproj\crs\crs.py:543: UserWarning: You will likely lose important projection information when converting to a PROJ string from another format. See: https://proj.org/faq.html#what-is-the-best-format-for-describing-coordinate-reference-systems
-  proj_string = self.to_proj4()
-C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\pyproj\crs\crs.py:543: UserWarning: You will likely lose important projection information when converting to a PROJ string from another format. See: https://proj.org/faq.html#what-is-the-best-format-for-describing-coordinate-reference-systems
-  proj_string = self.to_proj4()
-C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\pyproj\crs\crs.py:543: UserWarning: You will likely lose important projection information when converting to a PROJ string from another format. See: https://proj.org/faq.html#what-is-the-best-format-for-describing-coordinate-reference-systems
-  proj_string = self.to_proj4()
-C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\pyproj\crs\crs.py:543: UserWarning: You will likely lose important projection information when converting to a PROJ string from another format. See: https://proj.org/faq.html#what-is-the-best-format-for-describing-coordinate-reference-systems
-  proj_string = self.to_proj4()
-C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\pyproj\crs\crs.py:543: UserWarning: You will likely lose important projection information when converting to a PROJ string from another format. See: https://proj.org/faq.html#what-is-the-best-format-for-describing-coordinate-reference-systems
-  proj_string = self.to_proj4()
-C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\pyproj\crs\crs.py:543: UserWarning: You will likely lose important projection information when converting to a PROJ string from another format. See: https://proj.org/faq.html#what-is-the-best-format-for-describing-coordinate-reference-systems
-  proj_string = self.to_proj4()
-C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\pyproj\crs\crs.py:543: UserWarning: You will likely lose important projection information when converting to a PROJ string from another format. See: https://proj.org/faq.html#what-is-the-best-format-for-describing-coordinate-reference-systems
-  proj_string = self.to_proj4()
-C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\pyproj\crs\crs.py:543: UserWarning: You will likely lose important projection information when converting to a PROJ string from another format. See: https://proj.org/faq.html#what-is-the-best-format-for-describing-coordinate-reference-systems
-  proj_string = self.to_proj4()
-C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\pyproj\crs\crs.py:543: UserWarning: You will likely lose important projection information when converting to a PROJ string from another format. See: https://proj.org/faq.html#what-is-the-best-format-for-describing-coordinate-reference-systems
-  proj_string = self.to_proj4()
-C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\pyproj\crs\crs.py:543: UserWarning: You will likely lose important projection information when converting to a PROJ string from another format. See: https://proj.org/faq.html#what-is-the-best-format-for-describing-coordinate-reference-systems
-  proj_string = self.to_proj4()
-C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
-  a = op(a[slice1], a[slice2])
-C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\pyproj\crs\crs.py:543: UserWarning: You will likely lose important projection information when converting to a PROJ string from another format. See: https://proj.org/faq.html#what-is-the-best-format-for-describing-coordinate-reference-systems
-  proj_string = self.to_proj4()
-C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\pyproj\crs\crs.py:543: UserWarning: You will likely lose important projection information when converting to a PROJ string from another format. See: https://proj.org/faq.html#what-is-the-best-format-for-describing-coordinate-reference-systems
-  proj_string = self.to_proj4()
-C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
-  a = op(a[slice1], a[slice2])
-C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\pyproj\crs\crs.py:543: UserWarning: You will likely lose important projection information when converting to a PROJ string from another format. See: https://proj.org/faq.html#what-is-the-best-format-for-describing-coordinate-reference-systems
-  proj_string = self.to_proj4()
-C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
-  a = op(a[slice1], a[slice2])
-C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\pyproj\crs\crs.py:543: UserWarning: You will likely lose important projection information when converting to a PROJ string from another format. See: https://proj.org/faq.html#what-is-the-best-format-for-describing-coordinate-reference-systems
-  proj_string = self.to_proj4()
-C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
-  a = op(a[slice1], a[slice2])
-C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\pyproj\crs\crs.py:543: UserWarning: You will likely lose important projection information when converting to a PROJ string from another format. See: https://proj.org/faq.html#what-is-the-best-format-for-describing-coordinate-reference-systems
-  proj_string = self.to_proj4()
-C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
-  a = op(a[slice1], a[slice2])
-C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\pyproj\crs\crs.py:543: UserWarning: You will likely lose important projection information when converting to a PROJ string from another format. See: https://proj.org/faq.html#what-is-the-best-format-for-describing-coordinate-reference-systems
-  proj_string = self.to_proj4()
-C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
-  a = op(a[slice1], a[slice2])
-C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\pyproj\crs\crs.py:543: UserWarning: You will likely lose important projection information when converting to a PROJ string from another format. See: https://proj.org/faq.html#what-is-the-best-format-for-describing-coordinate-reference-systems
-  proj_string = self.to_proj4()
-C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
-  a = op(a[slice1], a[slice2])
-C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\pyproj\crs\crs.py:543: UserWarning: You will likely lose important projection information when converting to a PROJ string from another format. See: https://proj.org/faq.html#what-is-the-best-format-for-describing-coordinate-reference-systems
-  proj_string = self.to_proj4()
-C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
-  a = op(a[slice1], a[slice2])
-C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\pyproj\crs\crs.py:543: UserWarning: You will likely lose important projection information when converting to a PROJ string from another format. See: https://proj.org/faq.html#what-is-the-best-format-for-describing-coordinate-reference-systems
-  proj_string = self.to_proj4()
-C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
-  a = op(a[slice1], a[slice2])
-C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\pyproj\crs\crs.py:543: UserWarning: You will likely lose important projection information when converting to a PROJ string from another format. See: https://proj.org/faq.html#what-is-the-best-format-for-describing-coordinate-reference-systems
-  proj_string = self.to_proj4()
-C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
-  a = op(a[slice1], a[slice2])
-C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\pyproj\crs\crs.py:543: UserWarning: You will likely lose important projection information when converting to a PROJ string from another format. See: https://proj.org/faq.html#what-is-the-best-format-for-describing-coordinate-reference-systems
-  proj_string = self.to_proj4()
-C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
-  a = op(a[slice1], a[slice2])
-C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\pyproj\crs\crs.py:543: UserWarning: You will likely lose important projection information when converting to a PROJ string from another format. See: https://proj.org/faq.html#what-is-the-best-format-for-describing-coordinate-reference-systems
-  proj_string = self.to_proj4()
-C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
-  a = op(a[slice1], a[slice2])
-&lt;ipython-input-42-4aa2b08f07bf&gt;:5: UserWarning: The default value for the *approx* keyword argument to TransverseMercator will change from True to False after 0.18.
-  ax = plt.axes(projection=ccrs.TransverseMercator())
-C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\dask\core.py:121: RuntimeWarning: invalid value encountered in sin
-  return func(*(_execute_task(a, cache) for a in args))
-C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\dask\core.py:121: RuntimeWarning: invalid value encountered in cos
-  return func(*(_execute_task(a, cache) for a in args))
+<div class="highlight"><pre><span></span><code>---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+&lt;ipython-input-41-4aa2b08f07bf&gt; in &lt;module&gt;
+----&gt; 1 ds_reproj = reprojector.reproject(native_fp)
+      2 
+      3 # Plotting
+      4 fig = plt.figure(dpi=250, figsize=(10, 10))
+      5 ax = plt.axes(projection=ccrs.TransverseMercator())
 
 
-
-
-
-&lt;cartopy.mpl.feature_artist.FeatureArtist at 0x19102ac7430&gt;
+NameError: name &#39;reprojector&#39; is not defined
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_73_2.png" /></p>
                 
               
               

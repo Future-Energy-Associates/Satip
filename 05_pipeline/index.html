@@ -173,7 +173,7 @@
     <li class="md-tabs__item">
       
       
-      <a href="../103_loading/" class="md-tabs__link">
+      <a href="../101_downloading/" class="md-tabs__link">
         User Guide
       </a>
     </li>
@@ -286,6 +286,30 @@
 
 
   <li class="md-nav__item">
+    <a href="../101_downloading/" class="md-nav__link">
+      Downloading from EUMETSAT
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../102_reprojecting/" class="md-nav__link">
+      Reprojecting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../103_loading/" class="md-nav__link">
       Loading from Zarr
     </a>
@@ -324,7 +348,7 @@
 
   <li class="md-nav__item">
     <a href="../about/OCF/" class="md-nav__link">
-      Parsers
+      OCF
     </a>
   </li>
 
@@ -582,7 +606,7 @@ Downloading: 100%|â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–�
 </code></pre></div>
 <p><br></p>
 <h3 id="dagster-pipeline">Dagster Pipeline<a class="headerlink" href="#dagster-pipeline" title="Permanent link">&para;</a></h3>
-<p>We're now going to combine these steps into a pipeline using <code>dagster</code></p>
+<p>We're now going to combine these steps into a pipeline using <code>dagster</code>, first we'll create the individual components.</p>
 <div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
 <span class="nd">@solid</span><span class="p">(</span>
     <span class="n">config_schema</span> <span class="o">=</span> <span class="p">{</span>
@@ -673,6 +697,8 @@ Downloading: 100%|â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–�
 <span class="k">def</span> <span class="nf">save_metadata</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">df_new_metadata</span><span class="p">,</span> <span class="n">table_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">project_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
     <span class="n">gcp_helpers</span><span class="o">.</span><span class="n">write_metadata_to_gcp</span><span class="p">(</span><span class="n">df_new_metadata</span><span class="p">,</span> <span class="n">table_id</span><span class="p">,</span> <span class="n">project_id</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </code></pre></div>
+<p><br></p>
+<p>Then we'll combine them in a pipeline</p>
 <div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
 <span class="nd">@pipeline</span>
 <span class="k">def</span> <span class="nf">download_latest_data_pipeline</span><span class="p">():</span>  
@@ -683,6 +709,8 @@ Downloading: 100%|â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–�
     <span class="n">ds_combined_compressed</span> <span class="o">=</span> <span class="n">compress_and_save_datasets</span><span class="p">(</span><span class="n">ds_combined_reproj</span><span class="p">)</span>
     <span class="n">save_metadata</span><span class="p">(</span><span class="n">df_new_metadata</span><span class="p">)</span>
 </code></pre></div>
+<p><br></p>
+<p>Which we'll now run a test with</p>
 <div class="highlight"><pre><span></span><code><span class="n">run_config</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;solids&#39;</span><span class="p">:</span> <span class="p">{</span>
         <span class="s1">&#39;download_latest_eumetsat_files&#39;</span><span class="p">:</span> <span class="p">{</span>
