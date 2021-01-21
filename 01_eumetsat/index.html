@@ -456,6 +456,41 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#integration-with-google-cloud-storage" class="md-nav__link">
+    Integration with Google Cloud Storage
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#name-convention-changes-in-eumetsat-files" class="md-nav__link">
+    Name Convention changes in EUMETSAT files
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#helper-utils" class="md-nav__link">
+    Helper utils
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compress-downloaded-native-image-files" class="md-nav__link">
+    Compress downloaded native image files
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#syncing-files-to-gcp-storage" class="md-nav__link">
+    Syncing files to GCP Storage
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -567,6 +602,41 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#integration-with-google-cloud-storage" class="md-nav__link">
+    Integration with Google Cloud Storage
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#name-convention-changes-in-eumetsat-files" class="md-nav__link">
+    Name Convention changes in EUMETSAT files
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#helper-utils" class="md-nav__link">
+    Helper utils
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compress-downloaded-native-image-files" class="md-nav__link">
+    Compress downloaded native image files
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#syncing-files-to-gcp-storage" class="md-nav__link">
+    Syncing files to GCP Storage
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -588,7 +658,7 @@
 <p><br></p>
 <h3 id="user-input">User Input<a class="headerlink" href="#user-input" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="n">data_dir</span> <span class="o">=</span> <span class="s1">&#39;../data/raw&#39;</span>
-<span class="n">sorted_dir</span> <span class="o">=</span> <span class="s1">&#39;../data/sorted&#39;</span>
+<span class="n">compressed_dir</span> <span class="o">=</span> <span class="s1">&#39;../data/compressed&#39;</span>
 <span class="n">debug_fp</span> <span class="o">=</span> <span class="s1">&#39;../logs/EUMETSAT_download.txt&#39;</span>
 <span class="n">env_vars_fp</span> <span class="o">=</span> <span class="s1">&#39;../.env&#39;</span>
 <span class="n">metadata_db_fp</span> <span class="o">=</span> <span class="s1">&#39;../data/EUMETSAT_metadata.db&#39;</span>
@@ -616,6 +686,8 @@
 <span class="n">env_vars</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;user_key&#39;</span><span class="p">:</span> <span class="n">user_key</span><span class="p">,</span>
     <span class="s1">&#39;user_secret&#39;</span><span class="p">:</span> <span class="n">user_secret</span><span class="p">,</span>
+    <span class="s1">&#39;slack_id&#39;</span><span class="p">:</span> <span class="n">slack_id</span><span class="p">,</span>
+    <span class="s1">&#39;slack_webhook_url&#39;</span><span class="p">:</span> <span class="n">slack_webhook_url</span>
 <span class="p">}</span>
 
 <span class="n">check_env_vars_have_loaded</span><span class="p">(</span><span class="n">env_vars</span><span class="p">)</span>
@@ -637,6 +709,7 @@
 <span class="n">r</span> <span class="o">=</span> <span class="n">query_data_products</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
 
 <span class="n">r_json</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="n">JSON</span><span class="p">(</span><span class="n">r_json</span><span class="p">)</span>
 </code></pre></div>
 <p><br></p>
 <p>However the search-api is capped (at 10,000) for the number of files it will return metadata for, so we'll create a while loop that waits until all the relevant data has been returned. We'll then extract just the list of features from the returned JSONs.</p>
@@ -648,9 +721,6 @@
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">datasets</span><span class="p">)</span><span class="si">}</span><span class="s1"> datasets have been identified&#39;</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>1728 datasets have been identified
-Wall time: 1.19 s
-</code></pre></div>
 <p><br></p>
 <p>Finally we'll create a helper function for converting the dataset ids into their file urls.</p>
 <p><br></p>
@@ -660,8 +730,6 @@ Wall time: 1.19 s
 <span class="n">example_data_link</span> <span class="o">=</span> <span class="n">dataset_id_to_link</span><span class="p">(</span><span class="n">dataset_ids</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
 <span class="n">example_data_link</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>&#39;https://api.eumetsat.int/data/download/products/MSG3-SEVI-MSG15-0100-NA-20191001000415.000000000Z-NA&#39;
 </code></pre></div>
 <p><br></p>
 <h3 id="downloading-data">Downloading Data<a class="headerlink" href="#downloading-data" title="Permanent link">&para;</a></h3>
@@ -683,255 +751,75 @@ Wall time: 1.19 s
 <span class="n">end_date</span> <span class="o">=</span> <span class="s1">&#39;2020-10-01 12:05&#39;</span>
 
 <span class="k">if</span> <span class="n">download_data</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
-    <span class="n">dm</span><span class="o">.</span><span class="n">download_datasets</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
+    <span class="n">dm</span><span class="o">.</span><span class="n">download_date_range</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
 
 <span class="n">df_metadata</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">get_df_metadata</span><span class="p">()</span>
 
 <span class="n">df_metadata</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>2020-12-16 23:12:02,565 - INFO - ********** Download Manager Initialised **************
-2020-12-16 23:12:03,112 - INFO - 1 files queried, 1 found in ../data/raw, 0 to download.
-2020-12-16 23:12:03,115 - INFO - No files will be downloaded. Set DownloadManager bucket_name argument for local download
-</code></pre></div>
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>start_date</th>
-      <th>end_date</th>
-      <th>result_time</th>
-      <th>platform_short_name</th>
-      <th>platform_orbit_type</th>
-      <th>instrument_name</th>
-      <th>sensor_op_mode</th>
-      <th>center_srs_name</th>
-      <th>center_position</th>
-      <th>file_name</th>
-      <th>file_size</th>
-      <th>missing_pct</th>
-      <th>downloaded</th>
-    </tr>
-    <tr>
-      <th>id</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1</th>
-      <td>2020-10-01 12:05:09.428</td>
-      <td>2020-10-01 12:09:15.775</td>
-      <td>2020-10-01 12:09:15.775</td>
-      <td>MSG3</td>
-      <td>GEO</td>
-      <td>SEVIRI</td>
-      <td>RSS</td>
-      <td>EPSG:4326</td>
-      <td>0 9.5</td>
-      <td>MSG3-SEVI-MSG15-0100-NA-20201001120915.7750000...</td>
-      <td>99819</td>
-      <td>0.0</td>
-      <td>2020-11-13 10:32:40.853958</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2020-10-01 12:10:09.249</td>
-      <td>2020-10-01 12:14:15.596</td>
-      <td>2020-10-01 12:14:15.596</td>
-      <td>MSG3</td>
-      <td>GEO</td>
-      <td>SEVIRI</td>
-      <td>RSS</td>
-      <td>EPSG:4326</td>
-      <td>0 9.5</td>
-      <td>MSG3-SEVI-MSG15-0100-NA-20201001121415.5960000...</td>
-      <td>99819</td>
-      <td>0.0</td>
-      <td>2020-11-13 10:32:56.874131</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2020-10-01 12:15:09.071</td>
-      <td>2020-10-01 12:19:15.417</td>
-      <td>2020-10-01 12:19:15.417</td>
-      <td>MSG3</td>
-      <td>GEO</td>
-      <td>SEVIRI</td>
-      <td>RSS</td>
-      <td>EPSG:4326</td>
-      <td>0 9.5</td>
-      <td>MSG3-SEVI-MSG15-0100-NA-20201001121915.4170000...</td>
-      <td>99819</td>
-      <td>0.0</td>
-      <td>2020-11-13 10:33:13.998136</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2020-10-01 12:20:08.892</td>
-      <td>2020-10-01 12:24:15.239</td>
-      <td>2020-10-01 12:24:15.239</td>
-      <td>MSG3</td>
-      <td>GEO</td>
-      <td>SEVIRI</td>
-      <td>RSS</td>
-      <td>EPSG:4326</td>
-      <td>0 9.5</td>
-      <td>MSG3-SEVI-MSG15-0100-NA-20201001122415.2390000...</td>
-      <td>99819</td>
-      <td>0.0</td>
-      <td>2020-11-13 10:33:30.656217</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>2020-10-01 12:25:08.714</td>
-      <td>2020-10-01 12:29:15.060</td>
-      <td>2020-10-01 12:29:15.060</td>
-      <td>MSG3</td>
-      <td>GEO</td>
-      <td>SEVIRI</td>
-      <td>RSS</td>
-      <td>EPSG:4326</td>
-      <td>0 9.5</td>
-      <td>MSG3-SEVI-MSG15-0100-NA-20201001122915.0600000...</td>
-      <td>99819</td>
-      <td>0.0</td>
-      <td>2020-11-13 10:33:46.352754</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
 <p><br></p>
 <p>The <code>get_size</code> function was adapted from <a href="https://stackoverflow.com/questions/1392413/calculating-a-directorys-size-using-python">this stackoverflow answer</a></p>
 <div class="highlight"><pre><span></span><code><span class="n">data_dir_size</span> <span class="o">=</span> <span class="n">get_dir_size</span><span class="p">(</span><span class="n">data_dir</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The data directory is currently </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">data_dir_size</span><span class="o">/</span><span class="mi">1_000_000_000</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1"> Gb&#39;</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>The data directory is currently 30.36 Gb
-</code></pre></div>
-<p><br>
-<br>
-<br>
-<br></p>
-<h1 id="need-to-clean-notebook-below-here">Need to Clean Notebook Below Here<a class="headerlink" href="#need-to-clean-notebook-below-here" title="Permanent link">&para;</a></h1>
-<p><br>
-<br>
-<br>
-<br></p>
-<h2 id="trying-out-bucket-files">Trying out bucket files<a class="headerlink" href="#trying-out-bucket-files" title="Permanent link">&para;</a></h2>
-<p>If GCP flags are passed (<code>bucket_name</code> and <code>bucket_prefix</code>), when downloading the <code>DownloadManager</code> should first check to see if the files already exist in the specified bucket.<br />
-If the files already exist, then don't download them.  </p>
+<h2 id="integration-with-google-cloud-storage">Integration with Google Cloud Storage<a class="headerlink" href="#integration-with-google-cloud-storage" title="Permanent link">&para;</a></h2>
+<p>If Google Cloud Platform (GCP) flags are passed (<code>bucket_name</code> and <code>bucket_prefix</code>), when downloading, then the <code>DownloadManager</code> should first check to see if the files already exist in the specified cloud storage bucket.<br />
+If the files already exist, then they will not be downloaded locally - if the storage bucket arguments are passed.  </p>
 <div class="highlight"><pre><span></span><code><span class="n">BUCKET_NAME</span> <span class="o">=</span> <span class="s2">&quot;solar-pv-nowcasting-data&quot;</span>
 <span class="n">PREFIX</span> <span class="o">=</span> <span class="s2">&quot;satellite/EUMETSAT/SEVIRI_RSS/native/2020&quot;</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="n">dm</span> <span class="o">=</span> <span class="n">DownloadManager</span><span class="p">(</span><span class="n">user_key</span><span class="p">,</span> <span class="n">user_secret</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">,</span> <span class="n">metadata_db_fp</span><span class="p">,</span> <span class="n">debug_fp</span><span class="p">,</span> <span class="n">bucket_name</span><span class="o">=</span><span class="n">BUCKET_NAME</span><span class="p">,</span> <span class="n">bucket_prefix</span><span class="o">=</span><span class="n">PREFIX</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>2020-11-30 10:21:30,271 - INFO - ********** Download Manager Initialised **************
-
-
-Checking files in GCP bucket solar-pv-nowcasting-data, this will take a few seconds
+<div class="highlight"><pre><span></span><code><span class="c1"># Bucket filenames can be accessed</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">dm</span><span class="o">.</span><span class="n">bucket_filenames</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="nb">len</span><span class="p">(</span><span class="n">dm</span><span class="o">.</span><span class="n">bucket_filenames</span><span class="p">)</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>2
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="o">%</span><span class="n">time</span> <span class="c1"># took around 2 hours to download 1 day.</span>
+<p>Lets test this by examining some dates at the start of 2020</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Timings: around 2 hours to download 1 day.</span>
 
-<span class="c1"># DownloadManager should find these 2019 files on the VM</span>
+<span class="c1"># DownloadManager should find these 2020 files on the VM</span>
 <span class="n">start_date</span> <span class="o">=</span> <span class="s1">&#39;2020-01-01 00:00&#39;</span>
 <span class="n">end_date</span> <span class="o">=</span> <span class="s1">&#39;2020-01-02 00:00&#39;</span>
-<span class="n">dm</span><span class="o">.</span><span class="n">download_datasets</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
+<span class="n">dm</span><span class="o">.</span><span class="n">download_date_range</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>CPU times: user 3 Âµs, sys: 1 Âµs, total: 4 Âµs
-Wall time: 6.2 Âµs
-
-
-2020-11-30 10:22:42,304 - INFO - 288 files queried, 2 found in bucket, 0 found in ../data/raw, 286 to download.
-</code></pre></div>
-<div><span class="Text-label" style="display:inline-block; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; min-width:0; max-width:15ex; vertical-align:middle; text-align:right"></span>
-<progress style="width:60ex" max="286" value="286" class="Progress-main"/></progress>
-<span class="Progress-label"><strong>100%</strong></span>
-<span class="Iteration-label">286/286</span>
-<span class="Time-label">[02:08:45<00:22, 27.01s/it]</span></div>
-
-<div class="highlight"><pre><span></span><code>2020-11-30 11:31:58,945 - INFO - The EUMETSAT access token has been refreshed
-</code></pre></div>
-<p>However, the already downloaded files follow a different file name convention.</p>
+<h2 id="name-convention-changes-in-eumetsat-files">Name Convention changes in EUMETSAT files<a class="headerlink" href="#name-convention-changes-in-eumetsat-files" title="Permanent link">&para;</a></h2>
+<p>Probably due to the changes / creation of the EUMETSAT API around the end of 2019, newer files do not contain the previous 'order number' parts at the end of the filename. </p>
+<p>Some previously downloaded files follow a different file name convention:</p>
 <p>Files through new API:
 <code>MSG3-SEVI-MSG15-0100-NA-20191001120415.883000000Z-NA.nat</code><br />
 SatProgram-Instrument-SatNumber-AlgoVersion-InstrumentMode(?)-ReceptionStartDateUTC   </p>
 <p>Files on GCP:<br />
 <code>MSG3-SEVI-MSG15-0100-NA-20191001120415.883000000Z-20191001120433-1399526-1.nat.bz2</code><br />
 SatProgram-Instrument-SatNumber-AlgoVersion-InstrumentMode(?)-ReceptionStartDateUTC-SensingStartDateUTC-OrderNumber-PartNumber </p>
-<p>Let's have a look at the filename lengths.</p>
-<div class="highlight"><pre><span></span><code><span class="n">filenames</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">dm</span><span class="o">.</span><span class="n">bucket_filenames</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;filenames&#39;</span><span class="p">])</span>
-<span class="n">filenames</span><span class="p">[</span><span class="s1">&#39;length&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">filenames</span><span class="p">[</span><span class="s1">&#39;filenames&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">len</span><span class="p">()</span>
-<span class="n">filenames</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;length&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">filenames</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">filenames</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">filenames</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">102460</span><span class="p">]</span><span class="o">.</span><span class="n">filenames</span><span class="p">)</span>
-</code></pre></div>
-<p>Looks like the length difference is just due to the <code>part number</code> at the end of the filename</p>
 <p>We can use regex to take the first part of the filename for comparisons</p>
 <div class="highlight"><pre><span></span><code><span class="n">txt</span> <span class="o">=</span> <span class="s2">&quot;MSG3-SEVI-MSG15-0100-NA-20190101000417.314000000Z-20190101000435-1377854-1.nat&quot;</span>
 <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s2">&quot;([A-Z\d.]+-)</span><span class="si">{6}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">txt</span><span class="p">)[</span><span class="mi">0</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># [:-1] to trim the trailing -</span>
 </code></pre></div>
-<p>Now we're comparing the same filenames by adding this regex into DownloadManager and the GCP helpers.</p>
-<h2 id="logging">Logging<a class="headerlink" href="#logging" title="Permanent link">&para;</a></h2>
+<p>To ensure we are comparing the same filenames, this regex is added into DownloadManager and the GCP helpers.</p>
+<p>Set up logging locally.</p>
 <div class="highlight"><pre><span></span><code><span class="n">debug_fp</span> <span class="o">=</span> <span class="s1">&#39;../logs/EUMETSAT_download.txt&#39;</span>
 <span class="n">log</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">set_up_logging</span><span class="p">(</span><span class="s1">&#39;EUMETSAT Processing&#39;</span><span class="p">,</span> <span class="n">debug_fp</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="helper-utils">Helper utils<a class="headerlink" href="#helper-utils" title="Permanent link">&para;</a></h2>
-<h2 id="download-files-from-gcp">Download files from GCP<a class="headerlink" href="#download-files-from-gcp" title="Permanent link">&para;</a></h2>
+<p>For local testing, this command downloads some files from the Google Cloud bucket:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># get test files from GCP - these are compressed</span>
 <span class="c1"># !gsutil cp -r gs://solar-pv-nowcasting-data/satellite/EUMETSAT/SEVIRI_RSS/native/2019/10/01/00/04 ../data/raw</span>
 </code></pre></div>
-<h2 id="compress-and-move-files">Compress and move files<a class="headerlink" href="#compress-and-move-files" title="Permanent link">&para;</a></h2>
+<h2 id="compress-downloaded-native-image-files">Compress downloaded native image files<a class="headerlink" href="#compress-downloaded-native-image-files" title="Permanent link">&para;</a></h2>
+<p>Once files have been downloaded from the EUMETSAT API in some location, they need to be compressed and saved in a cloud storage bucket. </p>
+<p>First, see which files have already been downloaded locally to test this functionality.  </p>
 <div class="highlight"><pre><span></span><code><span class="n">full_native_filenames</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="s1">&#39;*.nat&#39;</span><span class="p">))</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="n">full_native_filenames</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>[]
+<span class="n">full_native_filenames</span>
 </code></pre></div>
 <p>We will compress locally downloaded files here using <code>pbzip2</code><br />
 On ubuntu: <code>sudo apt-get install -y pbzip2</code><br />
 On mac: <code>brew install pbzip2</code>  </p>
-<div class="highlight"><pre><span></span><code><span class="n">compress_downloaded_files</span><span class="p">(</span><span class="n">data_dir</span><span class="o">=</span><span class="n">data_dir</span><span class="p">,</span> <span class="n">sorted_dir</span><span class="o">=</span><span class="n">sorted_dir</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">compress_downloaded_files</span><span class="p">(</span><span class="n">data_dir</span><span class="o">=</span><span class="n">data_dir</span><span class="p">,</span> <span class="n">compressed_dir</span><span class="o">=</span><span class="n">compressed_dir</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>2020-11-29 22:10:05,805 - INFO - Found 0 native files.
-
-
-Found 0 native files.
-</code></pre></div>
-<h2 id="sync-to-gcp-storage">Sync to GCP Storage<a class="headerlink" href="#sync-to-gcp-storage" title="Permanent link">&para;</a></h2>
-<p><code>store the bzip2 in gs://solar-pv-nowcasting-data/satellite/EUMETSAT/SEVIRI_RSS/native/&lt;year&gt;/&lt;month&gt;/&lt;day&gt;/&lt;hour&gt;/&lt;minute&gt;/</code></p>
-<div class="highlight"><pre><span></span><code><span class="c1"># sync downloaded files in sorted_dir to the bucket</span>
+<h2 id="syncing-files-to-gcp-storage">Syncing files to GCP Storage<a class="headerlink" href="#syncing-files-to-gcp-storage" title="Permanent link">&para;</a></h2>
+<p>Compressed native files should be stored in a Google Cloud Storage Bucket. The folder structure follows the following convention:  </p>
+<p><code>gs://solar-pv-nowcasting-data/satellite/EUMETSAT/SEVIRI_RSS/native/&lt;year&gt;/&lt;month&gt;/&lt;day&gt;/&lt;hour&gt;/&lt;minute&gt;/</code></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># sync downloaded files in compressed_dir to the bucket</span>
 <span class="n">BUCKET_NAME</span> <span class="o">=</span> <span class="s2">&quot;solar-pv-nowcasting-data&quot;</span>
 <span class="n">PREFIX</span> <span class="o">=</span> <span class="s2">&quot;satellite/EUMETSAT/SEVIRI_RSS/native/&quot;</span>
 </code></pre></div>

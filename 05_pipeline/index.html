@@ -477,15 +477,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#user-inputs" class="md-nav__link">
-    User Inputs
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#loading-environment-variables" class="md-nav__link">
-    Loading Environment Variables
+  <a href="#log-cleaning" class="md-nav__link">
+    Log Cleaning
   </a>
   
 </li>
@@ -533,15 +526,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#user-inputs" class="md-nav__link">
-    User Inputs
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#loading-environment-variables" class="md-nav__link">
-    Loading Environment Variables
+  <a href="#log-cleaning" class="md-nav__link">
+    Log Cleaning
   </a>
   
 </li>
@@ -579,52 +565,47 @@
 <span class="kn">from</span> <span class="nn">dagster</span> <span class="kn">import</span> <span class="n">execute_pipeline</span><span class="p">,</span> <span class="n">pipeline</span><span class="p">,</span> <span class="n">solid</span><span class="p">,</span> <span class="n">Field</span>
 
 <span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">glob</span>
 <span class="kn">import</span> <span class="nn">dotenv</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\google\auth\_default.py:69: UserWarning: Your application has authenticated using end user credentials from Google Cloud SDK without a quota project. You might receive a &quot;quota exceeded&quot; or &quot;API not enabled&quot; error. We recommend you rerun `gcloud auth application-default login` and make sure a quota project is added. Or you can use service accounts instead. For more information about service accounts, see https://cloud.google.com/docs/authentication/
   warnings.warn(_CLOUD_SDK_CREDENTIALS_WARNING)
-Downloading: 100%|â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ| 1/1 [00:00&lt;00:00,  3.21rows/s]
+Downloading: 100%|â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ| 1/1 [00:00&lt;00:00,  4.46rows/s]
 </code></pre></div>
 <p><br></p>
-<h3 id="user-inputs">User Inputs<a class="headerlink" href="#user-inputs" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="n">data_dir</span> <span class="o">=</span> <span class="s1">&#39;../data/raw&#39;</span>
-<span class="n">sorted_dir</span> <span class="o">=</span> <span class="s1">&#39;../data/sorted&#39;</span>
-<span class="n">debug_fp</span> <span class="o">=</span> <span class="s1">&#39;../logs/EUMETSAT_download.txt&#39;</span>
-<span class="n">env_vars_fp</span> <span class="o">=</span> <span class="s1">&#39;../.env&#39;</span>
-<span class="n">metadata_db_fp</span> <span class="o">=</span> <span class="s1">&#39;../data/EUMETSAT_metadata.db&#39;</span>
-<span class="n">new_grid_fp</span><span class="o">=</span><span class="s1">&#39;../data/intermediate/new_grid_4km_TM.json&#39;</span>
-<span class="n">new_coords_fp</span> <span class="o">=</span> <span class="s1">&#39;../data/intermediate/reproj_coords_TM_4km.csv&#39;</span>
-<span class="n">zarr_bucket</span> <span class="o">=</span> <span class="s1">&#39;solar-pv-nowcasting-data/satellite/EUMETSAT/SEVIRI_RSS/full_extent_TM_int16&#39;</span>
-</code></pre></div>
-<p><br></p>
-<h3 id="loading-environment-variables">Loading Environment Variables<a class="headerlink" href="#loading-environment-variables" title="Permanent link">&para;</a></h3>
+<h3 id="log-cleaning">Log Cleaning<a class="headerlink" href="#log-cleaning" title="Permanent link">&para;</a></h3>
+<p>We'll suppress some errors/warnings to make the logs easier to parse</p>
 <div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
-<span class="n">user_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;USER_KEY&#39;</span><span class="p">)</span>
-<span class="n">user_secret</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;USER_SECRET&#39;</span><span class="p">)</span>
-<span class="n">slack_id</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;SLACK_ID&#39;</span><span class="p">)</span>
-<span class="n">slack_webhook_url</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;SLACK_WEBHOOK_URL&#39;</span><span class="p">)</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;divide by zero encountered in true_divide&#39;</span><span class="p">)</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;invalid value encountered in sin&#39;</span><span class="p">)</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;invalid value encountered in cos&#39;</span><span class="p">)</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;invalid value encountered in subtract&#39;</span><span class="p">)</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;You will likely lose important projection information when converting to a PROJ string from another format. See: https://proj.org/faq.html#what-is-the-best-format-for-describing-coordinate-reference-systems&#39;</span><span class="p">)</span>
 </code></pre></div>
 <p><br></p>
 <h3 id="dagster-pipeline">Dagster Pipeline<a class="headerlink" href="#dagster-pipeline" title="Permanent link">&para;</a></h3>
 <p>We're now going to combine these steps into a pipeline using <code>dagster</code>, first we'll create the individual components.</p>
 <div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
-<span class="nd">@solid</span><span class="p">(</span>
-    <span class="n">config_schema</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;user_key&#39;</span><span class="p">:</span> <span class="n">Field</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">default_value</span><span class="o">=</span><span class="n">user_key</span><span class="p">,</span> <span class="n">is_required</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
-        <span class="s1">&#39;user_secret&#39;</span><span class="p">:</span> <span class="n">Field</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">default_value</span><span class="o">=</span><span class="n">user_secret</span><span class="p">,</span> <span class="n">is_required</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
-        <span class="s1">&#39;slack_webhook_url&#39;</span><span class="p">:</span> <span class="n">Field</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">default_value</span><span class="o">=</span><span class="n">slack_webhook_url</span><span class="p">,</span> <span class="n">is_required</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
-        <span class="s1">&#39;slack_id&#39;</span><span class="p">:</span> <span class="n">Field</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">default_value</span><span class="o">=</span><span class="n">slack_id</span><span class="p">,</span> <span class="n">is_required</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">)</span>
-<span class="k">def</span> <span class="nf">download_latest_eumetsat_files</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">metadata_db_fp</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">debug_fp</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">table_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">project_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">start_date</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+<span class="nd">@solid</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">download_eumetsat_files</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">env_vars_fp</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">metadata_db_fp</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">debug_fp</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">table_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">project_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">start_date</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">end_date</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">max_mins</span><span class="p">:</span> <span class="nb">int</span><span class="o">=</span><span class="mi">60</span><span class="p">):</span>
+    <span class="n">_</span> <span class="o">=</span> <span class="n">dotenv</span><span class="o">.</span><span class="n">load_dotenv</span><span class="p">(</span><span class="n">env_vars_fp</span><span class="p">)</span>
+
     <span class="k">if</span> <span class="n">start_date</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
         <span class="n">sql_query</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;select * from </span><span class="si">{</span><span class="n">table_id</span><span class="si">}</span><span class="s1"> where result_time = (select max(result_time) from </span><span class="si">{</span><span class="n">table_id</span><span class="si">}</span><span class="s1">)&#39;</span>
-        <span class="n">start_date</span> <span class="o">=</span> <span class="n">gcp_helpers</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">sql_query</span><span class="p">,</span> <span class="n">project_id</span><span class="p">)[</span><span class="s1">&#39;result_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
-    <span class="n">end_date</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M&#39;</span><span class="p">)</span>
+        <span class="n">latest_saved_date</span> <span class="o">=</span> <span class="n">gcp_helpers</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">sql_query</span><span class="p">,</span> <span class="n">project_id</span><span class="p">)[</span><span class="s1">&#39;result_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">tz_localize</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+        <span class="n">earliest_start_date</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="n">max_mins</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;minutes&#39;</span><span class="p">)</span>
 
-    <span class="n">dm</span> <span class="o">=</span> <span class="n">eumetsat</span><span class="o">.</span><span class="n">DownloadManager</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">solid_config</span><span class="p">[</span><span class="s1">&#39;user_key&#39;</span><span class="p">],</span> <span class="n">context</span><span class="o">.</span><span class="n">solid_config</span><span class="p">[</span><span class="s1">&#39;user_secret&#39;</span><span class="p">],</span> <span class="n">data_dir</span><span class="p">,</span> <span class="n">metadata_db_fp</span><span class="p">,</span> <span class="n">debug_fp</span><span class="p">,</span> <span class="n">slack_webhook_url</span><span class="o">=</span><span class="n">context</span><span class="o">.</span><span class="n">solid_config</span><span class="p">[</span><span class="s1">&#39;slack_webhook_url&#39;</span><span class="p">],</span> <span class="n">slack_id</span><span class="o">=</span><span class="n">context</span><span class="o">.</span><span class="n">solid_config</span><span class="p">[</span><span class="s1">&#39;slack_id&#39;</span><span class="p">])</span>
-    <span class="n">df_new_metadata</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">download_datasets</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
+        <span class="n">start_date</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">earliest_start_date</span><span class="p">,</span> <span class="n">latest_saved_date</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">end_date</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+        <span class="n">end_date</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M&#39;</span><span class="p">)</span>
+
+    <span class="n">context</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Querying data between </span><span class="si">{</span><span class="n">start_date</span><span class="si">}</span><span class="s1"> - </span><span class="si">{</span><span class="n">end_date</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="n">dm</span> <span class="o">=</span> <span class="n">eumetsat</span><span class="o">.</span><span class="n">DownloadManager</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;USER_KEY&#39;</span><span class="p">),</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;USER_SECRET&#39;</span><span class="p">),</span> <span class="n">data_dir</span><span class="p">,</span> <span class="n">metadata_db_fp</span><span class="p">,</span> <span class="n">debug_fp</span><span class="p">,</span> <span class="n">slack_webhook_url</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;SLACK_WEBHOOK_URL&#39;</span><span class="p">),</span> <span class="n">slack_id</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;SLACK_ID&#39;</span><span class="p">))</span>
+    <span class="n">df_new_metadata</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">download_date_range</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">df_new_metadata</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">df_new_metadata</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;result_time&#39;</span><span class="p">,</span> <span class="s1">&#39;file_name&#39;</span><span class="p">])</span>
@@ -694,33 +675,55 @@ Downloading: 100%|â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–�
     <span class="k">return</span> <span class="n">ds_compressed</span>
 
 <span class="nd">@solid</span><span class="p">()</span>
-<span class="k">def</span> <span class="nf">save_metadata</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">df_new_metadata</span><span class="p">,</span> <span class="n">table_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">project_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-    <span class="n">gcp_helpers</span><span class="o">.</span><span class="n">write_metadata_to_gcp</span><span class="p">(</span><span class="n">df_new_metadata</span><span class="p">,</span> <span class="n">table_id</span><span class="p">,</span> <span class="n">project_id</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">save_metadata</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">ds_combined_compressed</span><span class="p">,</span> <span class="n">df_new_metadata</span><span class="p">,</span> <span class="n">table_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">project_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">ds_combined_compressed</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">df_new_metadata</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">gcp_helpers</span><span class="o">.</span><span class="n">write_metadata_to_gcp</span><span class="p">(</span><span class="n">df_new_metadata</span><span class="p">,</span> <span class="n">table_id</span><span class="p">,</span> <span class="n">project_id</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">context</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">df_new_metadata</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1"> new metadata entries were added&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">context</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;No metadata was available to be added&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="kc">True</span>
+
+<span class="nd">@solid</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">compress_export_then_delete_raw</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">ds_combined_compressed</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">compressed_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">BUCKET_NAME</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s1">&#39;solar-pv-nowcasting-data&#39;</span><span class="p">,</span> <span class="n">PREFIX</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s1">&#39;satellite/EUMETSAT/SEVIRI_RSS/native/&#39;</span><span class="p">,</span> <span class="n">ready_to_delete</span><span class="p">:</span> <span class="nb">bool</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">ready_to_delete</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">eumetsat</span><span class="o">.</span><span class="n">compress_downloaded_files</span><span class="p">(</span><span class="n">data_dir</span><span class="o">=</span><span class="n">data_dir</span><span class="p">,</span> <span class="n">compressed_dir</span><span class="o">=</span><span class="n">compressed_dir</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="n">context</span><span class="o">.</span><span class="n">log</span><span class="p">)</span>
+        <span class="n">eumetsat</span><span class="o">.</span><span class="n">upload_compressed_files</span><span class="p">(</span><span class="n">compressed_dir</span><span class="p">,</span> <span class="n">BUCKET_NAME</span><span class="o">=</span><span class="n">BUCKET_NAME</span><span class="p">,</span> <span class="n">PREFIX</span><span class="o">=</span><span class="n">PREFIX</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">dir_</span> <span class="ow">in</span> <span class="p">[</span><span class="n">data_dir</span><span class="p">,</span> <span class="n">compressed_dir</span><span class="p">]:</span>
+            <span class="n">files</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">dir_</span><span class="si">}</span><span class="s1">/*&#39;</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
 </code></pre></div>
 <p><br></p>
 <p>Then we'll combine them in a pipeline</p>
 <div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
 <span class="nd">@pipeline</span>
-<span class="k">def</span> <span class="nf">download_latest_data_pipeline</span><span class="p">():</span>  
-    <span class="c1"># Retrieving data, reprojecting, compressing, and saving to GCP</span>
-    <span class="n">df_new_metadata</span> <span class="o">=</span> <span class="n">download_latest_eumetsat_files</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">download_latest_data_pipeline</span><span class="p">():</span> 
+    <span class="n">df_new_metadata</span> <span class="o">=</span> <span class="n">download_eumetsat_files</span><span class="p">()</span>
     <span class="n">datetime_to_filepath</span> <span class="o">=</span> <span class="n">df_metadata_to_dt_to_fp_map</span><span class="p">(</span><span class="n">df_new_metadata</span><span class="p">)</span>
     <span class="n">ds_combined_reproj</span> <span class="o">=</span> <span class="n">reproject_datasets</span><span class="p">(</span><span class="n">datetime_to_filepath</span><span class="p">)</span>
     <span class="n">ds_combined_compressed</span> <span class="o">=</span> <span class="n">compress_and_save_datasets</span><span class="p">(</span><span class="n">ds_combined_reproj</span><span class="p">)</span>
-    <span class="n">save_metadata</span><span class="p">(</span><span class="n">df_new_metadata</span><span class="p">)</span>
+
+    <span class="n">ready_to_delete</span> <span class="o">=</span> <span class="n">save_metadata</span><span class="p">(</span><span class="n">ds_combined_compressed</span><span class="p">,</span> <span class="n">df_new_metadata</span><span class="p">)</span>
+    <span class="n">compress_export_then_delete_raw</span><span class="p">(</span><span class="n">ready_to_delete</span><span class="p">)</span>
 </code></pre></div>
 <p><br></p>
 <p>Which we'll now run a test with</p>
 <div class="highlight"><pre><span></span><code><span class="n">run_config</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;solids&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;download_latest_eumetsat_files&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;download_eumetsat_files&#39;</span><span class="p">:</span> <span class="p">{</span>
             <span class="s1">&#39;inputs&#39;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s1">&#39;env_vars_fp&#39;</span><span class="p">:</span> <span class="s2">&quot;../.env&quot;</span><span class="p">,</span>
                 <span class="s1">&#39;data_dir&#39;</span><span class="p">:</span> <span class="s2">&quot;../data/raw&quot;</span><span class="p">,</span>
                 <span class="s1">&#39;metadata_db_fp&#39;</span><span class="p">:</span> <span class="s2">&quot;../data/EUMETSAT_metadata.db&quot;</span><span class="p">,</span>
                 <span class="s1">&#39;debug_fp&#39;</span><span class="p">:</span> <span class="s2">&quot;../logs/EUMETSAT_download.txt&quot;</span><span class="p">,</span>
                 <span class="s1">&#39;table_id&#39;</span><span class="p">:</span> <span class="s2">&quot;eumetsat.metadata&quot;</span><span class="p">,</span>
                 <span class="s1">&#39;project_id&#39;</span><span class="p">:</span> <span class="s2">&quot;solar-pv-nowcasting&quot;</span><span class="p">,</span>
-                <span class="s1">&#39;start_date&#39;</span><span class="p">:</span> <span class="s2">&quot;2020-12-16 19:30&quot;</span>
+                <span class="s1">&#39;start_date&#39;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+                <span class="s1">&#39;end_date&#39;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
             <span class="p">},</span>
         <span class="p">},</span>
         <span class="s1">&#39;df_metadata_to_dt_to_fp_map&#39;</span><span class="p">:</span> <span class="p">{</span>
@@ -745,24 +748,345 @@ Downloading: 100%|â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–�
                 <span class="s1">&#39;table_id&#39;</span><span class="p">:</span> <span class="s2">&quot;eumetsat.metadata&quot;</span><span class="p">,</span>
                 <span class="s1">&#39;project_id&#39;</span><span class="p">:</span> <span class="s2">&quot;solar-pv-nowcasting&quot;</span>
             <span class="p">},</span>
+        <span class="p">},</span>
+        <span class="s1">&#39;compress_export_then_delete_raw&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;inputs&#39;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s1">&#39;data_dir&#39;</span><span class="p">:</span> <span class="s2">&quot;../data/raw&quot;</span><span class="p">,</span>
+                <span class="s1">&#39;compressed_dir&#39;</span><span class="p">:</span> <span class="s2">&quot;../data/compressed&quot;</span><span class="p">,</span>
+                <span class="s1">&#39;BUCKET_NAME&#39;</span><span class="p">:</span> <span class="s2">&quot;solar-pv-nowcasting-data&quot;</span><span class="p">,</span>
+                <span class="s1">&#39;PREFIX&#39;</span><span class="p">:</span> <span class="s2">&quot;satellite/EUMETSAT/SEVIRI_RSS/native/&quot;</span><span class="p">,</span>
+                <span class="s1">&#39;ready_to_delete&#39;</span><span class="p">:</span> <span class="kc">True</span>
+            <span class="p">},</span>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
 <span class="n">execute_pipeline</span><span class="p">(</span><span class="n">download_latest_data_pipeline</span><span class="p">,</span> <span class="n">run_config</span><span class="o">=</span><span class="n">run_config</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>2020-12-16 20:00:18 - dagster - DEBUG - download_latest_data_pipeline - 843966a6-a689-430d-97e0-7c937aefc85e - 20040 - ENGINE_EVENT - Starting initialization of resources [asset_store].
-2020-12-16 20:00:18 - dagster - DEBUG - download_latest_data_pipeline - 843966a6-a689-430d-97e0-7c937aefc85e - 20040 - ENGINE_EVENT - Finished initialization of resources [asset_store].
-2020-12-16 20:00:18 - dagster - DEBUG - download_latest_data_pipeline - 843966a6-a689-430d-97e0-7c937aefc85e - 20040 - PIPELINE_START - Started execution of pipeline &quot;download_latest_data_pipeline&quot;.
-2020-12-16 20:00:18 - dagster - DEBUG - download_latest_data_pipeline - 843966a6-a689-430d-97e0-7c937aefc85e - 20040 - ENGINE_EVENT - Executing steps in process (pid: 20040)
-2020-12-16 20:00:18 - dagster - DEBUG - download_latest_data_pipeline - 843966a6-a689-430d-97e0-7c937aefc85e - 20040 - download_latest_eumetsat_files.compute - STEP_START - Started execution of step &quot;download_latest_eumetsat_files.compute&quot;.
-2020-12-16 20:00:18 - dagster - DEBUG - download_latest_data_pipeline - 843966a6-a689-430d-97e0-7c937aefc85e - 20040 - download_latest_eumetsat_files.compute - STEP_INPUT - Got input &quot;data_dir&quot; of type &quot;String&quot;. (Type check passed).
-2020-12-16 20:00:18 - dagster - DEBUG - download_latest_data_pipeline - 843966a6-a689-430d-97e0-7c937aefc85e - 20040 - download_latest_eumetsat_files.compute - STEP_INPUT - Got input &quot;metadata_db_fp&quot; of type &quot;String&quot;. (Type check passed).
-2020-12-16 20:00:18 - dagster - DEBUG - download_latest_data_pipeline - 843966a6-a689-430d-97e0-7c937aefc85e - 20040 - download_latest_eumetsat_files.compute - STEP_INPUT - Got input &quot;debug_fp&quot; of type &quot;String&quot;. (Type check passed).
-2020-12-16 20:00:18 - dagster - DEBUG - download_latest_data_pipeline - 843966a6-a689-430d-97e0-7c937aefc85e - 20040 - download_latest_eumetsat_files.compute - STEP_INPUT - Got input &quot;start_date&quot; of type &quot;String&quot;. (Type check passed).
-2020-12-16 20:00:19 - dagster - ERROR - download_latest_data_pipeline - 843966a6-a689-430d-97e0-7c937aefc85e - 20040 - download_latest_eumetsat_files.compute - STEP_FAILURE - Execution of step &quot;download_latest_eumetsat_files.compute&quot; failed.
+<div class="highlight"><pre><span></span><code>2021-01-21 22:33:00 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - ENGINE_EVENT - Starting initialization of resources [asset_store].
+2021-01-21 22:33:00 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - ENGINE_EVENT - Finished initialization of resources [asset_store].
+2021-01-21 22:33:00 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - PIPELINE_START - Started execution of pipeline &quot;download_latest_data_pipeline&quot;.
+2021-01-21 22:33:00 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - ENGINE_EVENT - Executing steps in process (pid: 1108)
+2021-01-21 22:33:00 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - download_eumetsat_files.compute - STEP_START - Started execution of step &quot;download_eumetsat_files.compute&quot;.
+2021-01-21 22:33:00 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - download_eumetsat_files.compute - STEP_INPUT - Got input &quot;env_vars_fp&quot; of type &quot;String&quot;. (Type check passed).
+2021-01-21 22:33:00 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - download_eumetsat_files.compute - STEP_INPUT - Got input &quot;data_dir&quot; of type &quot;String&quot;. (Type check passed).
+2021-01-21 22:33:00 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - download_eumetsat_files.compute - STEP_INPUT - Got input &quot;metadata_db_fp&quot; of type &quot;String&quot;. (Type check passed).
+2021-01-21 22:33:00 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - download_eumetsat_files.compute - STEP_INPUT - Got input &quot;debug_fp&quot; of type &quot;String&quot;. (Type check passed).
+2021-01-21 22:33:00 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - download_eumetsat_files.compute - STEP_INPUT - Got input &quot;table_id&quot; of type &quot;String&quot;. (Type check passed).
+2021-01-21 22:33:00 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - download_eumetsat_files.compute - STEP_INPUT - Got input &quot;project_id&quot; of type &quot;String&quot;. (Type check passed).
+2021-01-21 22:33:00 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - download_eumetsat_files.compute - STEP_INPUT - Got input &quot;start_date&quot; of type &quot;String&quot;. (Type check passed).
+2021-01-21 22:33:00 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - download_eumetsat_files.compute - STEP_INPUT - Got input &quot;end_date&quot; of type &quot;String&quot;. (Type check passed).
+2021-01-21 22:33:00 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - download_eumetsat_files.compute - STEP_INPUT - Got input &quot;max_mins&quot; of type &quot;Int&quot;. (Type check passed).
+Downloading: 100%|â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ| 1/1 [00:00&lt;00:00,  5.00rows/s]
+2021-01-21 22:33:02 - dagster - INFO - system - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - download_eumetsat_files.compute - Querying data between 2021-01-21 21:33 - 2021-01-21 22:33
+2021-01-21 22:33:02,396 - INFO - ********** Download Manager Initialised **************
+2021-01-21 22:33:02,869 - INFO - 11 files queried, 0 found in ../data/raw, 11 to download.
+</code></pre></div>
+<div><span class="Text-label" style="display:inline-block; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; min-width:0; max-width:15ex; vertical-align:middle; text-align:right"></span>
+<progress style="width:60ex" max="11" value="11" class="Progress-main"/></progress>
+<span class="Progress-label"><strong>100%</strong></span>
+<span class="Iteration-label">11/11</span>
+<span class="Time-label">[01:08<00:06, 6.19s/it]</span></div>
 
-AttributeError: &#39;DagsterLogManager&#39; object has no attribute &#39;setLevel&#39;
+<div class="highlight"><pre><span></span><code>2021-01-21 22:34:10 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - download_eumetsat_files.compute - STEP_OUTPUT - Yielded output &quot;result&quot; of type &quot;Any&quot;. (Type check passed).
+2021-01-21 22:34:10 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - download_eumetsat_files.compute - OBJECT_STORE_OPERATION - Stored intermediate object for output result in memory object store using pickle.
+2021-01-21 22:34:10 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - download_eumetsat_files.compute - STEP_SUCCESS - Finished execution of step &quot;download_eumetsat_files.compute&quot; in 1m10s.
+2021-01-21 22:34:10 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - df_metadata_to_dt_to_fp_map.compute - STEP_START - Started execution of step &quot;df_metadata_to_dt_to_fp_map.compute&quot;.
+2021-01-21 22:34:10 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - df_metadata_to_dt_to_fp_map.compute - OBJECT_STORE_OPERATION - Retrieved intermediate object for input df_new_metadata in memory object store using pickle.
+2021-01-21 22:34:10 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - df_metadata_to_dt_to_fp_map.compute - STEP_INPUT - Got input &quot;df_new_metadata&quot; of type &quot;Any&quot;. (Type check passed).
+2021-01-21 22:34:10 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - df_metadata_to_dt_to_fp_map.compute - STEP_INPUT - Got input &quot;data_dir&quot; of type &quot;String&quot;. (Type check passed).
+2021-01-21 22:34:11 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - df_metadata_to_dt_to_fp_map.compute - STEP_OUTPUT - Yielded output &quot;result&quot; of type &quot;dict&quot;. (Type check passed).
+2021-01-21 22:34:11 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - df_metadata_to_dt_to_fp_map.compute - OBJECT_STORE_OPERATION - Stored intermediate object for output result in memory object store using pickle.
+2021-01-21 22:34:11 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - df_metadata_to_dt_to_fp_map.compute - STEP_SUCCESS - Finished execution of step &quot;df_metadata_to_dt_to_fp_map.compute&quot; in 15ms.
+2021-01-21 22:34:11 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - reproject_datasets.compute - STEP_START - Started execution of step &quot;reproject_datasets.compute&quot;.
+2021-01-21 22:34:11 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - reproject_datasets.compute - OBJECT_STORE_OPERATION - Retrieved intermediate object for input datetime_to_filepath in memory object store using pickle.
+2021-01-21 22:34:11 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - reproject_datasets.compute - STEP_INPUT - Got input &quot;datetime_to_filepath&quot; of type &quot;dict&quot;. (Type check passed).
+2021-01-21 22:34:11 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - reproject_datasets.compute - STEP_INPUT - Got input &quot;new_coords_fp&quot; of type &quot;String&quot;. (Type check passed).
+2021-01-21 22:34:11 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - reproject_datasets.compute - STEP_INPUT - Got input &quot;new_grid_fp&quot; of type &quot;String&quot;. (Type check passed).
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\numpy\lib\function_base.py:1280: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])
+2021-01-21 22:34:59 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - reproject_datasets.compute - STEP_OUTPUT - Yielded output &quot;result&quot; of type &quot;Any&quot;. (Type check passed).
+2021-01-21 22:34:59 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - reproject_datasets.compute - OBJECT_STORE_OPERATION - Stored intermediate object for output result in memory object store using pickle.
+2021-01-21 22:34:59 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - reproject_datasets.compute - STEP_SUCCESS - Finished execution of step &quot;reproject_datasets.compute&quot; in 48.26s.
+2021-01-21 22:34:59 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - compress_and_save_datasets.compute - STEP_START - Started execution of step &quot;compress_and_save_datasets.compute&quot;.
+2021-01-21 22:34:59 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - compress_and_save_datasets.compute - OBJECT_STORE_OPERATION - Retrieved intermediate object for input ds_combined_reproj in memory object store using pickle.
+2021-01-21 22:34:59 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - compress_and_save_datasets.compute - STEP_INPUT - Got input &quot;ds_combined_reproj&quot; of type &quot;Any&quot;. (Type check passed).
+2021-01-21 22:34:59 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - compress_and_save_datasets.compute - STEP_INPUT - Got input &quot;zarr_bucket&quot; of type &quot;String&quot;. (Type check passed).
+2021-01-21 22:34:59 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - compress_and_save_datasets.compute - STEP_INPUT - Got input &quot;var_name&quot; of type &quot;String&quot;. (Type check passed).
+C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\google\auth\_default.py:69: UserWarning: Your application has authenticated using end user credentials from Google Cloud SDK without a quota project. You might receive a &quot;quota exceeded&quot; or &quot;API not enabled&quot; error. We recommend you rerun `gcloud auth application-default login` and make sure a quota project is added. Or you can use service accounts instead. For more information about service accounts, see https://cloud.google.com/docs/authentication/
+  warnings.warn(_CLOUD_SDK_CREDENTIALS_WARNING)
+2021-01-21 22:46:43 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - compress_and_save_datasets.compute - STEP_OUTPUT - Yielded output &quot;result&quot; of type &quot;Any&quot;. (Type check passed).
+2021-01-21 22:46:43 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - compress_and_save_datasets.compute - OBJECT_STORE_OPERATION - Stored intermediate object for output result in memory object store using pickle.
+2021-01-21 22:46:43 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - compress_and_save_datasets.compute - STEP_SUCCESS - Finished execution of step &quot;compress_and_save_datasets.compute&quot; in 11m44s.
+2021-01-21 22:46:43 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - save_metadata.compute - STEP_START - Started execution of step &quot;save_metadata.compute&quot;.
+2021-01-21 22:46:43 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - save_metadata.compute - OBJECT_STORE_OPERATION - Retrieved intermediate object for input ds_combined_compressed in memory object store using pickle.
+2021-01-21 22:46:43 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - save_metadata.compute - OBJECT_STORE_OPERATION - Retrieved intermediate object for input df_new_metadata in memory object store using pickle.
+2021-01-21 22:46:43 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - save_metadata.compute - STEP_INPUT - Got input &quot;ds_combined_compressed&quot; of type &quot;Any&quot;. (Type check passed).
+2021-01-21 22:46:43 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - save_metadata.compute - STEP_INPUT - Got input &quot;df_new_metadata&quot; of type &quot;Any&quot;. (Type check passed).
+2021-01-21 22:46:43 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - save_metadata.compute - STEP_INPUT - Got input &quot;table_id&quot; of type &quot;String&quot;. (Type check passed).
+2021-01-21 22:46:43 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - save_metadata.compute - STEP_INPUT - Got input &quot;project_id&quot; of type &quot;String&quot;. (Type check passed).
+1it [00:03,  3.73s/it]
+2021-01-21 22:46:48 - dagster - INFO - system - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - save_metadata.compute - 10 new metadata entries were added
+2021-01-21 22:46:48 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - save_metadata.compute - STEP_OUTPUT - Yielded output &quot;result&quot; of type &quot;Any&quot;. (Type check passed).
+2021-01-21 22:46:48 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - save_metadata.compute - OBJECT_STORE_OPERATION - Stored intermediate object for output result in memory object store using pickle.
+2021-01-21 22:46:48 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - save_metadata.compute - STEP_SUCCESS - Finished execution of step &quot;save_metadata.compute&quot; in 4.29s.
+2021-01-21 22:46:48 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - compress_export_then_delete_raw.compute - STEP_START - Started execution of step &quot;compress_export_then_delete_raw.compute&quot;.
+2021-01-21 22:46:48 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - compress_export_then_delete_raw.compute - OBJECT_STORE_OPERATION - Retrieved intermediate object for input ds_combined_compressed in memory object store using pickle.
+2021-01-21 22:46:48 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - compress_export_then_delete_raw.compute - STEP_INPUT - Got input &quot;ds_combined_compressed&quot; of type &quot;Any&quot;. (Type check passed).
+2021-01-21 22:46:48 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - compress_export_then_delete_raw.compute - STEP_INPUT - Got input &quot;data_dir&quot; of type &quot;String&quot;. (Type check passed).
+2021-01-21 22:46:48 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - compress_export_then_delete_raw.compute - STEP_INPUT - Got input &quot;compressed_dir&quot; of type &quot;String&quot;. (Type check passed).
+2021-01-21 22:46:48 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - compress_export_then_delete_raw.compute - STEP_INPUT - Got input &quot;BUCKET_NAME&quot; of type &quot;String&quot;. (Type check passed).
+2021-01-21 22:46:48 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - compress_export_then_delete_raw.compute - STEP_INPUT - Got input &quot;PREFIX&quot; of type &quot;String&quot;. (Type check passed).
+2021-01-21 22:46:48 - dagster - DEBUG - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - compress_export_then_delete_raw.compute - STEP_INPUT - Got input &quot;ready_to_delete&quot; of type &quot;Bool&quot;. (Type check passed).
+2021-01-21 22:46:48 - dagster - INFO - system - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - compress_export_then_delete_raw.compute - Found 20 native files.
+2021-01-21 22:46:48 - dagster - DEBUG - system - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - compress_export_then_delete_raw.compute - Compressing ../data/raw\MSG3-SEVI-MSG15-0100-NA-20210121204918.196000000Z-NA.nat
+
+
+10 rows written to BQ eumetsat.metadata, append=True
+Found 20 native files.
+
+
+2021-01-21 22:46:49 - dagster - ERROR - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - compress_export_then_delete_raw.compute - STEP_FAILURE - Execution of step &quot;compress_export_then_delete_raw.compute&quot; failed.
+
+FileNotFoundError: [WinError 2] The system cannot find the file specified
 
   File &quot;C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\errors.py&quot;, line 180, in user_code_error_boundary
     yield
@@ -776,16 +1100,20 @@ AttributeError: &#39;DagsterLogManager&#39; object has no attribute &#39;setLeve
     for event in user_event_sequence:
   File &quot;C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\definitions\decorators\solid.py&quot;, line 227, in compute
     result = fn(context, **kwargs)
-  File &quot;&lt;ipython-input-5-968917ba6d74&gt;&quot;, line 16, in download_latest_eumetsat_files
-    dm = eumetsat.DownloadManager(context.solid_config[&#39;user_key&#39;], context.solid_config[&#39;user_secret&#39;], data_dir, metadata_db_fp, debug_fp, slack_webhook_url=context.solid_config[&#39;slack_webhook_url&#39;], slack_id=context.solid_config[&#39;slack_id&#39;], logger_name=context.log)
-  File &quot;c:\users\ayrto\desktop\freelance work\fea\work\ocf\satip\satip\eumetsat.py&quot;, line 312, in __init__
-    self.logger = utils.set_up_logging(logger_name, log_fp,
-  File &quot;c:\users\ayrto\desktop\freelance work\fea\work\ocf\satip\satip\utils.py&quot;, line 133, in set_up_logging
-    logger.setLevel(getattr(logging, main_logging_level))
+  File &quot;&lt;ipython-input-4-b374cee63da6&gt;&quot;, line 103, in compress_export_then_delete_raw
+    eumetsat.compress_downloaded_files(data_dir=data_dir, compressed_dir=compressed_dir, log=context.log)
+  File &quot;c:\users\ayrto\desktop\freelance work\fea\work\ocf\satip\satip\eumetsat.py&quot;, line 568, in compress_downloaded_files
+    completed_process = subprocess.run([&#39;pbzip2&#39;, &#39;-5&#39;, full_native_filename])
+  File &quot;C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\subprocess.py&quot;, line 489, in run
+    with Popen(*popenargs, **kwargs) as process:
+  File &quot;C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\subprocess.py&quot;, line 854, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File &quot;C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\subprocess.py&quot;, line 1307, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
 
-2020-12-16 20:00:19 - dagster - ERROR - download_latest_data_pipeline - 843966a6-a689-430d-97e0-7c937aefc85e - 20040 - PIPELINE_FAILURE - Execution of pipeline &quot;download_latest_data_pipeline&quot; failed. An exception was thrown during execution.
+2021-01-21 22:46:49 - dagster - ERROR - download_latest_data_pipeline - d3e2e4f6-c6a3-4ee2-af3a-2570ac7c607a - 1108 - PIPELINE_FAILURE - Execution of pipeline &quot;download_latest_data_pipeline&quot; failed. An exception was thrown during execution.
 
-AttributeError: &#39;DagsterLogManager&#39; object has no attribute &#39;setLevel&#39;
+FileNotFoundError: [WinError 2] The system cannot find the file specified
 
   File &quot;C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\execution\api.py&quot;, line 665, in _pipeline_execution_iterator
     for event in pipeline_context.executor.execute(pipeline_context, execution_plan):
@@ -807,12 +1135,16 @@ AttributeError: &#39;DagsterLogManager&#39; object has no attribute &#39;setLeve
     for event in user_event_sequence:
   File &quot;C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\definitions\decorators\solid.py&quot;, line 227, in compute
     result = fn(context, **kwargs)
-  File &quot;&lt;ipython-input-5-968917ba6d74&gt;&quot;, line 16, in download_latest_eumetsat_files
-    dm = eumetsat.DownloadManager(context.solid_config[&#39;user_key&#39;], context.solid_config[&#39;user_secret&#39;], data_dir, metadata_db_fp, debug_fp, slack_webhook_url=context.solid_config[&#39;slack_webhook_url&#39;], slack_id=context.solid_config[&#39;slack_id&#39;], logger_name=context.log)
-  File &quot;c:\users\ayrto\desktop\freelance work\fea\work\ocf\satip\satip\eumetsat.py&quot;, line 312, in __init__
-    self.logger = utils.set_up_logging(logger_name, log_fp,
-  File &quot;c:\users\ayrto\desktop\freelance work\fea\work\ocf\satip\satip\utils.py&quot;, line 133, in set_up_logging
-    logger.setLevel(getattr(logging, main_logging_level))
+  File &quot;&lt;ipython-input-4-b374cee63da6&gt;&quot;, line 103, in compress_export_then_delete_raw
+    eumetsat.compress_downloaded_files(data_dir=data_dir, compressed_dir=compressed_dir, log=context.log)
+  File &quot;c:\users\ayrto\desktop\freelance work\fea\work\ocf\satip\satip\eumetsat.py&quot;, line 568, in compress_downloaded_files
+    completed_process = subprocess.run([&#39;pbzip2&#39;, &#39;-5&#39;, full_native_filename])
+  File &quot;C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\subprocess.py&quot;, line 489, in run
+    with Popen(*popenargs, **kwargs) as process:
+  File &quot;C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\subprocess.py&quot;, line 854, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File &quot;C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\subprocess.py&quot;, line 1307, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
 
 
 
@@ -867,23 +1199,23 @@ DagsterExecutionStepExecutionError        Traceback (most recent call last)
 
 
 DagsterExecutionStepExecutionError: Error occurred during the execution of step:
-        step key: &quot;download_latest_eumetsat_files.compute&quot;
-        solid invocation: &quot;download_latest_eumetsat_files&quot;
-        solid definition: &quot;download_latest_eumetsat_files&quot;
+        step key: &quot;compress_export_then_delete_raw.compute&quot;
+        solid invocation: &quot;compress_export_then_delete_raw&quot;
+        solid definition: &quot;compress_export_then_delete_raw&quot;
 
 
 
 During handling of the above exception, another exception occurred:
 
 
-AttributeError                            Traceback (most recent call last)
+FileNotFoundError                         Traceback (most recent call last)
 
     [... skipping hidden 1 frame]
 
 
-&lt;ipython-input-7-79fdcc951128&gt; in &lt;module&gt;
-     36 
----&gt; 37 execute_pipeline(download_latest_data_pipeline, run_config=run_config)
+&lt;ipython-input-6-7ed226242252&gt; in &lt;module&gt;
+     49 
+---&gt; 50 execute_pipeline(download_latest_data_pipeline, run_config=run_config)
 
 
 ~\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\execution\api.py in execute_pipeline(pipeline, run_config, mode, preset, tags, solid_selection, instance, raise_on_error)
@@ -976,25 +1308,37 @@ AttributeError                            Traceback (most recent call last)
     228
 
 
-&lt;ipython-input-5-968917ba6d74&gt; in download_latest_eumetsat_files(context, data_dir, metadata_db_fp, debug_fp, start_date)
-     15 
----&gt; 16     dm = eumetsat.DownloadManager(context.solid_config[&#39;user_key&#39;], context.solid_config[&#39;user_secret&#39;], data_dir, metadata_db_fp, debug_fp, slack_webhook_url=context.solid_config[&#39;slack_webhook_url&#39;], slack_id=context.solid_config[&#39;slack_id&#39;], logger_name=context.log)
-     17     df_new_metadata = dm.download_datasets(start_date, end_date)
+&lt;ipython-input-4-b374cee63da6&gt; in compress_export_then_delete_raw(context, ds_combined_compressed, data_dir, compressed_dir, BUCKET_NAME, PREFIX, ready_to_delete)
+    102     if ready_to_delete == True:
+--&gt; 103         eumetsat.compress_downloaded_files(data_dir=data_dir, compressed_dir=compressed_dir, log=context.log)
+    104         eumetsat.upload_compressed_files(compressed_dir, BUCKET_NAME=BUCKET_NAME, PREFIX=PREFIX, log=None)
 
 
-c:\users\ayrto\desktop\freelance work\fea\work\ocf\satip\satip\eumetsat.py in __init__(self, user_key, user_secret, data_dir, metadata_db_fp, log_fp, main_logging_level, slack_logging_level, slack_webhook_url, slack_id, bucket_name, bucket_prefix, logger_name)
-    311         # Configuring the logger
---&gt; 312         self.logger = utils.set_up_logging(logger_name, log_fp,
-    313                                            main_logging_level, slack_logging_level,
+c:\users\ayrto\desktop\freelance work\fea\work\ocf\satip\satip\eumetsat.py in compress_downloaded_files(data_dir, compressed_dir, log)
+    567 
+--&gt; 568         completed_process = subprocess.run([&#39;pbzip2&#39;, &#39;-5&#39;, full_native_filename])
+    569         try:
 
 
-c:\users\ayrto\desktop\freelance work\fea\work\ocf\satip\satip\utils.py in set_up_logging(name, log_dir, main_logging_level, slack_logging_level, slack_webhook_url, slack_id)
-    132 
---&gt; 133     logger.setLevel(getattr(logging, main_logging_level))
-    134
+~\anaconda3\envs\satip_dev\lib\subprocess.py in run(input, capture_output, timeout, check, *popenargs, **kwargs)
+    488 
+--&gt; 489     with Popen(*popenargs, **kwargs) as process:
+    490         try:
 
 
-AttributeError: &#39;DagsterLogManager&#39; object has no attribute &#39;setLevel&#39;
+~\anaconda3\envs\satip_dev\lib\subprocess.py in __init__(self, args, bufsize, executable, stdin, stdout, stderr, preexec_fn, close_fds, shell, cwd, env, universal_newlines, startupinfo, creationflags, restore_signals, start_new_session, pass_fds, encoding, errors, text)
+    853 
+--&gt; 854             self._execute_child(args, executable, preexec_fn, close_fds,
+    855                                 pass_fds, cwd, env,
+
+
+~\anaconda3\envs\satip_dev\lib\subprocess.py in _execute_child(self, args, executable, preexec_fn, close_fds, pass_fds, cwd, env, startupinfo, creationflags, shell, p2cread, p2cwrite, c2pread, c2pwrite, errread, errwrite, unused_restore_signals, unused_start_new_session)
+   1306             try:
+-&gt; 1307                 hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+   1308                                          # no special security
+
+
+FileNotFoundError: [WinError 2] The system cannot find the file specified
 
 
 The above exception was the direct cause of the following exception:
@@ -1048,21 +1392,21 @@ DagsterExecutionStepExecutionError        Traceback (most recent call last)
 
 
 DagsterExecutionStepExecutionError: Error occurred during the execution of step:
-        step key: &quot;download_latest_eumetsat_files.compute&quot;
-        solid invocation: &quot;download_latest_eumetsat_files&quot;
-        solid definition: &quot;download_latest_eumetsat_files&quot;
+        step key: &quot;compress_export_then_delete_raw.compute&quot;
+        solid invocation: &quot;compress_export_then_delete_raw&quot;
+        solid definition: &quot;compress_export_then_delete_raw&quot;
 
 
 
 During handling of the above exception, another exception occurred:
 
 
-AttributeError                            Traceback (most recent call last)
+FileNotFoundError                         Traceback (most recent call last)
 
-&lt;ipython-input-7-79fdcc951128&gt; in &lt;module&gt;
-     35 }
-     36 
----&gt; 37 execute_pipeline(download_latest_data_pipeline, run_config=run_config)
+&lt;ipython-input-6-7ed226242252&gt; in &lt;module&gt;
+     48 }
+     49 
+---&gt; 50 execute_pipeline(download_latest_data_pipeline, run_config=run_config)
 
 
 ~\anaconda3\envs\satip_dev\lib\site-packages\dagster\core\execution\api.py in execute_pipeline(pipeline, run_config, mode, preset, tags, solid_selection, instance, raise_on_error)
@@ -1185,31 +1529,63 @@ AttributeError                            Traceback (most recent call last)
     229         if inspect.isgenerator(result):
 
 
-&lt;ipython-input-5-968917ba6d74&gt; in download_latest_eumetsat_files(context, data_dir, metadata_db_fp, debug_fp, start_date)
-     14     end_date = pd.Timestamp.now().strftime(&#39;%Y-%m-%d %H:%M&#39;)
-     15 
----&gt; 16     dm = eumetsat.DownloadManager(context.solid_config[&#39;user_key&#39;], context.solid_config[&#39;user_secret&#39;], data_dir, metadata_db_fp, debug_fp, slack_webhook_url=context.solid_config[&#39;slack_webhook_url&#39;], slack_id=context.solid_config[&#39;slack_id&#39;], logger_name=context.log)
-     17     df_new_metadata = dm.download_datasets(start_date, end_date)
-     18
+&lt;ipython-input-4-b374cee63da6&gt; in compress_export_then_delete_raw(context, ds_combined_compressed, data_dir, compressed_dir, BUCKET_NAME, PREFIX, ready_to_delete)
+    101 def compress_export_then_delete_raw(context, ds_combined_compressed, data_dir: str, compressed_dir: str, BUCKET_NAME: str=&#39;solar-pv-nowcasting-data&#39;, PREFIX: str=&#39;satellite/EUMETSAT/SEVIRI_RSS/native/&#39;, ready_to_delete: bool=True):
+    102     if ready_to_delete == True:
+--&gt; 103         eumetsat.compress_downloaded_files(data_dir=data_dir, compressed_dir=compressed_dir, log=context.log)
+    104         eumetsat.upload_compressed_files(compressed_dir, BUCKET_NAME=BUCKET_NAME, PREFIX=PREFIX, log=None)
+    105
 
 
-c:\users\ayrto\desktop\freelance work\fea\work\ocf\satip\satip\eumetsat.py in __init__(self, user_key, user_secret, data_dir, metadata_db_fp, log_fp, main_logging_level, slack_logging_level, slack_webhook_url, slack_id, bucket_name, bucket_prefix, logger_name)
-    310 
-    311         # Configuring the logger
---&gt; 312         self.logger = utils.set_up_logging(logger_name, log_fp,
-    313                                            main_logging_level, slack_logging_level,
-    314                                            slack_webhook_url, slack_id)
+c:\users\ayrto\desktop\freelance work\fea\work\ocf\satip\satip\eumetsat.py in compress_downloaded_files(data_dir, compressed_dir, log)
+    566             log.debug(f&#39;Compressing {full_native_filename}&#39;)
+    567 
+--&gt; 568         completed_process = subprocess.run([&#39;pbzip2&#39;, &#39;-5&#39;, full_native_filename])
+    569         try:
+    570             completed_process.check_returncode()
 
 
-c:\users\ayrto\desktop\freelance work\fea\work\ocf\satip\satip\utils.py in set_up_logging(name, log_dir, main_logging_level, slack_logging_level, slack_webhook_url, slack_id)
-    131     assert slack_logging_level in logging_levels, f&quot;slack_logging_level must be one of {&#39;, &#39;.join(logging_levels)}&quot;
-    132 
---&gt; 133     logger.setLevel(getattr(logging, main_logging_level))
-    134 
-    135     # Defining global formatter
+~\anaconda3\envs\satip_dev\lib\subprocess.py in run(input, capture_output, timeout, check, *popenargs, **kwargs)
+    487         kwargs[&#39;stderr&#39;] = PIPE
+    488 
+--&gt; 489     with Popen(*popenargs, **kwargs) as process:
+    490         try:
+    491             stdout, stderr = process.communicate(input, timeout=timeout)
 
 
-AttributeError: &#39;DagsterLogManager&#39; object has no attribute &#39;setLevel&#39;
+~\anaconda3\envs\satip_dev\lib\subprocess.py in __init__(self, args, bufsize, executable, stdin, stdout, stderr, preexec_fn, close_fds, shell, cwd, env, universal_newlines, startupinfo, creationflags, restore_signals, start_new_session, pass_fds, encoding, errors, text)
+    852                             encoding=encoding, errors=errors)
+    853 
+--&gt; 854             self._execute_child(args, executable, preexec_fn, close_fds,
+    855                                 pass_fds, cwd, env,
+    856                                 startupinfo, creationflags, shell,
+
+
+~\anaconda3\envs\satip_dev\lib\subprocess.py in _execute_child(self, args, executable, preexec_fn, close_fds, pass_fds, cwd, env, startupinfo, creationflags, shell, p2cread, p2cwrite, c2pread, c2pwrite, errread, errwrite, unused_restore_signals, unused_start_new_session)
+   1305             # Start the process
+   1306             try:
+-&gt; 1307                 hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+   1308                                          # no special security
+   1309                                          None, None,
+
+
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
+<span class="nd">@solid</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">download_missing_eumetsat_files</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">env_vars_fp</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">metadata_db_fp</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">debug_fp</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">table_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">project_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">start_date</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">end_date</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+    <span class="n">_</span> <span class="o">=</span> <span class="n">dotenv</span><span class="o">.</span><span class="n">load_dotenv</span><span class="p">(</span><span class="n">env_vars_fp</span><span class="p">)</span>
+    <span class="n">dm</span> <span class="o">=</span> <span class="n">eumetsat</span><span class="o">.</span><span class="n">DownloadManager</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;USER_KEY&#39;</span><span class="p">),</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;USER_SECRET&#39;</span><span class="p">),</span> <span class="n">data_dir</span><span class="p">,</span> <span class="n">metadata_db_fp</span><span class="p">,</span> <span class="n">debug_fp</span><span class="p">,</span> <span class="n">slack_webhook_url</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;SLACK_WEBHOOK_URL&#39;</span><span class="p">),</span> <span class="n">slack_id</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;SLACK_ID&#39;</span><span class="p">))</span>
+
+    <span class="n">missing_datasets</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">identifying_missing_datasets</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
+    <span class="n">df_new_metadata</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">download_datasets</span><span class="p">(</span><span class="n">missing_datasets</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">df_new_metadata</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">df_new_metadata</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;result_time&#39;</span><span class="p">,</span> <span class="s1">&#39;file_name&#39;</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">df_new_metadata</span> <span class="o">=</span> <span class="n">df_new_metadata</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="c1"># the first entry is the last one we downloaded</span>
+
+    <span class="k">return</span> <span class="n">df_new_metadata</span>
 </code></pre></div>
                 
               

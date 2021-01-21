@@ -61,7 +61,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#eumetsat-and-gcp" class="md-skip">
+        <a href="#eumetsat-and-google-cloud-platform-gcp" class="md-skip">
           Skip to content
         </a>
       
@@ -472,15 +472,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#some-gcp-helpers" class="md-nav__link">
-    Some GCP Helpers
+  <a href="#gcp-helpers" class="md-nav__link">
+    GCP Helpers
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#user-input" class="md-nav__link">
-    User input
+  <a href="#checking-existing-saved-data-in-google-cloud-storage" class="md-nav__link">
+    Checking existing saved data in Google Cloud Storage
   </a>
   
 </li>
@@ -547,15 +547,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#some-gcp-helpers" class="md-nav__link">
-    Some GCP Helpers
+  <a href="#gcp-helpers" class="md-nav__link">
+    GCP Helpers
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#user-input" class="md-nav__link">
-    User input
+  <a href="#checking-existing-saved-data-in-google-cloud-storage" class="md-nav__link">
+    Checking existing saved data in Google Cloud Storage
   </a>
   
 </li>
@@ -584,28 +584,26 @@
                   </a>
                 
                 
-                <h1 id="eumetsat-and-gcp">EUMETSAT and GCP<a class="headerlink" href="#eumetsat-and-gcp" title="Permanent link">&para;</a></h1>
+                <h1 id="eumetsat-and-google-cloud-platform-gcp">EUMETSAT and Google Cloud Platform (GCP)<a class="headerlink" href="#eumetsat-and-google-cloud-platform-gcp" title="Permanent link">&para;</a></h1>
 <h3 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h3>
-<h2 id="some-gcp-helpers">Some GCP Helpers<a class="headerlink" href="#some-gcp-helpers" title="Permanent link">&para;</a></h2>
+<h2 id="gcp-helpers">GCP Helpers<a class="headerlink" href="#gcp-helpers" title="Permanent link">&para;</a></h2>
 <p>First need a couple of helper functions to work with Google Cloud Platform.<br />
 Ideally the principles will transfer easily to other cloud providers if necessary. </p>
-<h2 id="user-input">User input<a class="headerlink" href="#user-input" title="Permanent link">&para;</a></h2>
+<p>First we want to be able to list files ('blobs') in a Google Cloud storage bucket, and get the metadata for a specific file ('blob').</p>
+<p>We also want to be able to upload a file ('blob') to a storage bucket in an efficient way.</p>
+<h2 id="checking-existing-saved-data-in-google-cloud-storage">Checking existing saved data in Google Cloud Storage<a class="headerlink" href="#checking-existing-saved-data-in-google-cloud-storage" title="Permanent link">&para;</a></h2>
+<p>Finding out how much data has been downloaded for different years in the OCF native data bucket.</p>
 <div class="highlight"><pre><span></span><code><span class="n">BUCKET_NAME</span> <span class="o">=</span> <span class="s2">&quot;solar-pv-nowcasting-data&quot;</span>
-<span class="n">PREFIX</span> <span class="o">=</span> <span class="s2">&quot;satellite/EUMETSAT/SEVIRI_RSS/native/2020&quot;</span>
+<span class="n">PREFIX</span> <span class="o">=</span> <span class="s2">&quot;satellite/EUMETSAT/SEVIRI_RSS/native/2019/01/01&quot;</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="n">blobs</span> <span class="o">=</span> <span class="n">list_blobs_with_prefix</span><span class="p">(</span><span class="n">BUCKET_NAME</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="n">PREFIX</span><span class="p">)</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;There are </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">blobs</span><span class="p">)</span><span class="si">}</span><span class="s1"> files&#39;</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>There are 2 files
+<div class="highlight"><pre><span></span><code>There are 277 files
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="n">blobs</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>[&#39;satellite/EUMETSAT/SEVIRI_RSS/native/2020/01/01/12/04/MSG3-SEVI-MSG15-0100-NA-20200101120418.186000000Z-NA.nat.bz2&#39;,
- &#39;satellite/EUMETSAT/SEVIRI_RSS/native/2020/01/01/12/09/MSG3-SEVI-MSG15-0100-NA-20200101120916.896000000Z-NA.nat.bz2&#39;]
-</code></pre></div>
+<p>Lets see how large the data for the whole of 2018 is - this may take a few minutes to run. </p>
 <div class="highlight"><pre><span></span><code><span class="n">storage_client</span> <span class="o">=</span> <span class="n">storage</span><span class="o">.</span><span class="n">Client</span><span class="p">()</span>
-
 <span class="n">PREFIX</span> <span class="o">=</span> <span class="s2">&quot;satellite/EUMETSAT/SEVIRI_RSS/native/2018/&quot;</span>
 
 <span class="c1"># Note: Client.list_blobs requires at least package version 1.17.0.</span>
@@ -616,194 +614,9 @@ Ideally the principles will transfer easily to other cloud providers if necessar
 <span class="k">for</span> <span class="n">blob</span> <span class="ow">in</span> <span class="n">blobs_</span><span class="p">:</span>
     <span class="n">sizes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>---------------------------------------------------------------------------
-
-KeyboardInterrupt                         Traceback (most recent call last)
-
-&lt;ipython-input-20-8607175daf03&gt; in &lt;module&gt;
-      8 sizes = []
-      9 
----&gt; 10 for blob in blobs_:
-     11     sizes.append(blob.size)
-
-
-~/software/anaconda3/envs/satip_dev/lib/python3.8/site-packages/google/api_core/page_iterator.py in _items_iter(self)
-    210     def _items_iter(self):
-    211         &quot;&quot;&quot;Iterator for each item returned.&quot;&quot;&quot;
---&gt; 212         for page in self._page_iter(increment=False):
-    213             for item in page:
-    214                 self.num_results += 1
-
-
-~/software/anaconda3/envs/satip_dev/lib/python3.8/site-packages/google/api_core/page_iterator.py in _page_iter(self, increment)
-    247                 self.num_results += page.num_items
-    248             yield page
---&gt; 249             page = self._next_page()
-    250 
-    251     @abc.abstractmethod
-
-
-~/software/anaconda3/envs/satip_dev/lib/python3.8/site-packages/google/api_core/page_iterator.py in _next_page(self)
-    367         &quot;&quot;&quot;
-    368         if self._has_next_page():
---&gt; 369             response = self._get_next_page_response()
-    370             items = response.get(self._items_key, ())
-    371             page = Page(self, items, self.item_to_value, raw_page=response)
-
-
-~/software/anaconda3/envs/satip_dev/lib/python3.8/site-packages/google/api_core/page_iterator.py in _get_next_page_response(self)
-    416         params = self._get_query_params()
-    417         if self._HTTP_METHOD == &quot;GET&quot;:
---&gt; 418             return self.api_request(
-    419                 method=self._HTTP_METHOD, path=self.path, query_params=params
-    420             )
-
-
-~/software/anaconda3/envs/satip_dev/lib/python3.8/site-packages/google/cloud/storage/_http.py in api_request(self, *args, **kwargs)
-     61             if retry:
-     62                 call = retry(call)
----&gt; 63         return call()
-
-
-~/software/anaconda3/envs/satip_dev/lib/python3.8/site-packages/google/api_core/retry.py in retry_wrapped_func(*args, **kwargs)
-    279                 self._initial, self._maximum, multiplier=self._multiplier
-    280             )
---&gt; 281             return retry_target(
-    282                 target,
-    283                 self._predicate,
-
-
-~/software/anaconda3/envs/satip_dev/lib/python3.8/site-packages/google/api_core/retry.py in retry_target(target, predicate, sleep_generator, deadline, on_error)
-    182     for sleep in sleep_generator:
-    183         try:
---&gt; 184             return target()
-    185 
-    186         # pylint: disable=broad-except
-
-
-~/software/anaconda3/envs/satip_dev/lib/python3.8/site-packages/google/cloud/_http.py in api_request(self, method, path, query_params, data, content_type, headers, api_base_url, api_version, expect_json, _target_object, timeout)
-    422             content_type = &quot;application/json&quot;
-    423 
---&gt; 424         response = self._make_request(
-    425             method=method,
-    426             url=url,
-
-
-~/software/anaconda3/envs/satip_dev/lib/python3.8/site-packages/google/cloud/_http.py in _make_request(self, method, url, data, content_type, headers, target_object, timeout)
-    286         headers[&quot;User-Agent&quot;] = self.user_agent
-    287 
---&gt; 288         return self._do_request(
-    289             method, url, headers, data, target_object, timeout=timeout
-    290         )
-
-
-~/software/anaconda3/envs/satip_dev/lib/python3.8/site-packages/google/cloud/_http.py in _do_request(self, method, url, headers, data, target_object, timeout)
-    324         :returns: The HTTP response.
-    325         &quot;&quot;&quot;
---&gt; 326         return self.http.request(
-    327             url=url, method=method, headers=headers, data=data, timeout=timeout
-    328         )
-
-
-~/software/anaconda3/envs/satip_dev/lib/python3.8/site-packages/google/auth/transport/requests.py in request(self, method, url, data, headers, max_allowed_time, timeout, **kwargs)
-    462 
-    463         with TimeoutGuard(remaining_time) as guard:
---&gt; 464             response = super(AuthorizedSession, self).request(
-    465                 method,
-    466                 url,
-
-
-~/software/anaconda3/envs/satip_dev/lib/python3.8/site-packages/requests/sessions.py in request(self, method, url, params, data, headers, cookies, files, auth, timeout, allow_redirects, proxies, hooks, stream, verify, cert, json)
-    540         }
-    541         send_kwargs.update(settings)
---&gt; 542         resp = self.send(prep, **send_kwargs)
-    543 
-    544         return resp
-
-
-~/software/anaconda3/envs/satip_dev/lib/python3.8/site-packages/requests/sessions.py in send(self, request, **kwargs)
-    695 
-    696         if not stream:
---&gt; 697             r.content
-    698 
-    699         return r
-
-
-~/software/anaconda3/envs/satip_dev/lib/python3.8/site-packages/requests/models.py in content(self)
-    829                 self._content = None
-    830             else:
---&gt; 831                 self._content = b&#39;&#39;.join(self.iter_content(CONTENT_CHUNK_SIZE)) or b&#39;&#39;
-    832 
-    833         self._content_consumed = True
-
-
-~/software/anaconda3/envs/satip_dev/lib/python3.8/site-packages/requests/models.py in generate()
-    751             if hasattr(self.raw, &#39;stream&#39;):
-    752                 try:
---&gt; 753                     for chunk in self.raw.stream(chunk_size, decode_content=True):
-    754                         yield chunk
-    755                 except ProtocolError as e:
-
-
-~/software/anaconda3/envs/satip_dev/lib/python3.8/site-packages/urllib3/response.py in stream(self, amt, decode_content)
-    573         else:
-    574             while not is_fp_closed(self._fp):
---&gt; 575                 data = self.read(amt=amt, decode_content=decode_content)
-    576 
-    577                 if data:
-
-
-~/software/anaconda3/envs/satip_dev/lib/python3.8/site-packages/urllib3/response.py in read(self, amt, decode_content, cache_content)
-    516             else:
-    517                 cache_content = False
---&gt; 518                 data = self._fp.read(amt) if not fp_closed else b&quot;&quot;
-    519                 if (
-    520                     amt != 0 and not data
-
-
-~/software/anaconda3/envs/satip_dev/lib/python3.8/http/client.py in read(self, amt)
-    456             # Amount is given, implement using readinto
-    457             b = bytearray(amt)
---&gt; 458             n = self.readinto(b)
-    459             return memoryview(b)[:n].tobytes()
-    460         else:
-
-
-~/software/anaconda3/envs/satip_dev/lib/python3.8/http/client.py in readinto(self, b)
-    500         # connection, and the user is reading more bytes than will be provided
-    501         # (for example, reading in 1k chunks)
---&gt; 502         n = self.fp.readinto(b)
-    503         if not n and b:
-    504             # Ideally, we would raise IncompleteRead if the content-length
-
-
-~/software/anaconda3/envs/satip_dev/lib/python3.8/socket.py in readinto(self, b)
-    667         while True:
-    668             try:
---&gt; 669                 return self._sock.recv_into(b)
-    670             except timeout:
-    671                 self._timeout_occurred = True
-
-
-~/software/anaconda3/envs/satip_dev/lib/python3.8/ssl.py in recv_into(self, buffer, nbytes, flags)
-   1239                   &quot;non-zero flags not allowed in calls to recv_into() on %s&quot; %
-   1240                   self.__class__)
--&gt; 1241             return self.read(nbytes, buffer)
-   1242         else:
-   1243             return super().recv_into(buffer, nbytes, flags)
-
-
-~/software/anaconda3/envs/satip_dev/lib/python3.8/ssl.py in read(self, len, buffer)
-   1097         try:
-   1098             if buffer is not None:
--&gt; 1099                 return self._sslobj.read(len, buffer)
-   1100             else:
-   1101                 return self._sslobj.read(len)
-
-
-KeyboardInterrupt:
-</code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="nb">sum</span><span class="p">(</span><span class="n">sizes</span><span class="p">)</span> <span class="o">/</span> <span class="mf">1e9</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>2443.493799523
 </code></pre></div>
 <p>2018 contains 2.4TB of data</p>
 <p>Note that using the storage client to return blobs returns an iterable of blob metadata objects.<br />
@@ -812,6 +625,8 @@ From those we've extracted the names. We can go backwards from the names to inte
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;blobs&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.nat.bz2&#39;</span><span class="p">)]</span> <span class="c1"># only compressed data files</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;datetime&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;blobs&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">slice</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">37</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mi">53</span><span class="p">),</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;%Y/%m/</span><span class="si">%d</span><span class="s2">/%H/%M&quot;</span><span class="p">)</span>
 </code></pre></div>
+<p>It is helpful to see by month how many data files already exist as compressed .nat files.<br />
+Note that this is not looking at files reprojected and stored in the Zarr database.</p>
 <div class="highlight"><pre><span></span><code><span class="n">months_in_order</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;January&#39;</span><span class="p">,</span> <span class="s1">&#39;February&#39;</span><span class="p">,</span> <span class="s1">&#39;March&#39;</span><span class="p">,</span> <span class="s1">&#39;April&#39;</span><span class="p">,</span> <span class="s1">&#39;May&#39;</span><span class="p">,</span> <span class="s1">&#39;June&#39;</span><span class="p">,</span> <span class="s1">&#39;July&#39;</span><span class="p">,</span> <span class="s1">&#39;August&#39;</span><span class="p">,</span> <span class="s1">&#39;September&#39;</span><span class="p">,</span> <span class="s1">&#39;October&#39;</span><span class="p">,</span> <span class="s1">&#39;November&#39;</span><span class="p">,</span> <span class="s1">&#39;December&#39;</span><span class="p">]</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="n">blobs_by_month</span> <span class="o">=</span> <span class="n">df</span>\
@@ -842,7 +657,7 @@ From those we've extracted the names. We can go backwards from the names to inte
   <thead>
     <tr style="text-align: right;">
       <th>year</th>
-      <th>2020</th>
+      <th>2019</th>
     </tr>
     <tr>
       <th>month</th>
@@ -852,7 +667,7 @@ From those we've extracted the names. We can go backwards from the names to inte
   <tbody>
     <tr>
       <th>January</th>
-      <td>2.0</td>
+      <td>276.0</td>
     </tr>
     <tr>
       <th>February</th>
@@ -902,6 +717,7 @@ From those we've extracted the names. We can go backwards from the names to inte
 </table>
 </div>
 
+<p>And lets plot this </p>
 <div class="highlight"><pre><span></span><code><span class="c1"># credit: https://dfrieds.com/data-visualizations/visualize-historical-time-comparisons.html</span>
 
 <span class="n">figure</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">))</span>
@@ -911,22 +727,10 @@ From those we've extracted the names. We can go backwards from the names to inte
 <span class="n">axes</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="n">labelpad</span><span class="o">=</span><span class="mi">16</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">);</span>
 </code></pre></div>
+<p><img alt="png" src="../img/nbs/output_21_0.png" /></p>
+<p>Sometimes we'll want all of the original (uncompressed) filenames - for example to compare with the results of the EUMETSAT API so we can work out whether we should request a file or not.<br />
+We'll make a function to get original filenames from compressed or uncompressed files stored as blobs on GCP.</p>
 <div class="highlight"><pre><span></span><code><span class="n">filenames</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;blobs&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.bz2&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="n">filenames</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>1         MSG3-SEVI-MSG15-0100-NA-20180531000417.2340000...
-2         MSG3-SEVI-MSG15-0100-NA-20180531000917.4680000...
-3         MSG3-SEVI-MSG15-0100-NA-20180531001417.7010000...
-4         MSG3-SEVI-MSG15-0100-NA-20180531001917.9350000...
-5         MSG3-SEVI-MSG15-0100-NA-20180531002416.3640000...
-                                ...                        
-170664    MSG3-SEVI-MSG15-0100-NA-20191231233418.2450000...
-170665    MSG3-SEVI-MSG15-0100-NA-20191231233916.9530000...
-170666    MSG3-SEVI-MSG15-0100-NA-20191231234415.6620000...
-170667    MSG3-SEVI-MSG15-0100-NA-20191231234914.3700000...
-170668    MSG3-SEVI-MSG15-0100-NA-20191231235414.2810000...
-Name: blobs, Length: 170667, dtype: object
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="n">PREFIX</span> <span class="o">=</span> <span class="s2">&quot;satellite/EUMETSAT/SEVIRI_RSS/native/2019/10/01&quot;</span>
 <span class="n">filenames</span> <span class="o">=</span> <span class="n">get_eumetsat_filenames</span><span class="p">(</span><span class="n">BUCKET_NAME</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="n">PREFIX</span><span class="p">)</span>
@@ -940,34 +744,8 @@ Name: blobs, Length: 170667, dtype: object
 Downsides are rather inflexible migrations and updates.  </p>
 <div class="highlight"><pre><span></span><code><span class="c1"># write_metadata_to_gcp(df, &#39;test&#39;, &#39;solar-pv-nowcasting&#39;)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>---------------------------------------------------------------------------
-
-NotFoundException                         Traceback (most recent call last)
-
-&lt;ipython-input-29-4f7fbf24d98f&gt; in &lt;module&gt;
-----&gt; 1 write_metadata_to_gcp(df, &#39;test&#39;, &#39;solar-pv-nowcasting&#39;)
-
-
-&lt;ipython-input-28-9e358fc4b48b&gt; in write_metadata_to_gcp(df, table_id, project_id, credentials, append)
-     13         )
-     14     else:
----&gt; 15         pandas_gbq.to_gbq(
-     16             df,
-     17             table_id,
-
-
-~/software/anaconda3/envs/satip_dev/lib/python3.8/site-packages/pandas_gbq/gbq.py in to_gbq(dataframe, destination_table, project_id, chunksize, reauth, if_exists, auth_local_webserver, table_schema, location, progress_bar, credentials, verbose, private_key)
-   1133 
-   1134     if &quot;.&quot; not in destination_table:
--&gt; 1135         raise NotFoundException(
-   1136             &quot;Invalid Table Name. Should be of the form &#39;datasetId.tableId&#39; &quot;
-   1137         )
-
-
-NotFoundException: Invalid Table Name. Should be of the form &#39;datasetId.tableId&#39;
-
-
-Downloading: 100%|â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ| 1/1 [00:00&lt;00:00,  1.30rows/s]
+<p>As well as writing to BigQuery, we also want to query it. We'll write a small wrapper that allows us to send any SQL query and get results as a pandas DataFrame. Naturally we need to know the GCP project id, and the BigQuery table name.</p>
+<div class="highlight"><pre><span></span><code>Downloading: 100%|â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ| 1/1 [00:00&lt;00:00,  1.30rows/s]
 
 
 

@@ -14,7 +14,7 @@
     
     
       
-        <title>Downloading from EUMETSAT - Satip Documentation</title>
+        <title>CI/CD - Satip Documentation</title>
       
     
     
@@ -61,7 +61,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#downloading-data-from-eumetsat" class="md-skip">
+        <a href="#cicd" class="md-skip">
           Skip to content
         </a>
       
@@ -91,7 +91,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Downloading from EUMETSAT
+              CI/CD
             
           </span>
         </div>
@@ -151,9 +151,7 @@
         
           
 
-  
-
-<nav class="md-tabs md-tabs--active" aria-label="Tabs" data-md-component="tabs">
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
   <div class="md-tabs__inner md-grid">
     <ul class="md-tabs__list">
       
@@ -161,7 +159,9 @@
   <li class="md-tabs__item">
     
     
-    <a href=".." class="md-tabs__link">
+      
+    
+    <a href=".." class="md-tabs__link md-tabs__link--active">
       Home
     </a>
   </li>
@@ -173,9 +173,7 @@
     <li class="md-tabs__item">
       
       
-        
-      
-      <a href="./" class="md-tabs__link md-tabs__link--active">
+      <a href="../101_downloading/" class="md-tabs__link">
         User Guide
       </a>
     </li>
@@ -264,12 +262,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" >
     <label class="md-nav__link" for="nav-2">
       User Guide
       <span class="md-nav__icon md-icon"></span>
@@ -286,56 +282,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Downloading from EUMETSAT
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-    
-    <a href="./" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../101_downloading/" class="md-nav__link">
       Downloading from EUMETSAT
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#user-inputs" class="md-nav__link">
-    User Inputs
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#using-the-download-manager" class="md-nav__link">
-    Using the Download Manager
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -526,15 +477,15 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#user-inputs" class="md-nav__link">
-    User Inputs
+  <a href="#initialising-cli" class="md-nav__link">
+    Initialising CLI
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#using-the-download-manager" class="md-nav__link">
-    Using the Download Manager
+  <a href="#incrementing-the-package-version" class="md-nav__link">
+    Incrementing the Package Version
   </a>
   
 </li>
@@ -551,127 +502,114 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/Future-Energy-Associates/satip/edit/master/docs/101_downloading.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/Future-Energy-Associates/satip/edit/master/docs/06-ci-cd.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                <h1 id="downloading-data-from-eumetsat">Downloading Data From EUMETSAT<a class="headerlink" href="#downloading-data-from-eumetsat" title="Permanent link">&para;</a></h1>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">satip</span> <span class="kn">import</span> <span class="n">eumetsat</span>
-
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
-
+                <h1 id="cicd">CI/CD<a class="headerlink" href="#cicd" title="Permanent link">&para;</a></h1>
+<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
 <span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">dotenv</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\google\auth\_default.py:69: UserWarning: Your application has authenticated using end user credentials from Google Cloud SDK without a quota project. You might receive a &quot;quota exceeded&quot; or &quot;API not enabled&quot; error. We recommend you rerun `gcloud auth application-default login` and make sure a quota project is added. Or you can use service accounts instead. For more information about service accounts, see https://cloud.google.com/docs/authentication/
-  warnings.warn(_CLOUD_SDK_CREDENTIALS_WARNING)
-Downloading: 100%|â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ| 1/1 [00:00&lt;00:00,  1.40rows/s]
-</code></pre></div>
-<p><br></p>
-<h3 id="user-inputs">User Inputs<a class="headerlink" href="#user-inputs" title="Permanent link">&para;</a></h3>
-<p>We have to specify the directory where the data native filepaths are located</p>
-<div class="highlight"><pre><span></span><code><span class="n">data_dir</span> <span class="o">=</span> <span class="s1">&#39;../data/raw&#39;</span>
-<span class="n">debug_fp</span> <span class="o">=</span> <span class="s1">&#39;../logs/EUMETSAT_download.txt&#39;</span>
-<span class="n">env_vars_fp</span> <span class="o">=</span> <span class="s1">&#39;../.env&#39;</span>
-<span class="n">metadata_db_fp</span> <span class="o">=</span> <span class="s1">&#39;../data/EUMETSAT_metadata.db&#39;</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">typer</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">warnings</span> <span class="kn">import</span> <span class="n">warn</span>
+<span class="kn">from</span> <span class="nn">configparser</span> <span class="kn">import</span> <span class="n">ConfigParser</span>
 </code></pre></div>
 <p><br></p>
-<h3 id="using-the-download-manager">Using the Download Manager<a class="headerlink" href="#using-the-download-manager" title="Permanent link">&para;</a></h3>
-<p>First we'll load the the environment variables</p>
-<div class="highlight"><pre><span></span><code><span class="n">dotenv</span><span class="o">.</span><span class="n">load_dotenv</span><span class="p">(</span><span class="n">env_vars_fp</span><span class="p">)</span>
-
-<span class="n">user_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;USER_KEY&#39;</span><span class="p">)</span>
-<span class="n">user_secret</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;USER_SECRET&#39;</span><span class="p">)</span>
-<span class="n">slack_id</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;SLACK_ID&#39;</span><span class="p">)</span>
-<span class="n">slack_webhook_url</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;SLACK_WEBHOOK_URL&#39;</span><span class="p">)</span>
+<h3 id="initialising-cli">Initialising CLI<a class="headerlink" href="#initialising-cli" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">typer</span><span class="o">.</span><span class="n">Typer</span><span class="p">()</span>
 </code></pre></div>
 <p><br></p>
-<p>Then we'll use the download manager to retrieve a single dataset</p>
-<div class="highlight"><pre><span></span><code><span class="n">dm</span> <span class="o">=</span> <span class="n">eumetsat</span><span class="o">.</span><span class="n">DownloadManager</span><span class="p">(</span><span class="n">user_key</span><span class="p">,</span> <span class="n">user_secret</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">,</span> <span class="n">metadata_db_fp</span><span class="p">,</span> <span class="n">debug_fp</span><span class="p">,</span> 
-                              <span class="n">slack_webhook_url</span><span class="o">=</span><span class="n">slack_webhook_url</span><span class="p">,</span> <span class="n">slack_id</span><span class="o">=</span><span class="n">slack_id</span><span class="p">)</span>
+<h3 id="incrementing-the-package-version">Incrementing the Package Version<a class="headerlink" href="#incrementing-the-package-version" title="Permanent link">&para;</a></h3>
+<p>We'll start by retrieving the current package version specified in <code>settings.ini</code></p>
+<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">get_current_package_version</span><span class="p">(</span><span class="n">settings_fp</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s1">&#39;settings.ini&#39;</span><span class="p">):</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">ConfigParser</span><span class="p">(</span><span class="n">delimiters</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;=&#39;</span><span class="p">])</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">settings_fp</span><span class="p">)</span>
+    <span class="n">version</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;DEFAULT&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">)</span>
 
-<span class="n">start_date</span> <span class="o">=</span> <span class="s1">&#39;2020-01-01 00:00&#39;</span>
-<span class="n">end_date</span> <span class="o">=</span> <span class="s1">&#39;2020-01-01 00:05&#39;</span>
-
-<span class="n">dm</span><span class="o">.</span><span class="n">download_date_range</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">version</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>2020-12-17 00:21:11,192 - INFO - ********** Download Manager Initialised **************
-2020-12-17 00:21:11,777 - INFO - 1 files queried, 0 found in ../data/raw, 1 to download.
+<div class="highlight"><pre><span></span><code><span class="n">settings_fp</span> <span class="o">=</span> <span class="s1">&#39;../settings.ini&#39;</span>
+
+<span class="n">original_version</span> <span class="o">=</span> <span class="n">get_current_package_version</span><span class="p">(</span><span class="n">settings_fp</span><span class="p">)</span>
+
+<span class="n">original_version</span>
 </code></pre></div>
-<div><span class="Text-label" style="display:inline-block; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; min-width:0; max-width:15ex; vertical-align:middle; text-align:right"></span>
-<progress style="width:60ex" max="1" value="1" class="Progress-main"/></progress>
-<span class="Progress-label"><strong>100%</strong></span>
-<span class="Iteration-label">1/1</span>
-<span class="Time-label">[00:07<00:07, 6.59s/it]</span></div>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>start_date</th>
-      <th>end_date</th>
-      <th>result_time</th>
-      <th>platform_short_name</th>
-      <th>platform_orbit_type</th>
-      <th>instrument_name</th>
-      <th>sensor_op_mode</th>
-      <th>center_srs_name</th>
-      <th>center_position</th>
-      <th>file_name</th>
-      <th>file_size</th>
-      <th>missing_pct</th>
-      <th>downloaded</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2020-01-01 00:00:07.683000+00:00</td>
-      <td>2020-01-01 00:04:14.102000+00:00</td>
-      <td>2020-01-01 00:04:14.102000+00:00</td>
-      <td>MSG3</td>
-      <td>GEO</td>
-      <td>SEVIRI</td>
-      <td>RSS</td>
-      <td>EPSG:4326</td>
-      <td>0 9.5</td>
-      <td>MSG3-SEVI-MSG15-0100-NA-20200101000414.1020000...</td>
-      <td>99819</td>
-      <td>0.0</td>
-      <td>2020-12-17 00:21:18.312026</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-<p><br></p>
-<p>Once the files have been downloaded they will be automatically detected and skipped if downloading is attempted again</p>
-<div class="highlight"><pre><span></span><code><span class="n">_</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">download_date_range</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>2020-12-17 00:21:31,507 - INFO - 1 files queried, 1 found in ../data/raw, 0 to download.
-2020-12-17 00:21:31,512 - INFO - No files will be downloaded. Set DownloadManager bucket_name argument for local download
+<div class="highlight"><pre><span></span><code>&#39;1.0.2&#39;
 </code></pre></div>
 <p><br></p>
-<p>We can retrieve the metadata for all historical downloads by calling the <code>get_df_metadata</code> method</p>
-<div class="highlight"><pre><span></span><code><span class="n">df_metadata</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">get_df_metadata</span><span class="p">()</span>
+<p>We'll now increment the package version</p>
+<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">increment_package_version</span><span class="p">(</span><span class="n">old_version</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">increment_level</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s1">&#39;micro&#39;</span><span class="p">):</span>
+    <span class="n">increment</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">rev</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">rev</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="n">df_metadata</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+    <span class="n">major</span><span class="p">,</span> <span class="n">minor</span><span class="p">,</span> <span class="n">micro</span> <span class="o">=</span> <span class="n">old_version</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span> <span class="c1"># naming from - https://the-hitchhikers-guide-to-packaging.readthedocs.io/en/latest/specification.html#sequence-based-scheme</span>
+
+    <span class="k">if</span> <span class="n">increment_level</span> <span class="o">==</span> <span class="s1">&#39;major&#39;</span><span class="p">:</span>
+        <span class="n">major</span> <span class="o">=</span> <span class="n">increment</span><span class="p">(</span><span class="n">major</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">increment_level</span> <span class="o">==</span> <span class="s1">&#39;minor&#39;</span><span class="p">:</span>
+        <span class="n">minor</span> <span class="o">=</span> <span class="n">increment</span><span class="p">(</span><span class="n">minor</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">increment_level</span> <span class="o">==</span> <span class="s1">&#39;micro&#39;</span><span class="p">:</span>
+        <span class="n">micro</span> <span class="o">=</span> <span class="n">increment</span><span class="p">(</span><span class="n">micro</span><span class="p">)</span>
+
+    <span class="n">new_version</span> <span class="o">=</span> <span class="s1">&#39;.&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">major</span><span class="p">,</span> <span class="n">minor</span><span class="p">,</span> <span class="n">micro</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">new_version</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">increment_package_version</span><span class="p">(</span><span class="n">original_version</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>&#39;1.0.3&#39;
+</code></pre></div>
+<p><br></p>
+<p>But what about if we've made large changes to the code-base and wish to express the size of these revisions in the version? For that we can specify the <code>increment_level</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">increment_package_version</span><span class="p">(</span><span class="n">original_version</span><span class="p">,</span> <span class="n">increment_level</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>&#39;2.0.2&#39;
+</code></pre></div>
+<p><br></p>
+<p>And finally we can set the version</p>
+<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">set_current_package_version</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">settings_fp</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s1">&#39;settings.ini&#39;</span><span class="p">):</span>
+    <span class="n">version</span> <span class="o">=</span> <span class="n">version</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;v&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+    <span class="n">config</span> <span class="o">=</span> <span class="n">ConfigParser</span><span class="p">(</span><span class="n">delimiters</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;=&#39;</span><span class="p">])</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">settings_fp</span><span class="p">)</span>
+
+    <span class="n">config</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;DEFAULT&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">,</span> <span class="n">version</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">settings_fp</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">configfile</span><span class="p">:</span>
+        <span class="n">config</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">configfile</span><span class="p">)</span>
+
+    <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;package_release&#39;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="s1">&#39;INFO&#39;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The package version has to be updated to </span><span class="si">{</span><span class="n">version</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> 
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">set_current_package_version</span><span class="p">(</span><span class="s1">&#39;9.9.9&#39;</span><span class="p">,</span> <span class="n">settings_fp</span><span class="p">)</span>
+<span class="n">get_current_package_version</span><span class="p">(</span><span class="n">settings_fp</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>&#39;9.9.9&#39;
+</code></pre></div>
+<p><br></p>
+<p>Before we move on we'll change the version on file back to the original</p>
+<div class="highlight"><pre><span></span><code><span class="n">set_current_package_version</span><span class="p">(</span><span class="n">original_version</span><span class="p">,</span> <span class="n">settings_fp</span><span class="p">)</span>
+<span class="n">get_current_package_version</span><span class="p">(</span><span class="n">settings_fp</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>&#39;1.0.2&#39;
+</code></pre></div>
+<p><br></p>
+<p>Finally we need to ensure the CLI app is available when the module is loaded.</p>
+<p>N.b. we've included the condition <code>'__file__' in globals()</code> to make sure this isn't when inside the notebook</p>
+<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span> <span class="ow">and</span> <span class="s1">&#39;__file__&#39;</span> <span class="ow">in</span> <span class="nb">globals</span><span class="p">():</span>
+    <span class="n">app</span><span class="p">()</span>
 </code></pre></div>
                 
               
@@ -687,41 +625,6 @@ Downloading: 100%|â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–�
       
         
 <footer class="md-footer">
-  
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
-        
-          <a href=".." class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-            </div>
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Previous
-                </span>
-                Home
-              </div>
-            </div>
-          </a>
-        
-        
-          <a href="../102_reprojecting/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                Reprojecting
-              </div>
-            </div>
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
-    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">

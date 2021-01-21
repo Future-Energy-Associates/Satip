@@ -586,29 +586,64 @@
 <p>We can now easily construct markdown tables</p>
 <div class="highlight"><pre><span></span><code><span class="n">notebook_info</span> <span class="o">=</span> <span class="p">{</span>
     <span class="c1"># development</span>
-    <span class="s1">&#39;Repository Helpers&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;Directory&#39;</span><span class="p">:</span> <span class="s1">&#39;notebooks&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Utilities&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;Directory&#39;</span><span class="p">:</span> <span class="s1">&#39;nbs&#39;</span><span class="p">,</span>
         <span class="s1">&#39;Number&#39;</span><span class="p">:</span> <span class="s1">&#39;00&#39;</span><span class="p">,</span>
         <span class="s1">&#39;Description&#39;</span><span class="p">:</span> <span class="s1">&#39;Code for keeping the repository tidy&#39;</span><span class="p">,</span>
         <span class="s1">&#39;Maintainer&#39;</span><span class="p">:</span> <span class="s1">&#39;Ayrton Bourn&#39;</span>
     <span class="p">},</span>
-    <span class="s1">&#39;EUMETSAT API Wrapper&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;Directory&#39;</span><span class="p">:</span> <span class="s1">&#39;notebooks&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;EUMETSAT&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;Directory&#39;</span><span class="p">:</span> <span class="s1">&#39;nbs&#39;</span><span class="p">,</span>
         <span class="s1">&#39;Number&#39;</span><span class="p">:</span> <span class="s1">&#39;01&#39;</span><span class="p">,</span>
         <span class="s1">&#39;Description&#39;</span><span class="p">:</span> <span class="s1">&#39;Development of the API wrapper for ems&#39;</span><span class="p">,</span>
         <span class="s1">&#39;Maintainer&#39;</span><span class="p">:</span> <span class="s1">&#39;Ayrton Bourn&#39;</span>
     <span class="p">},</span>
-    <span class="s1">&#39;Data Transformation&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;Directory&#39;</span><span class="p">:</span> <span class="s1">&#39;notebooks&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Reprojection&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;Directory&#39;</span><span class="p">:</span> <span class="s1">&#39;nbs&#39;</span><span class="p">,</span>
         <span class="s1">&#39;Number&#39;</span><span class="p">:</span> <span class="s1">&#39;02&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;Description&#39;</span><span class="p">:</span> <span class="s1">&#39;Intial EDA and transformation comparisons&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Description&#39;</span><span class="p">:</span> <span class="s1">&#39;Development of the reprojection operator&#39;</span><span class="p">,</span>
         <span class="s1">&#39;Maintainer&#39;</span><span class="p">:</span> <span class="s1">&#39;Ayrton Bourn&#39;</span>
     <span class="p">},</span>
-    <span class="c1"># usage_examples</span>
-    <span class="s1">&#39;EUMETSAT Download&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;Directory&#39;</span><span class="p">:</span> <span class="s1">&#39;usage_examples&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;Number&#39;</span><span class="p">:</span> <span class="s1">&#39;00&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Zarr&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;Directory&#39;</span><span class="p">:</span> <span class="s1">&#39;nbs&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Number&#39;</span><span class="p">:</span> <span class="s1">&#39;03&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Description&#39;</span><span class="p">:</span> <span class="s1">&#39;Development of wrappers for loading/saving to Zarr&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Maintainer&#39;</span><span class="p">:</span> <span class="s1">&#39;Ayrton Bourn&#39;</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;GCP&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;Directory&#39;</span><span class="p">:</span> <span class="s1">&#39;nbs&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Number&#39;</span><span class="p">:</span> <span class="s1">&#39;04&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Description&#39;</span><span class="p">:</span> <span class="s1">&#39;Development of GCP interface wrappers&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Maintainer&#39;</span><span class="p">:</span> <span class="s1">&#39;Laurence Watson&#39;</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;Pipeline&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;Directory&#39;</span><span class="p">:</span> <span class="s1">&#39;nbs&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Number&#39;</span><span class="p">:</span> <span class="s1">&#39;05&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Description&#39;</span><span class="p">:</span> <span class="s1">&#39;Development of the pipeline processes&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Maintainer&#39;</span><span class="p">:</span> <span class="s1">&#39;Ayrton Bourn&#39;</span>
+    <span class="p">},</span>   
+    <span class="s1">&#39;Downloading&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;Directory&#39;</span><span class="p">:</span> <span class="s1">&#39;nbs&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Number&#39;</span><span class="p">:</span> <span class="s1">&#39;101&#39;</span><span class="p">,</span>
         <span class="s1">&#39;Description&#39;</span><span class="p">:</span> <span class="s1">&#39;Guidance for using the ems download manager&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Maintainer&#39;</span><span class="p">:</span> <span class="s1">&#39;Ayrton Bourn&#39;</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;Reprojecting&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;Directory&#39;</span><span class="p">:</span> <span class="s1">&#39;nbs&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Number&#39;</span><span class="p">:</span> <span class="s1">&#39;102&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Description&#39;</span><span class="p">:</span> <span class="s1">&#39;Guidance for using the reprojection operator&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Maintainer&#39;</span><span class="p">:</span> <span class="s1">&#39;Ayrton Bourn&#39;</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;Loading&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;Directory&#39;</span><span class="p">:</span> <span class="s1">&#39;nbs&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Number&#39;</span><span class="p">:</span> <span class="s1">&#39;103&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Description&#39;</span><span class="p">:</span> <span class="s1">&#39;Guidance for retrieving saved data from Zarr&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Maintainer&#39;</span><span class="p">:</span> <span class="s1">&#39;Ayrton Bourn&#39;</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;Documentation&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;Directory&#39;</span><span class="p">:</span> <span class="s1">&#39;docs&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Number&#39;</span><span class="p">:</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Description&#39;</span><span class="p">:</span> <span class="s1">&#39;Automated generation of docs from notebooks&#39;</span><span class="p">,</span>
         <span class="s1">&#39;Maintainer&#39;</span><span class="p">:</span> <span class="s1">&#39;Ayrton Bourn&#39;</span>
     <span class="p">},</span>
 <span class="p">}</span>
@@ -617,12 +652,18 @@
 
 <span class="nb">print</span><span class="p">(</span><span class="n">nb_table_str</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>| Id                   | Directory      |   Number | Description                                 | Maintainer   |
-|:---------------------|:---------------|---------:|:--------------------------------------------|:-------------|
-| Repository Helpers   | notebooks      |       00 | Code for keeping the repository tidy        | Ayrton Bourn |
-| EUMETSAT API Wrapper | notebooks      |       01 | Development of the API wrapper for ems      | Ayrton Bourn |
-| Data Transformation  | notebooks      |       02 | Intial EDA and transformation comparisons   | Ayrton Bourn |
-| EUMETSAT Download    | usage_examples |       00 | Guidance for using the ems download manager | Ayrton Bourn |
+<div class="highlight"><pre><span></span><code>| Id            | Directory   | Number   | Description                                        | Maintainer      |
+|:--------------|:------------|:---------|:---------------------------------------------------|:----------------|
+| utils         | nbs         | 00       | Code for keeping the repository tidy               | Ayrton Bourn    |
+| EUMETSAT      | nbs         | 01       | Development of the API wrapper for ems             | Ayrton Bourn    |
+| Reprojection  | nbs         | 02       | Development of the reprojection operator           | Ayrton Bourn    |
+| Zarr          | nbs         | 03       | Development of wrappers for loading/saving to Zarr | Ayrton Bourn    |
+| GCP           | nbs         | 04       | Development of GCP interface wrappers              | Laurence Watson |
+| Pipeline      | nbs         | 05       | Development of the pipeline processes              | Ayrton Bourn    |
+| Downloading   | nbs         | 101      | Guidance for using the ems download manager        | Ayrton Bourn    |
+| Reprojecting  | nbs         | 102      | Guidance for using the reprojection operator       | Ayrton Bourn    |
+| Loading       | nbs         | 103      | Guidance for retrieving saved data from Zarr       | Ayrton Bourn    |
+| Documentation | docs        | -        | Automated generation of docs from notebooks        | Ayrton Bourn    |
 </code></pre></div>
 <p><br></p>
 <h3 id="logging">Logging<a class="headerlink" href="#logging" title="Permanent link">&para;</a></h3>
