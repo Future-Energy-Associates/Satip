@@ -134,13 +134,13 @@
     
       <div class="md-header-nav__source">
         
-<a href="https://github.com/Future-Energy-Associates/satip/" title="Go to repository" class="md-source">
+<a href="https://github.com/openclimatefix/satip/" title="Go to repository" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
-    Future-Energy-Associates/satip
+    openclimatefix/satip
   </div>
 </a>
       </div>
@@ -252,13 +252,13 @@
   
     <div class="md-nav__source">
       
-<a href="https://github.com/Future-Energy-Associates/satip/" title="Go to repository" class="md-source">
+<a href="https://github.com/openclimatefix/satip/" title="Go to repository" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
-    Future-Energy-Associates/satip
+    openclimatefix/satip
   </div>
 </a>
     </div>
@@ -338,6 +338,30 @@
     <li class="md-nav__item">
       <a href="../103_loading/" class="md-nav__link">
         Loading from Zarr
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../104_ts_analysis/" class="md-nav__link">
+        Extracting Time-Series
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../105_summary/" class="md-nav__link">
+        Database Summary
       </a>
     </li>
   
@@ -620,7 +644,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/Future-Energy-Associates/satip/edit/master/docs/00_utils.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/openclimatefix/satip/edit/master/docs/00_utils.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -629,83 +653,83 @@
 <p><br></p>
 <h3 id="loading-environment-variables">Loading Environment Variables<a class="headerlink" href="#loading-environment-variables" title="Permanent link">&para;</a></h3>
 <p>First we'll load the the environment variables</p>
-<div class="highlight"><pre><span></span><code><span class="n">env_vars_fp</span> <span class="o">=</span> <span class="s1">&#39;../.env&#39;</span>
-<span class="n">dotenv</span><span class="o">.</span><span class="n">load_dotenv</span><span class="p">(</span><span class="n">env_vars_fp</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code>env_vars_fp = &#39;../.env&#39;
+dotenv.load_dotenv(env_vars_fp)
 
-<span class="n">slack_id</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;slack_id&#39;</span><span class="p">)</span>
-<span class="n">slack_webhook_url</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;slack_webhook_url&#39;</span><span class="p">)</span>
+slack_id = os.environ.get(&#39;slack_id&#39;)
+slack_webhook_url = os.environ.get(&#39;slack_webhook_url&#39;)
 </code></pre></div>
 <p><br></p>
 <h3 id="notebook-information">Notebook Information<a class="headerlink" href="#notebook-information" title="Permanent link">&para;</a></h3>
 <p><br></p>
 <p>We can now easily construct markdown tables</p>
-<div class="highlight"><pre><span></span><code><span class="n">notebook_info</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="c1"># development</span>
-    <span class="s1">&#39;Utilities&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;Directory&#39;</span><span class="p">:</span> <span class="s1">&#39;nbs&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;Number&#39;</span><span class="p">:</span> <span class="s1">&#39;00&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;Description&#39;</span><span class="p">:</span> <span class="s1">&#39;Code for keeping the repository tidy&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;Maintainer&#39;</span><span class="p">:</span> <span class="s1">&#39;Ayrton Bourn&#39;</span>
-    <span class="p">},</span>
-    <span class="s1">&#39;EUMETSAT&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;Directory&#39;</span><span class="p">:</span> <span class="s1">&#39;nbs&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;Number&#39;</span><span class="p">:</span> <span class="s1">&#39;01&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;Description&#39;</span><span class="p">:</span> <span class="s1">&#39;Development of the API wrapper for ems&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;Maintainer&#39;</span><span class="p">:</span> <span class="s1">&#39;Ayrton Bourn&#39;</span>
-    <span class="p">},</span>
-    <span class="s1">&#39;Reprojection&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;Directory&#39;</span><span class="p">:</span> <span class="s1">&#39;nbs&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;Number&#39;</span><span class="p">:</span> <span class="s1">&#39;02&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;Description&#39;</span><span class="p">:</span> <span class="s1">&#39;Development of the reprojection operator&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;Maintainer&#39;</span><span class="p">:</span> <span class="s1">&#39;Ayrton Bourn&#39;</span>
-    <span class="p">},</span>
-    <span class="s1">&#39;Zarr&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;Directory&#39;</span><span class="p">:</span> <span class="s1">&#39;nbs&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;Number&#39;</span><span class="p">:</span> <span class="s1">&#39;03&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;Description&#39;</span><span class="p">:</span> <span class="s1">&#39;Development of wrappers for loading/saving to Zarr&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;Maintainer&#39;</span><span class="p">:</span> <span class="s1">&#39;Ayrton Bourn&#39;</span>
-    <span class="p">},</span>
-    <span class="s1">&#39;GCP&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;Directory&#39;</span><span class="p">:</span> <span class="s1">&#39;nbs&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;Number&#39;</span><span class="p">:</span> <span class="s1">&#39;04&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;Description&#39;</span><span class="p">:</span> <span class="s1">&#39;Development of GCP interface wrappers&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;Maintainer&#39;</span><span class="p">:</span> <span class="s1">&#39;Laurence Watson&#39;</span>
-    <span class="p">},</span>
-    <span class="s1">&#39;Pipeline&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;Directory&#39;</span><span class="p">:</span> <span class="s1">&#39;nbs&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;Number&#39;</span><span class="p">:</span> <span class="s1">&#39;05&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;Description&#39;</span><span class="p">:</span> <span class="s1">&#39;Development of the pipeline processes&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;Maintainer&#39;</span><span class="p">:</span> <span class="s1">&#39;Ayrton Bourn&#39;</span>
-    <span class="p">},</span>   
-    <span class="s1">&#39;Downloading&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;Directory&#39;</span><span class="p">:</span> <span class="s1">&#39;nbs&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;Number&#39;</span><span class="p">:</span> <span class="s1">&#39;101&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;Description&#39;</span><span class="p">:</span> <span class="s1">&#39;Guidance for using the ems download manager&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;Maintainer&#39;</span><span class="p">:</span> <span class="s1">&#39;Ayrton Bourn&#39;</span>
-    <span class="p">},</span>
-    <span class="s1">&#39;Reprojecting&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;Directory&#39;</span><span class="p">:</span> <span class="s1">&#39;nbs&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;Number&#39;</span><span class="p">:</span> <span class="s1">&#39;102&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;Description&#39;</span><span class="p">:</span> <span class="s1">&#39;Guidance for using the reprojection operator&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;Maintainer&#39;</span><span class="p">:</span> <span class="s1">&#39;Ayrton Bourn&#39;</span>
-    <span class="p">},</span>
-    <span class="s1">&#39;Loading&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;Directory&#39;</span><span class="p">:</span> <span class="s1">&#39;nbs&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;Number&#39;</span><span class="p">:</span> <span class="s1">&#39;103&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;Description&#39;</span><span class="p">:</span> <span class="s1">&#39;Guidance for retrieving saved data from Zarr&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;Maintainer&#39;</span><span class="p">:</span> <span class="s1">&#39;Ayrton Bourn&#39;</span>
-    <span class="p">},</span>
-    <span class="s1">&#39;Documentation&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;Directory&#39;</span><span class="p">:</span> <span class="s1">&#39;docs&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;Number&#39;</span><span class="p">:</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;Description&#39;</span><span class="p">:</span> <span class="s1">&#39;Automated generation of docs from notebooks&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;Maintainer&#39;</span><span class="p">:</span> <span class="s1">&#39;Ayrton Bourn&#39;</span>
-    <span class="p">},</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code>notebook_info = {
+    # development
+    &#39;Utilities&#39;: {
+        &#39;Directory&#39;: &#39;nbs&#39;,
+        &#39;Number&#39;: &#39;00&#39;,
+        &#39;Description&#39;: &#39;Code for keeping the repository tidy&#39;,
+        &#39;Maintainer&#39;: &#39;Ayrton Bourn&#39;
+    },
+    &#39;EUMETSAT&#39;: {
+        &#39;Directory&#39;: &#39;nbs&#39;,
+        &#39;Number&#39;: &#39;01&#39;,
+        &#39;Description&#39;: &#39;Development of the API wrapper for ems&#39;,
+        &#39;Maintainer&#39;: &#39;Ayrton Bourn&#39;
+    },
+    &#39;Reprojection&#39;: {
+        &#39;Directory&#39;: &#39;nbs&#39;,
+        &#39;Number&#39;: &#39;02&#39;,
+        &#39;Description&#39;: &#39;Development of the reprojection operator&#39;,
+        &#39;Maintainer&#39;: &#39;Ayrton Bourn&#39;
+    },
+    &#39;Zarr&#39;: {
+        &#39;Directory&#39;: &#39;nbs&#39;,
+        &#39;Number&#39;: &#39;03&#39;,
+        &#39;Description&#39;: &#39;Development of wrappers for loading/saving to Zarr&#39;,
+        &#39;Maintainer&#39;: &#39;Ayrton Bourn&#39;
+    },
+    &#39;GCP&#39;: {
+        &#39;Directory&#39;: &#39;nbs&#39;,
+        &#39;Number&#39;: &#39;04&#39;,
+        &#39;Description&#39;: &#39;Development of GCP interface wrappers&#39;,
+        &#39;Maintainer&#39;: &#39;Laurence Watson&#39;
+    },
+    &#39;Pipeline&#39;: {
+        &#39;Directory&#39;: &#39;nbs&#39;,
+        &#39;Number&#39;: &#39;05&#39;,
+        &#39;Description&#39;: &#39;Development of the pipeline processes&#39;,
+        &#39;Maintainer&#39;: &#39;Ayrton Bourn&#39;
+    },   
+    &#39;Downloading&#39;: {
+        &#39;Directory&#39;: &#39;nbs&#39;,
+        &#39;Number&#39;: &#39;101&#39;,
+        &#39;Description&#39;: &#39;Guidance for using the ems download manager&#39;,
+        &#39;Maintainer&#39;: &#39;Ayrton Bourn&#39;
+    },
+    &#39;Reprojecting&#39;: {
+        &#39;Directory&#39;: &#39;nbs&#39;,
+        &#39;Number&#39;: &#39;102&#39;,
+        &#39;Description&#39;: &#39;Guidance for using the reprojection operator&#39;,
+        &#39;Maintainer&#39;: &#39;Ayrton Bourn&#39;
+    },
+    &#39;Loading&#39;: {
+        &#39;Directory&#39;: &#39;nbs&#39;,
+        &#39;Number&#39;: &#39;103&#39;,
+        &#39;Description&#39;: &#39;Guidance for retrieving saved data from Zarr&#39;,
+        &#39;Maintainer&#39;: &#39;Ayrton Bourn&#39;
+    },
+    &#39;Documentation&#39;: {
+        &#39;Directory&#39;: &#39;docs&#39;,
+        &#39;Number&#39;: &#39;-&#39;,
+        &#39;Description&#39;: &#39;Automated generation of docs from notebooks&#39;,
+        &#39;Maintainer&#39;: &#39;Ayrton Bourn&#39;
+    },
+}
 
-<span class="n">nb_table_str</span> <span class="o">=</span> <span class="n">create_markdown_table</span><span class="p">(</span><span class="n">notebook_info</span><span class="p">)</span>
+nb_table_str = create_markdown_table(notebook_info)
 
-<span class="nb">print</span><span class="p">(</span><span class="n">nb_table_str</span><span class="p">)</span>
+print(nb_table_str)
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>| Id            | Directory   | Number   | Description                                        | Maintainer      |
 |:--------------|:------------|:---------|:---------------------------------------------------|:----------------|
@@ -724,24 +748,24 @@
 <h3 id="logging">Logging<a class="headerlink" href="#logging" title="Permanent link">&para;</a></h3>
 <p><br></p>
 <p>We'll now initialise the logger and make a test log</p>
-<div class="highlight"><pre><span></span><code><span class="n">logger</span> <span class="o">=</span> <span class="n">set_up_logging</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> 
-                        <span class="s1">&#39;.&#39;</span><span class="p">,</span> 
-                        <span class="n">slack_id</span><span class="o">=</span><span class="n">slack_id</span><span class="p">,</span>
-                        <span class="n">slack_webhook_url</span><span class="o">=</span><span class="n">slack_webhook_url</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code>logger = set_up_logging(__name__, 
+                        &#39;.&#39;, 
+                        slack_id=slack_id,
+                        slack_webhook_url=slack_webhook_url)
 
-<span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span> <span class="s1">&#39;This will output to file and Jupyter but not to Slack as it is not critical&#39;</span><span class="p">)</span>
+logger.log(logging.INFO, &#39;This will output to file and Jupyter but not to Slack as it is not critical&#39;)
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>2020-11-12 09:58:41,301 - INFO - This will output to file and Jupyter but not to Slack as it is not critical
 </code></pre></div>
 <p><br></p>
 <p>We'll now shutdown the logger handlers and then delete the log file we just made</p>
-<div class="highlight"><pre><span></span><code><span class="n">handlers</span> <span class="o">=</span> <span class="n">logger</span><span class="o">.</span><span class="n">handlers</span><span class="p">[:]</span>
+<div class="highlight"><pre><span></span><code>handlers = logger.handlers[:]
 
-<span class="k">for</span> <span class="n">handler</span> <span class="ow">in</span> <span class="n">handlers</span><span class="p">:</span>
-    <span class="n">handler</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-    <span class="n">logger</span><span class="o">.</span><span class="n">removeHandler</span><span class="p">(</span><span class="n">handler</span><span class="p">)</span>
+for handler in handlers:
+    handler.close()
+    logger.removeHandler(handler)
 
-<span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="vm">__name__</span><span class="si">}</span><span class="s1">.txt&#39;</span><span class="p">)</span>
+os.remove(f&#39;{__name__}.txt&#39;)
 </code></pre></div>
 <p><br></p>
 <p>Finally we'll export the specified functions to the utils.py module</p>

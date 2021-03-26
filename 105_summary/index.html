@@ -1,0 +1,1445 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.5">
+    
+    
+      
+        <title>Database Summary - Satip Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.15aa0b43.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.75751829.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#000000">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="black" data-md-color-accent="">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#zarr-database-summary-validation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href=".." title="Satip Documentation" class="md-header-nav__button md-logo" aria-label="Satip Documentation">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            Satip Documentation
+          </span>
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            
+              Database Summary
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/openclimatefix/satip/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    openclimatefix/satip
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href=".." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../101_downloading/" class="md-tabs__link md-tabs__link--active">
+        User Guide
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../about/OCF/" class="md-tabs__link">
+        About
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../00_utils/" class="md-tabs__link">
+        Development
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Satip Documentation" class="md-nav__button md-logo" aria-label="Satip Documentation">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Satip Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/openclimatefix/satip/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    openclimatefix/satip
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+      
+      <label class="md-nav__link" for="nav-2">
+        User Guide
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="User Guide" data-md-level="1">
+        <label class="md-nav__title" for="nav-2">
+          <span class="md-nav__icon md-icon"></span>
+          User Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../101_downloading/" class="md-nav__link">
+        Downloading from EUMETSAT
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../102_reprojecting/" class="md-nav__link">
+        Reprojecting
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../103_loading/" class="md-nav__link">
+        Loading from Zarr
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../104_ts_analysis/" class="md-nav__link">
+        Extracting Time-Series
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Database Summary
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Database Summary
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#user-inputs" class="md-nav__link">
+    User Inputs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-loading-coverage" class="md-nav__link">
+    Data Loading &amp; Coverage
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary-statistics" class="md-nav__link">
+    Summary Statistics
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#offline-validation" class="md-nav__link">
+    Offline Validation
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" >
+      
+      <label class="md-nav__link" for="nav-3">
+        About
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="About" data-md-level="1">
+        <label class="md-nav__title" for="nav-3">
+          <span class="md-nav__icon md-icon"></span>
+          About
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/OCF/" class="md-nav__link">
+        OCF
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/Solar%20Forecasting/" class="md-nav__link">
+        Solar Forecasting
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" >
+      
+      <label class="md-nav__link" for="nav-4">
+        Development
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Development" data-md-level="1">
+        <label class="md-nav__title" for="nav-4">
+          <span class="md-nav__icon md-icon"></span>
+          Development
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00_utils/" class="md-nav__link">
+        Utilities
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_eumetsat/" class="md-nav__link">
+        Downloading
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_reproj/" class="md-nav__link">
+        Reprojection
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_zarr/" class="md-nav__link">
+        Saving with Zarr
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_gcp/" class="md-nav__link">
+        GCP Analytics
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_pipeline/" class="md-nav__link">
+        Pipelines
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#user-inputs" class="md-nav__link">
+    User Inputs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-loading-coverage" class="md-nav__link">
+    Data Loading &amp; Coverage
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary-statistics" class="md-nav__link">
+    Summary Statistics
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#offline-validation" class="md-nav__link">
+    Offline Validation
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/openclimatefix/satip/edit/master/docs/105_summary.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="zarr-database-summary-validation">Zarr Database Summary &amp; Validation<a class="headerlink" href="#zarr-database-summary-validation" title="Permanent link">&para;</a></h1>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">from</span> <span class="nn">satip</span> <span class="kn">import</span> <span class="n">io</span>
+
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
+<span class="kn">import</span> <span class="nn">FEAutils</span> <span class="k">as</span> <span class="nn">hlp</span>
+<span class="kn">from</span> <span class="nn">warnings</span> <span class="kn">import</span> <span class="n">warn</span>
+<span class="kn">from</span> <span class="nn">ipypb</span> <span class="kn">import</span> <span class="n">track</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\google\auth\_default.py:69: UserWarning: Your application has authenticated using end user credentials from Google Cloud SDK without a quota project. You might receive a &quot;quota exceeded&quot; or &quot;API not enabled&quot; error. We recommend you rerun `gcloud auth application-default login` and make sure a quota project is added. Or you can use service accounts instead. For more information about service accounts, see https://cloud.google.com/docs/authentication/
+  warnings.warn(_CLOUD_SDK_CREDENTIALS_WARNING)
+Downloading: 100%|â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ| 1/1 [00:00&lt;00:00,  1.23rows/s]
+</code></pre></div>
+<p><br></p>
+<h3 id="user-inputs">User Inputs<a class="headerlink" href="#user-inputs" title="Permanent link">&para;</a></h3>
+<p>We have to specify the bucket where the data is located</p>
+<div class="highlight"><pre><span></span><code><span class="n">zarr_bucket</span> <span class="o">=</span> <span class="s1">&#39;solar-pv-nowcasting-data/satellite/EUMETSAT/SEVIRI_RSS/zarr_full_extent_TM_int16&#39;</span>
+</code></pre></div>
+<p><br></p>
+<h3 id="data-loading-coverage">Data Loading &amp; Coverage<a class="headerlink" href="#data-loading-coverage" title="Permanent link">&para;</a></h3>
+<p>The <code>satip</code> wrapper for loading data will then generate an <code>xarray</code> <code>Dataset</code> when passed the path to the zarr bucket</p>
+<div class="highlight"><pre><span></span><code><span class="n">ds</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">load_from_zarr_bucket</span><span class="p">(</span><span class="n">zarr_bucket</span><span class="p">)</span>
+
+<span class="n">ds</span><span class="p">[</span><span class="s1">&#39;stacked_eumetsat_data&#39;</span><span class="p">]</span>
+</code></pre></div>
+<div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme=dark],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1F1F1F;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 20px 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: none;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: 'â–º';
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: 'â–¼';
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: '(';
+}
+
+.xr-dim-list:after {
+  content: ')';
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ',';
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2 {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.DataArray &#x27;stacked_eumetsat_data&#x27; (time: 11652, x: 1870, y: 1831, variable: 12)&gt;
+dask.array&lt;xarray-stacked_eumetsat_data, shape=(11652, 1870, 1831, 12), dtype=int16, chunksize=(36, 1870, 1831, 1), chunktype=numpy.ndarray&gt;
+Coordinates:
+  * time      (time) datetime64[ns] 2021-03-19T13:20:10 ... 2020-04-04T06:19:16
+  * variable  (variable) object &#x27;HRV&#x27; &#x27;IR_016&#x27; &#x27;IR_039&#x27; ... &#x27;WV_062&#x27; &#x27;WV_073&#x27;
+  * x         (x) float64 -3.088e+06 -3.084e+06 ... 4.384e+06 4.388e+06
+  * y         (y) float64 9.012e+06 9.008e+06 9.004e+06 ... 1.696e+06 1.692e+06
+Attributes:
+    meta:     {&#x27;orbital_parameters&#x27;: {&#x27;projection_longitude&#x27;: 9.5, &#x27;projectio...</pre><div class='xr-wrap' hidden><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'stacked_eumetsat_data'</div><ul class='xr-dim-list'><li><span class='xr-has-index'>time</span>: 11652</li><li><span class='xr-has-index'>x</span>: 1870</li><li><span class='xr-has-index'>y</span>: 1831</li><li><span class='xr-has-index'>variable</span>: 12</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-3c5a9c4a-62a0-428e-8adb-d5145991f89c' class='xr-array-in' type='checkbox' checked><label for='section-3c5a9c4a-62a0-428e-8adb-d5145991f89c' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>dask.array&lt;chunksize=(36, 1870, 1831, 1), meta=np.ndarray&gt;</span></div><div class='xr-array-data'><table>
+<tr>
+<td>
+<table>
+  <thead>
+    <tr><td> </td><th> Array </th><th> Chunk </th></tr>
+  </thead>
+  <tbody>
+    <tr><th> Bytes </th><td> 957.51 GB </td> <td> 246.53 MB </td></tr>
+    <tr><th> Shape </th><td> (11652, 1870, 1831, 12) </td> <td> (36, 1870, 1831, 1) </td></tr>
+    <tr><th> Count </th><td> 3889 Tasks </td><td> 3888 Chunks </td></tr>
+    <tr><th> Type </th><td> int16 </td><td> numpy.ndarray </td></tr>
+  </tbody>
+</table>
+</td>
+<td>
+<svg width="479" height="115" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2" />
+  <line x1="0" y1="25" x2="120" y2="25" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="0" y1="0" x2="0" y2="25" style="stroke-width:2" />
+  <line x1="3" y1="0" x2="3" y2="25" />
+  <line x1="7" y1="0" x2="7" y2="25" />
+  <line x1="11" y1="0" x2="11" y2="25" />
+  <line x1="14" y1="0" x2="14" y2="25" />
+  <line x1="18" y1="0" x2="18" y2="25" />
+  <line x1="22" y1="0" x2="22" y2="25" />
+  <line x1="25" y1="0" x2="25" y2="25" />
+  <line x1="30" y1="0" x2="30" y2="25" />
+  <line x1="33" y1="0" x2="33" y2="25" />
+  <line x1="37" y1="0" x2="37" y2="25" />
+  <line x1="41" y1="0" x2="41" y2="25" />
+  <line x1="44" y1="0" x2="44" y2="25" />
+  <line x1="48" y1="0" x2="48" y2="25" />
+  <line x1="52" y1="0" x2="52" y2="25" />
+  <line x1="55" y1="0" x2="55" y2="25" />
+  <line x1="60" y1="0" x2="60" y2="25" />
+  <line x1="63" y1="0" x2="63" y2="25" />
+  <line x1="67" y1="0" x2="67" y2="25" />
+  <line x1="71" y1="0" x2="71" y2="25" />
+  <line x1="74" y1="0" x2="74" y2="25" />
+  <line x1="78" y1="0" x2="78" y2="25" />
+  <line x1="82" y1="0" x2="82" y2="25" />
+  <line x1="86" y1="0" x2="86" y2="25" />
+  <line x1="90" y1="0" x2="90" y2="25" />
+  <line x1="93" y1="0" x2="93" y2="25" />
+  <line x1="97" y1="0" x2="97" y2="25" />
+  <line x1="101" y1="0" x2="101" y2="25" />
+  <line x1="104" y1="0" x2="104" y2="25" />
+  <line x1="108" y1="0" x2="108" y2="25" />
+  <line x1="112" y1="0" x2="112" y2="25" />
+  <line x1="116" y1="0" x2="116" y2="25" />
+  <line x1="120" y1="0" x2="120" y2="25" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="0.0,0.0 120.0,0.0 120.0,25.412616514582485 0.0,25.412616514582485" style="fill:#8B4903A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="60.000000" y="45.412617" font-size="1.0rem" font-weight="100" text-anchor="middle" >11652</text>
+  <text x="140.000000" y="12.706308" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(0,140.000000,12.706308)">1</text>
+
+
+  <!-- Horizontal lines -->
+  <line x1="190" y1="0" x2="214" y2="24" style="stroke-width:2" />
+  <line x1="190" y1="40" x2="214" y2="65" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="190" y1="0" x2="190" y2="40" style="stroke-width:2" />
+  <line x1="214" y1="24" x2="214" y2="65" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="190.0,0.0 214.13415148675503,24.134151486755034 214.13415148675503,65.0628781439491 190.0,40.92872665719407" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Horizontal lines -->
+  <line x1="190" y1="0" x2="215" y2="0" style="stroke-width:2" />
+  <line x1="214" y1="24" x2="239" y2="24" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="190" y1="0" x2="214" y2="24" style="stroke-width:2" />
+  <line x1="192" y1="0" x2="216" y2="24" />
+  <line x1="194" y1="0" x2="218" y2="24" />
+  <line x1="196" y1="0" x2="220" y2="24" />
+  <line x1="198" y1="0" x2="222" y2="24" />
+  <line x1="200" y1="0" x2="224" y2="24" />
+  <line x1="202" y1="0" x2="226" y2="24" />
+  <line x1="204" y1="0" x2="228" y2="24" />
+  <line x1="206" y1="0" x2="231" y2="24" />
+  <line x1="209" y1="0" x2="233" y2="24" />
+  <line x1="211" y1="0" x2="235" y2="24" />
+  <line x1="213" y1="0" x2="237" y2="24" />
+  <line x1="215" y1="0" x2="239" y2="24" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="190.0,0.0 215.41261651458248,0.0 239.5467680013375,24.134151486755034 214.13415148675503,24.134151486755034" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Horizontal lines -->
+  <line x1="214" y1="24" x2="239" y2="24" style="stroke-width:2" />
+  <line x1="214" y1="65" x2="239" y2="65" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="214" y1="24" x2="214" y2="65" style="stroke-width:2" />
+  <line x1="216" y1="24" x2="216" y2="65" />
+  <line x1="218" y1="24" x2="218" y2="65" />
+  <line x1="220" y1="24" x2="220" y2="65" />
+  <line x1="222" y1="24" x2="222" y2="65" />
+  <line x1="224" y1="24" x2="224" y2="65" />
+  <line x1="226" y1="24" x2="226" y2="65" />
+  <line x1="228" y1="24" x2="228" y2="65" />
+  <line x1="231" y1="24" x2="231" y2="65" />
+  <line x1="233" y1="24" x2="233" y2="65" />
+  <line x1="235" y1="24" x2="235" y2="65" />
+  <line x1="237" y1="24" x2="237" y2="65" />
+  <line x1="239" y1="24" x2="239" y2="65" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="214.13415148675503,24.134151486755034 239.5467680013375,24.134151486755034 239.5467680013375,65.0628781439491 214.13415148675503,65.0628781439491" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="226.840460" y="85.062878" font-size="1.0rem" font-weight="100" text-anchor="middle" >12</text>
+  <text x="259.546768" y="44.598515" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,259.546768,44.598515)">1831</text>
+  <text x="192.067076" y="72.995802" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(45,192.067076,72.995802)">1870</text>
+</svg>
+</td>
+</tr>
+</table></div></div></li><li class='xr-section-item'><input id='section-64abfc14-fb7a-4158-8ab6-b7524ef6fc40' class='xr-section-summary-in' type='checkbox'  checked><label for='section-64abfc14-fb7a-4158-8ab6-b7524ef6fc40' class='xr-section-summary' >Coordinates: <span>(4)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>time</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>2021-03-19T13:20:10 ... 2020-04-...</div><input id='attrs-615ad838-dc2c-41e5-884b-9d7b551073a8' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-615ad838-dc2c-41e5-884b-9d7b551073a8' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-d4478c3b-391b-45d3-8605-e92b9fce0218' class='xr-var-data-in' type='checkbox'><label for='data-d4478c3b-391b-45d3-8605-e92b9fce0218' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;2021-03-19T13:20:10.000000000&#x27;, &#x27;2021-03-19T13:24:16.000000000&#x27;,
+       &#x27;2021-03-19T13:29:17.000000000&#x27;, ..., &#x27;2020-04-04T06:09:17.000000000&#x27;,
+       &#x27;2020-04-04T06:14:17.000000000&#x27;, &#x27;2020-04-04T06:19:16.000000000&#x27;],
+      dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>variable</span></div><div class='xr-var-dims'>(variable)</div><div class='xr-var-dtype'>object</div><div class='xr-var-preview xr-preview'>&#x27;HRV&#x27; &#x27;IR_016&#x27; ... &#x27;WV_073&#x27;</div><input id='attrs-39c8ff72-fe72-4014-8368-a874bd35d6b1' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-39c8ff72-fe72-4014-8368-a874bd35d6b1' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-7538a1b4-fb51-4e01-80f3-d0ed365f953d' class='xr-var-data-in' type='checkbox'><label for='data-7538a1b4-fb51-4e01-80f3-d0ed365f953d' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;HRV&#x27;, &#x27;IR_016&#x27;, &#x27;IR_039&#x27;, &#x27;IR_087&#x27;, &#x27;IR_097&#x27;, &#x27;IR_108&#x27;, &#x27;IR_120&#x27;,
+       &#x27;IR_134&#x27;, &#x27;VIS006&#x27;, &#x27;VIS008&#x27;, &#x27;WV_062&#x27;, &#x27;WV_073&#x27;], dtype=object)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>x</span></div><div class='xr-var-dims'>(x)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-3.088e+06 -3.084e+06 ... 4.388e+06</div><input id='attrs-d70aeda3-a440-446c-ac09-322639698ea1' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-d70aeda3-a440-446c-ac09-322639698ea1' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-e8dd9b88-db3a-49c2-9afa-2783537a3f94' class='xr-var-data-in' type='checkbox'><label for='data-e8dd9b88-db3a-49c2-9afa-2783537a3f94' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([-3088000., -3084000., -3080000., ...,  4380000.,  4384000.,  4388000.])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>y</span></div><div class='xr-var-dims'>(y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>9.012e+06 9.008e+06 ... 1.692e+06</div><input id='attrs-964915e2-982b-4bb9-838a-09860524300c' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-964915e2-982b-4bb9-838a-09860524300c' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-c9b52c27-98fa-4792-8a45-80c8479841e1' class='xr-var-data-in' type='checkbox'><label for='data-c9b52c27-98fa-4792-8a45-80c8479841e1' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([9012000., 9008000., 9004000., ..., 1700000., 1696000., 1692000.])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-d4050408-8f4d-439b-b1ac-ae1c1563e2ab' class='xr-section-summary-in' type='checkbox'  checked><label for='section-d4050408-8f4d-439b-b1ac-ae1c1563e2ab' class='xr-section-summary' >Attributes: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>meta :</span></dt><dd>{&#x27;orbital_parameters&#x27;: {&#x27;projection_longitude&#x27;: 9.5, &#x27;projection_latitude&#x27;: 0.0, &#x27;projection_altitude&#x27;: 35785831.0}, &#x27;sun_earth_distance_correction_applied&#x27;: True, &#x27;sun_earth_distance_correction_factor&#x27;: 0.9911189780118609, &#x27;units&#x27;: &#x27;%&#x27;, &#x27;wavelength&#x27;: WavelengthRange(min=0.5, central=0.7, max=0.9, unit=&#x27;Âµm&#x27;), &#x27;standard_name&#x27;: &#x27;toa_bidirectional_reflectance&#x27;, &#x27;platform_name&#x27;: &#x27;Meteosat-10&#x27;, &#x27;sensor&#x27;: &#x27;seviri&#x27;, &#x27;start_time&#x27;: datetime.datetime(2021, 3, 19, 13, 15, 9, 278906), &#x27;end_time&#x27;: datetime.datetime(2021, 3, 19, 13, 20, 10, 330158), &#x27;area&#x27;: Area ID: geos_seviri_hrv
+Description: SEVIRI high resolution channel area
+Projection ID: seviri_hrv
+Projection: {&#x27;a&#x27;: &#x27;6378169&#x27;, &#x27;h&#x27;: &#x27;35785831&#x27;, &#x27;lon_0&#x27;: &#x27;9.5&#x27;, &#x27;no_defs&#x27;: &#x27;None&#x27;, &#x27;proj&#x27;: &#x27;geos&#x27;, &#x27;rf&#x27;: &#x27;295.488065897014&#x27;, &#x27;type&#x27;: &#x27;crs&#x27;, &#x27;units&#x27;: &#x27;m&#x27;, &#x27;x_0&#x27;: &#x27;0&#x27;, &#x27;y_0&#x27;: &#x27;0&#x27;}
+Number of columns: 5568
+Number of rows: 4176
+Area extent: (2790874.9005, 5571248.3904, -2777873.154, 1394687.3495), &#x27;name&#x27;: &#x27;HRV&#x27;, &#x27;resolution&#x27;: 1000.134348869, &#x27;calibration&#x27;: &#x27;reflectance&#x27;, &#x27;modifiers&#x27;: (), &#x27;_satpy_id&#x27;: DataID(name=&#x27;HRV&#x27;, wavelength=WavelengthRange(min=0.5, central=0.7, max=0.9, unit=&#x27;Âµm&#x27;), resolution=1000.134348869, calibration=&lt;calibration.reflectance&gt;, modifiers=()), &#x27;ancillary_variables&#x27;: []}</dd></dl></div></li></ul></div></div>
+
+<p><br></p>
+<p>We'll quickly visualise the data coverage that's provided in the database.</p>
+<p>N.b. Here we've made the assumption that an image is generated every 5 minutes.</p>
+<div class="highlight"><pre><span></span><code><span class="n">round_dt_idx</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">dt_idx</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(((</span><span class="n">dt_idx</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span> <span class="o">//</span> <span class="n">ns5min</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">)</span> <span class="o">*</span> <span class="n">ns5min</span><span class="p">))</span>
+
+<span class="n">ns5min</span> <span class="o">=</span> <span class="mi">5</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">1000000000</span>
+
+<span class="n">zarr_db_dts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">ds</span><span class="p">[</span><span class="s1">&#39;stacked_eumetsat_data&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">dt_rng_5m</span> <span class="o">=</span> <span class="n">round_dt_idx</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">zarr_db_dts</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">zarr_db_dts</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;5T&#39;</span><span class="p">))</span>
+
+<span class="n">s_db_coverage</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">round_dt_idx</span><span class="p">(</span><span class="n">zarr_db_dts</span><span class="p">))</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">dt_rng_5m</span><span class="p">)</span>
+<span class="n">current_db_coverage</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">s_db_coverage</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The database coverage is currently at </span><span class="si">{</span><span class="mi">100</span><span class="o">*</span><span class="n">current_db_coverage</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">%&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plotting</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+
+<span class="n">s_db_coverage</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;D&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="mi">100</span><span class="o">*</span><span class="n">s</span><span class="o">/</span><span class="n">s</span><span class="o">.</span><span class="n">max</span><span class="p">())</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">area</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Database Coverage (%)&#39;</span><span class="p">)</span>
+<span class="n">hlp</span><span class="o">.</span><span class="n">hide_spines</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>The database coverage is currently at 5.0%
+</code></pre></div>
+<p><img alt="png" src="../img/nbs/output_6_1.png" /></p>
+<p><br></p>
+<p>We'll create a slightly modified version of this that doesn't show percentage coverage for each day but instead considers each 5 minute period and groups batches of data that were retrieved sequentially </p>
+<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
+<span class="k">def</span> <span class="nf">extract_dt_batch_sets</span><span class="p">(</span><span class="n">zarr_db_dts</span><span class="p">):</span>
+    <span class="n">dt_rng_split_idxs</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">zarr_db_dts</span><span class="p">)</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mi">5</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">index</span>
+
+    <span class="n">dt_batch_start_idxs</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">dt_rng_split_idxs</span><span class="p">)</span>
+    <span class="n">dt_batch_end_idxs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">dt_rng_split_idxs</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">zarr_db_dts</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">dt_batches</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">dt_batch_start_idx</span><span class="p">,</span> <span class="n">dt_batch_end_idx</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">dt_batch_start_idxs</span><span class="p">,</span> <span class="n">dt_batch_end_idxs</span><span class="p">):</span>
+        <span class="n">dt_batches</span> <span class="o">+=</span> <span class="p">[(</span><span class="n">zarr_db_dts</span><span class="p">[</span><span class="n">dt_batch_start_idx</span><span class="p">],</span> <span class="n">zarr_db_dts</span><span class="p">[</span><span class="n">dt_batch_end_idx</span><span class="p">])]</span>
+
+    <span class="k">return</span> <span class="n">dt_batches</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">dt_batches</span> <span class="o">=</span> <span class="n">extract_dt_batch_sets</span><span class="p">(</span><span class="n">zarr_db_dts</span><span class="p">)</span>
+
+<span class="c1"># Plotting</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;magma&#39;</span><span class="p">)</span>
+<span class="n">total_dts_processed</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">for</span> <span class="n">batch_start_dt</span><span class="p">,</span> <span class="n">batch_end_dt</span> <span class="ow">in</span> <span class="n">track</span><span class="p">(</span><span class="n">dt_batches</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">batch_start_dt</span> <span class="o">==</span> <span class="n">batch_end_dt</span><span class="p">:</span>
+        <span class="n">s_db_batch</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="n">batch_start_dt</span><span class="p">,</span> <span class="n">batch_start_dt</span><span class="o">+</span><span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="n">minutes</span><span class="o">=</span><span class="mi">5</span><span class="p">)])</span>
+        <span class="n">total_dts_processed</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">batch_mid_pct_processed</span> <span class="o">=</span> <span class="n">total_dts_processed</span><span class="o">/</span><span class="n">zarr_db_dts</span><span class="o">.</span><span class="n">size</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">s_db_batch</span> <span class="o">=</span> <span class="n">s_db_coverage</span><span class="p">[</span><span class="n">batch_start_dt</span><span class="p">:</span><span class="n">batch_end_dt</span><span class="p">]</span>
+        <span class="n">total_dts_processed</span> <span class="o">+=</span> <span class="n">s_db_batch</span><span class="o">.</span><span class="n">size</span>
+        <span class="n">batch_mid_pct_processed</span> <span class="o">=</span> <span class="p">(</span><span class="n">total_dts_processed</span><span class="o">-</span><span class="p">(</span><span class="n">s_db_batch</span><span class="o">.</span><span class="n">size</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span><span class="o">/</span><span class="n">zarr_db_dts</span><span class="o">.</span><span class="n">size</span>
+
+    <span class="n">color</span> <span class="o">=</span> <span class="n">cmap</span><span class="p">(</span><span class="n">batch_mid_pct_processed</span><span class="p">)</span>
+    <span class="n">s_db_batch</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">area</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">zarr_db_dts</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">zarr_db_dts</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">hlp</span><span class="o">.</span><span class="n">hide_spines</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+</code></pre></div>
+<div><span class="Text-label" style="display:inline-block; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; min-width:0; max-width:15ex; vertical-align:middle; text-align:right"></span>
+<progress style="width:60ex" max="62" value="62" class="Progress-main"/></progress>
+<span class="Progress-label"><strong>100%</strong></span>
+<span class="Iteration-label">62/62</span>
+<span class="Time-label">[06:28<00:10, 6.26s/it]</span></div>
+
+<p><img alt="png" src="../img/nbs/output_9_1.png" /></p>
+<p><br></p>
+<h3 id="summary-statistics">Summary Statistics<a class="headerlink" href="#summary-statistics" title="Permanent link">&para;</a></h3>
+<p>We'll start by calculating the average reflectance for a single month to check that no dodgy regions jump out. Interestly we can see mountainous regions such as the Alps jump out due to the high reflectance of snow.</p>
+<div class="highlight"><pre><span></span><code><span class="o">%%</span><span class="n">time</span> <span class="c1"># takes ca.18 mins</span>
+
+<span class="n">da_HRV_mean</span> <span class="o">=</span> <span class="p">(</span><span class="n">ds</span>
+               <span class="p">[</span><span class="s1">&#39;stacked_eumetsat_data&#39;</span><span class="p">]</span>
+               <span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">variable</span><span class="o">=</span><span class="s1">&#39;HRV&#39;</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="s1">&#39;2020-03&#39;</span><span class="p">)</span>
+               <span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+              <span class="p">)</span>
+
+<span class="c1"># Plotting</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">TransverseMercator</span><span class="p">())</span>
+
+<span class="n">da_HRV_mean</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;magma&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">200</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="s1">&#39;50m&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>&lt;ipython-input-16-455a547b74f1&gt;:2: UserWarning: The default value for the *approx* keyword argument to TransverseMercator will change from True to False after 0.18.
+  ax = plt.axes(projection=ccrs.TransverseMercator())
+
+
+
+
+
+&lt;cartopy.mpl.feature_artist.FeatureArtist at 0x20d83f79fd0&gt;
+</code></pre></div>
+<p><img alt="png" src="../img/nbs/output_11_2.png" /></p>
+<p><br></p>
+<p>We'll also look at how the average reflectance changes with time of day</p>
+<div class="highlight"><pre><span></span><code><span class="o">%%</span><span class="n">time</span>
+<span class="c1"># if this fails take avg of x and y, then convert to df and process with pandas</span>
+<span class="n">da_HRV_hourly_mean</span> <span class="o">=</span> <span class="p">(</span><span class="n">ds</span>
+                      <span class="p">[</span><span class="s1">&#39;stacked_eumetsat_data&#39;</span><span class="p">]</span>
+                      <span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">variable</span><span class="o">=</span><span class="s1">&#39;HRV&#39;</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="s1">&#39;2020-03&#39;</span><span class="p">)</span>
+                      <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;time.dt.hour&#39;</span><span class="p">)</span>
+                      <span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">])</span>
+                      <span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+                     <span class="p">)</span>
+
+<span class="n">da_HRV_hourly_mean</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</code></pre></div>
+<p><br></p>
+<p>We'll also get the minimum and maximum values present for each variable</p>
+<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
+<span class="k">def</span> <span class="nf">get_var_min_maxs</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
+    <span class="n">mins</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s1">&#39;stacked_eumetsat_data&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="s1">&#39;2020-03&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">min</span><span class="p">([</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+    <span class="n">maxs</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s1">&#39;stacked_eumetsat_data&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="s1">&#39;2020-03&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">([</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">mins</span><span class="p">,</span> <span class="n">maxs</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">mins</span><span class="p">,</span> <span class="n">maxs</span> <span class="o">=</span> <span class="n">get_var_min_maxs</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
+
+<span class="n">mins</span><span class="p">,</span> <span class="n">maxs</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\xarray\core\indexing.py:1369: PerformanceWarning: Slicing is producing a large chunk. To accept the large
+chunk and silence this warning, set the option
+    &gt;&gt;&gt; with dask.config.set(**{&#39;array.slicing.split_large_chunks&#39;: False}):
+    ...     array[indexer]
+
+To avoid creating the large chunks, set the option
+    &gt;&gt;&gt; with dask.config.set(**{&#39;array.slicing.split_large_chunks&#39;: True}):
+    ...     array[indexer]
+  return self.array[key]
+</code></pre></div>
+<p><br></p>
+<h3 id="offline-validation">Offline Validation<a class="headerlink" href="#offline-validation" title="Permanent link">&para;</a></h3>
+<p>We'll now do some quick data quality checks, including checking for duplicates and any null values. We'll start with the duplicates.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
+<span class="k">def</span> <span class="nf">check_for_duplicates</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
+    <span class="n">ds_dts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+    <span class="n">num_dupes</span> <span class="o">=</span> <span class="n">ds_dts</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+    <span class="k">assert</span> <span class="n">num_dupes</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;There are </span><span class="si">{</span><span class="n">num_dupes</span><span class="si">}</span><span class="s1"> duplicate indexes in the database&#39;</span>
+
+    <span class="k">return</span> 
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">check_for_duplicates</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
+</code></pre></div>
+<p><br></p>
+<p>Then check for any nulls.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
+<span class="n">get_null_count</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">ds</span><span class="p">:</span> <span class="p">(</span><span class="n">ds</span><span class="o">==-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="o">%%</span><span class="n">time</span>
+
+<span class="n">get_null_count</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
+</code></pre></div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../104_ts_analysis/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Extracting Time-Series
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../about/OCF/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                OCF
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.93c04032.min.js"></script>
+      <script src="../assets/javascripts/bundle.83e5331e.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: ['header.autohide', 'navigation.tabs', 'navigation.instant', 'search.suggest'],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.8c7e0a7e.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../javascripts/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

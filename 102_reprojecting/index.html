@@ -134,13 +134,13 @@
     
       <div class="md-header-nav__source">
         
-<a href="https://github.com/Future-Energy-Associates/satip/" title="Go to repository" class="md-source">
+<a href="https://github.com/openclimatefix/satip/" title="Go to repository" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
-    Future-Energy-Associates/satip
+    openclimatefix/satip
   </div>
 </a>
       </div>
@@ -252,13 +252,13 @@
   
     <div class="md-nav__source">
       
-<a href="https://github.com/Future-Energy-Associates/satip/" title="Go to repository" class="md-source">
+<a href="https://github.com/openclimatefix/satip/" title="Go to repository" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
-    Future-Energy-Associates/satip
+    openclimatefix/satip
   </div>
 </a>
     </div>
@@ -392,6 +392,30 @@
     <li class="md-nav__item">
       <a href="../103_loading/" class="md-nav__link">
         Loading from Zarr
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../104_ts_analysis/" class="md-nav__link">
+        Extracting Time-Series
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../105_summary/" class="md-nav__link">
+        Database Summary
       </a>
     </li>
   
@@ -620,32 +644,32 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/Future-Energy-Associates/satip/edit/master/docs/102_reprojecting.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/openclimatefix/satip/edit/master/docs/102_reprojecting.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
                 <h1 id="reprojecting">Reprojecting<a class="headerlink" href="#reprojecting" title="Permanent link">&para;</a></h1>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">satip</span> <span class="kn">import</span> <span class="n">reproj</span>
+<div class="highlight"><pre><span></span><code>from satip import reproj
 
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
+import matplotlib.pyplot as plt
+import cartopy.crs as ccrs
 
-<span class="kn">import</span> <span class="nn">os</span>
+import os
 </code></pre></div>
 <p><br></p>
 <h3 id="user-inputs">User Inputs<a class="headerlink" href="#user-inputs" title="Permanent link">&para;</a></h3>
 <p>We have to specify the directory where the data native filepaths are located</p>
-<div class="highlight"><pre><span></span><code><span class="n">data_dir</span> <span class="o">=</span> <span class="s1">&#39;../data/raw&#39;</span>
+<div class="highlight"><pre><span></span><code>data_dir = &#39;../data/raw&#39;
 </code></pre></div>
 <p><br></p>
 <h3 id="loading-the-scene">Loading the Scene<a class="headerlink" href="#loading-the-scene" title="Permanent link">&para;</a></h3>
 <p>We'll then load the file using the reproj library</p>
-<div class="highlight"><pre><span></span><code><span class="n">native_fps</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">([</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">data_dir</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">f</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">data_dir</span><span class="p">)</span> <span class="k">if</span> <span class="s1">&#39;.nat&#39;</span> <span class="ow">in</span> <span class="n">f</span><span class="p">])</span>
-<span class="n">native_fp</span> <span class="o">=</span> <span class="n">native_fps</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code>native_fps = sorted([f&#39;{data_dir}/{f}&#39; for f in os.listdir(data_dir) if &#39;.nat&#39; in f])
+native_fp = native_fps[0]
 
-<span class="n">scene</span> <span class="o">=</span> <span class="n">reproj</span><span class="o">.</span><span class="n">load_scene</span><span class="p">(</span><span class="n">native_fp</span><span class="p">)</span>
-<span class="n">scene</span><span class="o">.</span><span class="n">load</span><span class="p">([</span><span class="s1">&#39;HRV&#39;</span><span class="p">])</span>
+scene = reproj.load_scene(native_fp)
+scene.load([&#39;HRV&#39;])
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\pyproj\crs\crs.py:543: UserWarning: You will likely lose important projection information when converting to a PROJ string from another format. See: https://proj.org/faq.html#what-is-the-best-format-for-describing-coordinate-reference-systems
   proj_string = self.to_proj4()
@@ -653,17 +677,17 @@
 <p><br></p>
 <p>Next we'll visualise the data in the HRV layer. </p>
 <p>In this particular image it looks like we've caught a period where the satellite is slightly off-kilter. Fortunately the area definition we create accounts for periods when this occurs.</p>
-<div class="highlight"><pre><span></span><code><span class="n">seviri</span> <span class="o">=</span> <span class="n">reproj</span><span class="o">.</span><span class="n">get_seviri_area_def</span><span class="p">(</span><span class="n">native_fp</span><span class="p">)</span>
-<span class="n">seviri_crs</span> <span class="o">=</span> <span class="n">seviri</span><span class="o">.</span><span class="n">to_cartopy_crs</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><code>seviri = reproj.get_seviri_area_def(native_fp)
+seviri_crs = seviri.to_cartopy_crs()
 
-<span class="c1"># Plotting</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">seviri_crs</span><span class="p">)</span>
+# Plotting
+fig = plt.figure(dpi=250, figsize=(10, 10))
+ax = plt.axes(projection=seviri_crs)
 
-<span class="n">scene</span><span class="p">[</span><span class="s1">&#39;HRV&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">add_colorbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;magma&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+scene[&#39;HRV&#39;].plot.imshow(ax=ax, add_colorbar=False, cmap=&#39;magma&#39;, vmin=0, vmax=50)
 
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="s1">&#39;50m&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+ax.set_title(&#39;&#39;)
+ax.coastlines(resolution=&#39;50m&#39;, alpha=0.8, color=&#39;white&#39;)
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\pyproj\crs\crs.py:543: UserWarning: You will likely lose important projection information when converting to a PROJ string from another format. See: https://proj.org/faq.html#what-is-the-best-format-for-describing-coordinate-reference-systems
   proj_string = self.to_proj4()
@@ -678,22 +702,22 @@
 <p><br></p>
 <h3 id="reprojection">Reprojection<a class="headerlink" href="#reprojection" title="Permanent link">&para;</a></h3>
 <p>The main way to carry out a reprojection is with the <code>Reprojector</code> class</p>
-<div class="highlight"><pre><span></span><code><span class="n">reprojector</span> <span class="o">=</span> <span class="n">reproj</span><span class="o">.</span><span class="n">Reprojector</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><code>reprojector = reproj.Reprojector()
 
-<span class="n">reprojector</span>
+reprojector
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>&lt;satip.reproj.Reprojector at 0x28f14995100&gt;
 </code></pre></div>
 <p><br></p>
 <p>From which the <code>reproject</code> method can be called, the default method that will be used is through <code>pyresample</code></p>
-<div class="highlight"><pre><span></span><code><span class="o">%%</span><span class="n">capture</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">stdout</span>
-<span class="o">%%</span><span class="n">time</span>
+<div class="highlight"><pre><span></span><code>%%capture --no-stdout
+%%time
 
-<span class="n">ds_reproj</span> <span class="o">=</span> <span class="n">reprojector</span><span class="o">.</span><span class="n">reproject</span><span class="p">(</span><span class="n">native_fp</span><span class="p">)</span>
+ds_reproj = reprojector.reproject(native_fp)
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>Wall time: 5.58 s
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="n">ds_reproj</span>
+<div class="highlight"><pre><span></span><code>ds_reproj
 </code></pre></div>
 <div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
 <defs>
@@ -1144,14 +1168,14 @@ Area extent: (3164925.147, 5571248.3904, -2403822.9075, 1394687.3495)</dd><dt><s
 
 <p><br></p>
 <p>It's also possible to use the functional api, e.g. for our task we could have used <code>full_scene_pyresample</code> to achieve the same results.</p>
-<div class="highlight"><pre><span></span><code><span class="o">%%</span><span class="n">capture</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">stdout</span>
-<span class="o">%%</span><span class="n">time</span>
+<div class="highlight"><pre><span></span><code>%%capture --no-stdout
+%%time
 
-<span class="n">ds_reproj</span> <span class="o">=</span> <span class="n">reproj</span><span class="o">.</span><span class="n">full_scene_pyresample</span><span class="p">(</span><span class="n">native_fp</span><span class="p">)</span>
+ds_reproj = reproj.full_scene_pyresample(native_fp)
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>Wall time: 4.98 s
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="n">ds_reproj</span>
+<div class="highlight"><pre><span></span><code>ds_reproj
 </code></pre></div>
 <div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
 <defs>
@@ -1602,18 +1626,18 @@ Area extent: (3164925.147, 5571248.3904, -2403822.9075, 1394687.3495)</dd><dt><s
 
 <p><br></p>
 <p>Alongside <code>pyresample</code> its also possible to use <code>pyinterp</code> which can be faster when the dataset has fewer layers. When using <code>pyinterp</code> we have to provide the coordinates of the new grid as well as the coordinates that grid has in the original CRS.</p>
-<div class="highlight"><pre><span></span><code><span class="o">%%</span><span class="n">capture</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">stdout</span>
-<span class="o">%%</span><span class="n">time</span>
+<div class="highlight"><pre><span></span><code>%%capture --no-stdout
+%%time
 
-<span class="n">new_coords_fp</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;../data/intermediate/reproj_coords_TM_4km.csv&#39;</span>
-<span class="n">new_grid_fp</span> <span class="o">=</span> <span class="s1">&#39;../data/intermediate/new_grid_4km_TM.json&#39;</span>
+new_coords_fp = f&#39;../data/intermediate/reproj_coords_TM_4km.csv&#39;
+new_grid_fp = &#39;../data/intermediate/new_grid_4km_TM.json&#39;
 
-<span class="n">reprojector</span> <span class="o">=</span> <span class="n">reproj</span><span class="o">.</span><span class="n">Reprojector</span><span class="p">(</span><span class="n">new_coords_fp</span><span class="p">,</span> <span class="n">new_grid_fp</span><span class="p">)</span>
-<span class="n">ds_reproj</span> <span class="o">=</span> <span class="n">reprojector</span><span class="o">.</span><span class="n">reproject</span><span class="p">(</span><span class="n">native_fp</span><span class="p">,</span> <span class="n">reproj_library</span><span class="o">=</span><span class="s1">&#39;pyinterp&#39;</span><span class="p">)</span>
+reprojector = reproj.Reprojector(new_coords_fp, new_grid_fp)
+ds_reproj = reprojector.reproject(native_fp, reproj_library=&#39;pyinterp&#39;)
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>Wall time: 16.5 s
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="n">ds_reproj</span>
+<div class="highlight"><pre><span></span><code>ds_reproj
 </code></pre></div>
 <div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
 <defs>

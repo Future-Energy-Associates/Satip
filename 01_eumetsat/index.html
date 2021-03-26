@@ -134,13 +134,13 @@
     
       <div class="md-header-nav__source">
         
-<a href="https://github.com/Future-Energy-Associates/satip/" title="Go to repository" class="md-source">
+<a href="https://github.com/openclimatefix/satip/" title="Go to repository" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
-    Future-Energy-Associates/satip
+    openclimatefix/satip
   </div>
 </a>
       </div>
@@ -252,13 +252,13 @@
   
     <div class="md-nav__source">
       
-<a href="https://github.com/Future-Energy-Associates/satip/" title="Go to repository" class="md-source">
+<a href="https://github.com/openclimatefix/satip/" title="Go to repository" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
-    Future-Energy-Associates/satip
+    openclimatefix/satip
   </div>
 </a>
     </div>
@@ -338,6 +338,30 @@
     <li class="md-nav__item">
       <a href="../103_loading/" class="md-nav__link">
         Loading from Zarr
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../104_ts_analysis/" class="md-nav__link">
+        Extracting Time-Series
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../105_summary/" class="md-nav__link">
+        Database Summary
       </a>
     </li>
   
@@ -704,94 +728,112 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/Future-Energy-Associates/satip/edit/master/docs/01_eumetsat.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/openclimatefix/satip/edit/master/docs/01_eumetsat.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
                 <h1 id="eumetsat-api-wrapper-development">EUMETSAT API Wrapper Development<a class="headerlink" href="#eumetsat-api-wrapper-development" title="Permanent link">&para;</a></h1>
+<div class="highlight"><pre><span></span><code>Downloading: 100%|â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ| 1/1 [00:00&lt;00:00,  4.31rows/s]
+</code></pre></div>
 <p><br></p>
 <h3 id="user-input">User Input<a class="headerlink" href="#user-input" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="n">data_dir</span> <span class="o">=</span> <span class="s1">&#39;../data/raw&#39;</span>
-<span class="n">compressed_dir</span> <span class="o">=</span> <span class="s1">&#39;../data/compressed&#39;</span>
-<span class="n">debug_fp</span> <span class="o">=</span> <span class="s1">&#39;../logs/EUMETSAT_download.txt&#39;</span>
-<span class="n">env_vars_fp</span> <span class="o">=</span> <span class="s1">&#39;../.env&#39;</span>
-<span class="n">metadata_db_fp</span> <span class="o">=</span> <span class="s1">&#39;../data/EUMETSAT_metadata.db&#39;</span>
+<div class="highlight"><pre><span></span><code>data_dir = &#39;../data/raw&#39;
+compressed_dir = &#39;../data/compressed&#39;
+debug_fp = &#39;../logs/EUMETSAT_download.txt&#39;
+env_vars_fp = &#39;../.env&#39;
+metadata_db_fp = &#39;../data/EUMETSAT_metadata.db&#39;
 
-<span class="n">download_data</span> <span class="o">=</span> <span class="kc">True</span>
+download_data = True
 </code></pre></div>
 <p><br></p>
 <h3 id="authorising-api-access">Authorising API Access<a class="headerlink" href="#authorising-api-access" title="Permanent link">&para;</a></h3>
 <p>First we'll load the the environment variables</p>
-<div class="highlight"><pre><span></span><code><span class="n">dotenv</span><span class="o">.</span><span class="n">load_dotenv</span><span class="p">(</span><span class="n">env_vars_fp</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code>dotenv.load_dotenv(env_vars_fp)
 
-<span class="n">user_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;USER_KEY&#39;</span><span class="p">)</span>
-<span class="n">user_secret</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;USER_SECRET&#39;</span><span class="p">)</span>
-<span class="n">slack_id</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;SLACK_ID&#39;</span><span class="p">)</span>
-<span class="n">slack_webhook_url</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;SLACK_WEBHOOK_URL&#39;</span><span class="p">)</span>
+user_key = os.environ.get(&#39;USER_KEY&#39;)
+user_secret = os.environ.get(&#39;USER_SECRET&#39;)
+slack_id = os.environ.get(&#39;SLACK_ID&#39;)
+slack_webhook_url = os.environ.get(&#39;SLACK_WEBHOOK_URL&#39;)
 </code></pre></div>
 <p><br></p>
 <p>And test they were loaded successfully</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">check_env_vars_have_loaded</span><span class="p">(</span><span class="n">env_vars</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">env_vars</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="k">assert</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">` should not be None&#39;</span>
+<div class="highlight"><pre><span></span><code>def check_env_vars_have_loaded(env_vars):
+    for name, value in env_vars.items():
+        assert value is not None, f&#39;{name}` should not be None&#39;
 
-    <span class="k">return</span>
+    return
 
-<span class="n">env_vars</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;user_key&#39;</span><span class="p">:</span> <span class="n">user_key</span><span class="p">,</span>
-    <span class="s1">&#39;user_secret&#39;</span><span class="p">:</span> <span class="n">user_secret</span><span class="p">,</span>
-    <span class="s1">&#39;slack_id&#39;</span><span class="p">:</span> <span class="n">slack_id</span><span class="p">,</span>
-    <span class="s1">&#39;slack_webhook_url&#39;</span><span class="p">:</span> <span class="n">slack_webhook_url</span>
-<span class="p">}</span>
+env_vars = {
+    &#39;user_key&#39;: user_key,
+    &#39;user_secret&#39;: user_secret,
+    &#39;slack_id&#39;: slack_id,
+    &#39;slack_webhook_url&#39;: slack_webhook_url
+}
 
-<span class="n">check_env_vars_have_loaded</span><span class="p">(</span><span class="n">env_vars</span><span class="p">)</span>
+check_env_vars_have_loaded(env_vars)
 </code></pre></div>
 <p><br></p>
 <p>We'll then use them to request an access token for the API</p>
 <p><br></p>
 <p>We'll then use them to request an access token for the API</p>
-<div class="highlight"><pre><span></span><code><span class="n">access_token</span> <span class="o">=</span> <span class="n">request_access_token</span><span class="p">(</span><span class="n">user_key</span><span class="p">,</span> <span class="n">user_secret</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code>access_token = request_access_token(user_key, user_secret)
 </code></pre></div>
 <p><br></p>
 <h3 id="querying-available-data">Querying Available Data<a class="headerlink" href="#querying-available-data" title="Permanent link">&para;</a></h3>
-<p>Before we can download any data we have to know where it's stored. To learn this we can query their search-products API, which returns a JSON containing a list of file metadata.</p>
+<p>Before we can download any data we have to know where it's stored. To learn this we can query their search-products API, which returns a JSON containing a list of file metadata.  </p>
+<p>Dcumentation for the Swagger API endpoint can be found here: https://eumetsatspace.atlassian.net/wiki/spaces/DSDS/pages/316080237/Swagger+UI+OpenSearch+API  </p>
 <p><br></p>
 <p>We'll quickly make a test request to this end-point</p>
-<div class="highlight"><pre><span></span><code><span class="n">start_date</span> <span class="o">=</span> <span class="s1">&#39;2019-10-01&#39;</span>
-<span class="n">end_date</span> <span class="o">=</span> <span class="s1">&#39;2019-10-07&#39;</span>
+<div class="highlight"><pre><span></span><code>start_date = &#39;2019-10-01&#39;
+end_date = &#39;2020-10-01&#39;
 
-<span class="n">r</span> <span class="o">=</span> <span class="n">query_data_products</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
+r = query_data_products(start_date, end_date)
 
-<span class="n">r_json</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-<span class="n">JSON</span><span class="p">(</span><span class="n">r_json</span><span class="p">)</span>
+r_json = r.json()
+JSON(r_json)
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>&lt;IPython.core.display.JSON object&gt;
 </code></pre></div>
 <p><br></p>
-<p>However the search-api is capped (at 10,000) for the number of files it will return metadata for, so we'll create a while loop that waits until all the relevant data has been returned. We'll then extract just the list of features from the returned JSONs.</p>
+<p>However the search-api is capped (at 10,000) for the number of files it will return metadata for, so we'll create a while loop that waits until all the relevant data has been returned. We'll then extract just the list of features from the returned JSONs.  </p>
+<p>While the search-api returns max 10,000 results, using start-index etc doesn't seem to work for wide time searches, so we will need to do multiple queries.<br />
+Also key to note the results are returned most recent first, so we must proceed backwards in iterations of 10,000  </p>
 <p><br></p>
 <p>We'll check that the same number of available datasets are identified</p>
-<div class="highlight"><pre><span></span><code><span class="o">%%</span><span class="n">time</span>
+<div class="highlight"><pre><span></span><code>%%time
 
-<span class="n">datasets</span> <span class="o">=</span> <span class="n">identify_available_datasets</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
+start_date = &#39;2020-01-01&#39;
+end_date = &#39;2020-04-01&#39;
+datasets = identify_available_datasets(start_date, end_date)
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">datasets</span><span class="p">)</span><span class="si">}</span><span class="s1"> datasets have been identified&#39;</span><span class="p">)</span>
+print(f&#39;{len(datasets)} datasets have been identified&#39;)
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>identify_available_datasets: found 18142 results from API
+18142 datasets have been identified
+CPU times: user 940 ms, sys: 114 ms, total: 1.05 s
+Wall time: 6.2 s
+</code></pre></div>
+<div class="highlight"><pre><span></span><code># JSON(datasets)
 </code></pre></div>
 <p><br></p>
 <p>Finally we'll create a helper function for converting the dataset ids into their file urls.</p>
 <p><br></p>
 <p>We'll now test this works.</p>
 <p>N.b. You cannot use the link returned here directly as it will not be OAuth'ed</p>
-<div class="highlight"><pre><span></span><code><span class="n">dataset_ids</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">([</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="n">datasets</span><span class="p">])</span>
-<span class="n">example_data_link</span> <span class="o">=</span> <span class="n">dataset_id_to_link</span><span class="p">(</span><span class="n">dataset_ids</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<div class="highlight"><pre><span></span><code>dataset_ids = sorted([dataset[&#39;id&#39;] for dataset in datasets])
+example_data_link = dataset_id_to_link(dataset_ids[0])
 
-<span class="n">example_data_link</span>
+example_data_link
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>&#39;https://api.eumetsat.int/data/download/products/MSG2-SEVI-MSG15-0100-NA-20200303090418.826000000Z-NA&#39;
 </code></pre></div>
 <p><br></p>
 <h3 id="downloading-data">Downloading Data<a class="headerlink" href="#downloading-data" title="Permanent link">&para;</a></h3>
 <p>Now that we know where our data is located we want to download it. First we'll check that the directory we wish to save the data in exists, if not we'll create it</p>
-<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">folder</span> <span class="ow">in</span> <span class="p">[</span><span class="n">data_dir</span><span class="p">,</span> <span class="n">sorted_dir</span><span class="p">]:</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">folder</span><span class="p">):</span>
-        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">folder</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code>for folder in [data_dir, compressed_dir]:
+    if not os.path.exists(folder):
+        os.makedirs(folder)
 </code></pre></div>
 <p><br></p>
 <p>We also want to extract the relevant metadata information from each file. Here we'll create a generalised framework for extracting data from any product, to add a new one please add its metadata mapping under the relevant <code>product_id</code>.</p>
@@ -799,43 +841,55 @@
 <p>We're now ready to create a download manager that will handle all of the querying, processing and retrieving for us</p>
 <p><br></p>
 <p>We'll now see what it looks like when we initialise the download manager</p>
-<div class="highlight"><pre><span></span><code><span class="n">dm</span> <span class="o">=</span> <span class="n">DownloadManager</span><span class="p">(</span><span class="n">user_key</span><span class="p">,</span> <span class="n">user_secret</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">,</span> <span class="n">metadata_db_fp</span><span class="p">,</span> <span class="n">debug_fp</span><span class="p">,</span> 
-                     <span class="n">slack_webhook_url</span><span class="o">=</span><span class="n">slack_webhook_url</span><span class="p">,</span> <span class="n">slack_id</span><span class="o">=</span><span class="n">slack_id</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code>dm = DownloadManager(user_key, user_secret, data_dir, metadata_db_fp, debug_fp, 
+                     slack_webhook_url=slack_webhook_url, slack_id=slack_id)
 
-<span class="n">start_date</span> <span class="o">=</span> <span class="s1">&#39;2020-10-01 12:00&#39;</span>
-<span class="n">end_date</span> <span class="o">=</span> <span class="s1">&#39;2020-10-01 12:05&#39;</span>
+start_date = &#39;2020-10-01 12:00&#39;
+end_date = &#39;2020-10-01 12:05&#39;
 
-<span class="k">if</span> <span class="n">download_data</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
-    <span class="n">dm</span><span class="o">.</span><span class="n">download_date_range</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
+if download_data == True:
+    dm.download_date_range(start_date, end_date)
 
-<span class="n">df_metadata</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">get_df_metadata</span><span class="p">()</span>
+df_metadata = dm.get_df_metadata()
 
-<span class="n">df_metadata</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+df_metadata.head()
 </code></pre></div>
+<div class="highlight"><pre><span></span><code>2021-03-08 09:48:44,953 - INFO - ********** Download Manager Initialised **************
+2021-03-08 09:48:45,280 - INFO - 1 files queried, 0 found in ../data/raw, 1 to download.
+
+
+identify_available_datasets: found 1 results from API
+</code></pre></div>
+<div><span class="Text-label" style="display:inline-block; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; min-width:0; max-width:15ex; vertical-align:middle; text-align:right"></span>
+<progress style="width:60ex" max="1" value="0" class="Progress-main"/></progress>
+<span class="Progress-label"><strong>0%</strong></span>
+<span class="Iteration-label">0/1</span>
+<span class="Time-label">[0<0, 0.00s/it]</span></div>
+
 <p><br></p>
 <p>The <code>get_size</code> function was adapted from <a href="https://stackoverflow.com/questions/1392413/calculating-a-directorys-size-using-python">this stackoverflow answer</a></p>
-<div class="highlight"><pre><span></span><code><span class="n">data_dir_size</span> <span class="o">=</span> <span class="n">get_dir_size</span><span class="p">(</span><span class="n">data_dir</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code>data_dir_size = get_dir_size(data_dir)
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The data directory is currently </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">data_dir_size</span><span class="o">/</span><span class="mi">1_000_000_000</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1"> Gb&#39;</span><span class="p">)</span>
+print(f&#39;The data directory is currently {round(data_dir_size/1_000_000_000, 2):,} Gb&#39;)
 </code></pre></div>
 <h2 id="integration-with-google-cloud-storage">Integration with Google Cloud Storage<a class="headerlink" href="#integration-with-google-cloud-storage" title="Permanent link">&para;</a></h2>
 <p>If Google Cloud Platform (GCP) flags are passed (<code>bucket_name</code> and <code>bucket_prefix</code>), when downloading, then the <code>DownloadManager</code> should first check to see if the files already exist in the specified cloud storage bucket.<br />
 If the files already exist, then they will not be downloaded locally - if the storage bucket arguments are passed.  </p>
-<div class="highlight"><pre><span></span><code><span class="n">BUCKET_NAME</span> <span class="o">=</span> <span class="s2">&quot;solar-pv-nowcasting-data&quot;</span>
-<span class="n">PREFIX</span> <span class="o">=</span> <span class="s2">&quot;satellite/EUMETSAT/SEVIRI_RSS/native/2020&quot;</span>
+<div class="highlight"><pre><span></span><code>BUCKET_NAME = &quot;solar-pv-nowcasting-data&quot;
+PREFIX = &quot;satellite/EUMETSAT/SEVIRI_RSS/native/2020&quot;
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="n">dm</span> <span class="o">=</span> <span class="n">DownloadManager</span><span class="p">(</span><span class="n">user_key</span><span class="p">,</span> <span class="n">user_secret</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">,</span> <span class="n">metadata_db_fp</span><span class="p">,</span> <span class="n">debug_fp</span><span class="p">,</span> <span class="n">bucket_name</span><span class="o">=</span><span class="n">BUCKET_NAME</span><span class="p">,</span> <span class="n">bucket_prefix</span><span class="o">=</span><span class="n">PREFIX</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code>dm = DownloadManager(user_key, user_secret, data_dir, metadata_db_fp, debug_fp, bucket_name=BUCKET_NAME, bucket_prefix=PREFIX)
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="c1"># Bucket filenames can be accessed</span>
-<span class="nb">len</span><span class="p">(</span><span class="n">dm</span><span class="o">.</span><span class="n">bucket_filenames</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code># Bucket filenames can be accessed
+len(dm.bucket_filenames)
 </code></pre></div>
 <p>Lets test this by examining some dates at the start of 2020</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Timings: around 2 hours to download 1 day.</span>
+<div class="highlight"><pre><span></span><code># Timings: around 2 hours to download 1 day.
 
-<span class="c1"># DownloadManager should find these 2020 files on the VM</span>
-<span class="n">start_date</span> <span class="o">=</span> <span class="s1">&#39;2020-01-01 00:00&#39;</span>
-<span class="n">end_date</span> <span class="o">=</span> <span class="s1">&#39;2020-01-02 00:00&#39;</span>
-<span class="n">dm</span><span class="o">.</span><span class="n">download_date_range</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
+# DownloadManager should find these 2020 files on the VM
+start_date = &#39;2020-01-01 00:00&#39;
+end_date = &#39;2020-01-01 00:02&#39;
+dm.download_date_range(start_date, end_date)
 </code></pre></div>
 <h2 id="name-convention-changes-in-eumetsat-files">Name Convention changes in EUMETSAT files<a class="headerlink" href="#name-convention-changes-in-eumetsat-files" title="Permanent link">&para;</a></h2>
 <p>Probably due to the changes / creation of the EUMETSAT API around the end of 2019, newer files do not contain the previous 'order number' parts at the end of the filename. </p>
@@ -847,36 +901,36 @@ SatProgram-Instrument-SatNumber-AlgoVersion-InstrumentMode(?)-ReceptionStartDate
 <code>MSG3-SEVI-MSG15-0100-NA-20191001120415.883000000Z-20191001120433-1399526-1.nat.bz2</code><br />
 SatProgram-Instrument-SatNumber-AlgoVersion-InstrumentMode(?)-ReceptionStartDateUTC-SensingStartDateUTC-OrderNumber-PartNumber </p>
 <p>We can use regex to take the first part of the filename for comparisons</p>
-<div class="highlight"><pre><span></span><code><span class="n">txt</span> <span class="o">=</span> <span class="s2">&quot;MSG3-SEVI-MSG15-0100-NA-20190101000417.314000000Z-20190101000435-1377854-1.nat&quot;</span>
-<span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s2">&quot;([A-Z\d.]+-)</span><span class="si">{6}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">txt</span><span class="p">)[</span><span class="mi">0</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># [:-1] to trim the trailing -</span>
+<div class="highlight"><pre><span></span><code>txt = &quot;MSG3-SEVI-MSG15-0100-NA-20190101000417.314000000Z-20190101000435-1377854-1.nat&quot;
+re.match(&quot;([A-Z\d.]+-){6}&quot;, txt)[0][:-1] # [:-1] to trim the trailing -
 </code></pre></div>
 <p>To ensure we are comparing the same filenames, this regex is added into DownloadManager and the GCP helpers.</p>
 <p>Set up logging locally.</p>
-<div class="highlight"><pre><span></span><code><span class="n">debug_fp</span> <span class="o">=</span> <span class="s1">&#39;../logs/EUMETSAT_download.txt&#39;</span>
-<span class="n">log</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">set_up_logging</span><span class="p">(</span><span class="s1">&#39;EUMETSAT Processing&#39;</span><span class="p">,</span> <span class="n">debug_fp</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code>debug_fp = &#39;../logs/EUMETSAT_download.txt&#39;
+log = utils.set_up_logging(&#39;EUMETSAT Processing&#39;, debug_fp)
 </code></pre></div>
 <h2 id="helper-utils">Helper utils<a class="headerlink" href="#helper-utils" title="Permanent link">&para;</a></h2>
 <p>For local testing, this command downloads some files from the Google Cloud bucket:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># get test files from GCP - these are compressed</span>
-<span class="c1"># !gsutil cp -r gs://solar-pv-nowcasting-data/satellite/EUMETSAT/SEVIRI_RSS/native/2019/10/01/00/04 ../data/raw</span>
+<div class="highlight"><pre><span></span><code># get test files from GCP - these are compressed
+# !gsutil cp -r gs://solar-pv-nowcasting-data/satellite/EUMETSAT/SEVIRI_RSS/native/2019/10/01/00/04 ../data/raw
 </code></pre></div>
 <h2 id="compress-downloaded-native-image-files">Compress downloaded native image files<a class="headerlink" href="#compress-downloaded-native-image-files" title="Permanent link">&para;</a></h2>
 <p>Once files have been downloaded from the EUMETSAT API in some location, they need to be compressed and saved in a cloud storage bucket. </p>
 <p>First, see which files have already been downloaded locally to test this functionality.  </p>
-<div class="highlight"><pre><span></span><code><span class="n">full_native_filenames</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="s1">&#39;*.nat&#39;</span><span class="p">))</span>
-<span class="n">full_native_filenames</span>
+<div class="highlight"><pre><span></span><code>full_native_filenames = glob.glob(os.path.join(data_dir, &#39;*.nat&#39;))
+full_native_filenames
 </code></pre></div>
 <p>We will compress locally downloaded files here using <code>pbzip2</code><br />
 On ubuntu: <code>sudo apt-get install -y pbzip2</code><br />
 On mac: <code>brew install pbzip2</code>  </p>
-<div class="highlight"><pre><span></span><code><span class="n">compress_downloaded_files</span><span class="p">(</span><span class="n">data_dir</span><span class="o">=</span><span class="n">data_dir</span><span class="p">,</span> <span class="n">compressed_dir</span><span class="o">=</span><span class="n">compressed_dir</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code>compress_downloaded_files(data_dir=data_dir, compressed_dir=compressed_dir)
 </code></pre></div>
 <h2 id="syncing-files-to-gcp-storage">Syncing files to GCP Storage<a class="headerlink" href="#syncing-files-to-gcp-storage" title="Permanent link">&para;</a></h2>
 <p>Compressed native files should be stored in a Google Cloud Storage Bucket. The folder structure follows the following convention:  </p>
 <p><code>gs://solar-pv-nowcasting-data/satellite/EUMETSAT/SEVIRI_RSS/native/&lt;year&gt;/&lt;month&gt;/&lt;day&gt;/&lt;hour&gt;/&lt;minute&gt;/</code></p>
-<div class="highlight"><pre><span></span><code><span class="c1"># sync downloaded files in compressed_dir to the bucket</span>
-<span class="n">BUCKET_NAME</span> <span class="o">=</span> <span class="s2">&quot;solar-pv-nowcasting-data&quot;</span>
-<span class="n">PREFIX</span> <span class="o">=</span> <span class="s2">&quot;satellite/EUMETSAT/SEVIRI_RSS/native/&quot;</span>
+<div class="highlight"><pre><span></span><code># sync downloaded files in compressed_dir to the bucket
+BUCKET_NAME = &quot;solar-pv-nowcasting-data&quot;
+PREFIX = &quot;satellite/EUMETSAT/SEVIRI_RSS/native/&quot;
 </code></pre></div>
                 
               

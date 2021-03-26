@@ -134,13 +134,13 @@
     
       <div class="md-header-nav__source">
         
-<a href="https://github.com/Future-Energy-Associates/satip/" title="Go to repository" class="md-source">
+<a href="https://github.com/openclimatefix/satip/" title="Go to repository" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
-    Future-Energy-Associates/satip
+    openclimatefix/satip
   </div>
 </a>
       </div>
@@ -252,13 +252,13 @@
   
     <div class="md-nav__source">
       
-<a href="https://github.com/Future-Energy-Associates/satip/" title="Go to repository" class="md-source">
+<a href="https://github.com/openclimatefix/satip/" title="Go to repository" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
-    Future-Energy-Associates/satip
+    openclimatefix/satip
   </div>
 </a>
     </div>
@@ -385,6 +385,30 @@
     <li class="md-nav__item">
       <a href="../103_loading/" class="md-nav__link">
         Loading from Zarr
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../104_ts_analysis/" class="md-nav__link">
+        Extracting Time-Series
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../105_summary/" class="md-nav__link">
+        Database Summary
       </a>
     </li>
   
@@ -606,19 +630,19 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/Future-Energy-Associates/satip/edit/master/docs/101_downloading.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/openclimatefix/satip/edit/master/docs/101_downloading.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
                 <h1 id="downloading-data-from-eumetsat">Downloading Data From EUMETSAT<a class="headerlink" href="#downloading-data-from-eumetsat" title="Permanent link">&para;</a></h1>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">satip</span> <span class="kn">import</span> <span class="n">eumetsat</span>
+<div class="highlight"><pre><span></span><code>from satip import eumetsat
 
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
+import matplotlib.pyplot as plt
+import cartopy.crs as ccrs
 
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">dotenv</span>
+import os
+import dotenv
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>C:\Users\Ayrto\anaconda3\envs\satip_dev\lib\site-packages\google\auth\_default.py:69: UserWarning: Your application has authenticated using end user credentials from Google Cloud SDK without a quota project. You might receive a &quot;quota exceeded&quot; or &quot;API not enabled&quot; error. We recommend you rerun `gcloud auth application-default login` and make sure a quota project is added. Or you can use service accounts instead. For more information about service accounts, see https://cloud.google.com/docs/authentication/
   warnings.warn(_CLOUD_SDK_CREDENTIALS_WARNING)
@@ -627,30 +651,30 @@ Downloading: 100%|â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–�
 <p><br></p>
 <h3 id="user-inputs">User Inputs<a class="headerlink" href="#user-inputs" title="Permanent link">&para;</a></h3>
 <p>We have to specify the directory where the data native filepaths are located</p>
-<div class="highlight"><pre><span></span><code><span class="n">data_dir</span> <span class="o">=</span> <span class="s1">&#39;../data/raw&#39;</span>
-<span class="n">debug_fp</span> <span class="o">=</span> <span class="s1">&#39;../logs/EUMETSAT_download.txt&#39;</span>
-<span class="n">env_vars_fp</span> <span class="o">=</span> <span class="s1">&#39;../.env&#39;</span>
-<span class="n">metadata_db_fp</span> <span class="o">=</span> <span class="s1">&#39;../data/EUMETSAT_metadata.db&#39;</span>
+<div class="highlight"><pre><span></span><code>data_dir = &#39;../data/raw&#39;
+debug_fp = &#39;../logs/EUMETSAT_download.txt&#39;
+env_vars_fp = &#39;../.env&#39;
+metadata_db_fp = &#39;../data/EUMETSAT_metadata.db&#39;
 </code></pre></div>
 <p><br></p>
 <h3 id="using-the-download-manager">Using the Download Manager<a class="headerlink" href="#using-the-download-manager" title="Permanent link">&para;</a></h3>
 <p>First we'll load the the environment variables</p>
-<div class="highlight"><pre><span></span><code><span class="n">dotenv</span><span class="o">.</span><span class="n">load_dotenv</span><span class="p">(</span><span class="n">env_vars_fp</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code>dotenv.load_dotenv(env_vars_fp)
 
-<span class="n">user_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;USER_KEY&#39;</span><span class="p">)</span>
-<span class="n">user_secret</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;USER_SECRET&#39;</span><span class="p">)</span>
-<span class="n">slack_id</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;SLACK_ID&#39;</span><span class="p">)</span>
-<span class="n">slack_webhook_url</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;SLACK_WEBHOOK_URL&#39;</span><span class="p">)</span>
+user_key = os.environ.get(&#39;USER_KEY&#39;)
+user_secret = os.environ.get(&#39;USER_SECRET&#39;)
+slack_id = os.environ.get(&#39;SLACK_ID&#39;)
+slack_webhook_url = os.environ.get(&#39;SLACK_WEBHOOK_URL&#39;)
 </code></pre></div>
 <p><br></p>
 <p>Then we'll use the download manager to retrieve a single dataset</p>
-<div class="highlight"><pre><span></span><code><span class="n">dm</span> <span class="o">=</span> <span class="n">eumetsat</span><span class="o">.</span><span class="n">DownloadManager</span><span class="p">(</span><span class="n">user_key</span><span class="p">,</span> <span class="n">user_secret</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">,</span> <span class="n">metadata_db_fp</span><span class="p">,</span> <span class="n">debug_fp</span><span class="p">,</span> 
-                              <span class="n">slack_webhook_url</span><span class="o">=</span><span class="n">slack_webhook_url</span><span class="p">,</span> <span class="n">slack_id</span><span class="o">=</span><span class="n">slack_id</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code>dm = eumetsat.DownloadManager(user_key, user_secret, data_dir, metadata_db_fp, debug_fp, 
+                              slack_webhook_url=slack_webhook_url, slack_id=slack_id)
 
-<span class="n">start_date</span> <span class="o">=</span> <span class="s1">&#39;2020-01-01 00:00&#39;</span>
-<span class="n">end_date</span> <span class="o">=</span> <span class="s1">&#39;2020-01-01 00:05&#39;</span>
+start_date = &#39;2020-01-01 00:00&#39;
+end_date = &#39;2020-01-01 00:05&#39;
 
-<span class="n">dm</span><span class="o">.</span><span class="n">download_date_range</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
+dm.download_date_range(start_date, end_date)
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>2020-12-17 00:21:11,192 - INFO - ********** Download Manager Initialised **************
 2020-12-17 00:21:11,777 - INFO - 1 files queried, 0 found in ../data/raw, 1 to download.
@@ -701,16 +725,16 @@ Downloading: 100%|â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–�
 </table>
 <p><br></p>
 <p>Once the files have been downloaded they will be automatically detected and skipped if downloading is attempted again</p>
-<div class="highlight"><pre><span></span><code><span class="n">_</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">download_date_range</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code>_ = dm.download_date_range(start_date, end_date)
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>2020-12-17 00:21:31,507 - INFO - 1 files queried, 1 found in ../data/raw, 0 to download.
 2020-12-17 00:21:31,512 - INFO - No files will be downloaded. Set DownloadManager bucket_name argument for local download
 </code></pre></div>
 <p><br></p>
 <p>We can retrieve the metadata for all historical downloads by calling the <code>get_df_metadata</code> method</p>
-<div class="highlight"><pre><span></span><code><span class="n">df_metadata</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">get_df_metadata</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><code>df_metadata = dm.get_df_metadata()
 
-<span class="n">df_metadata</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+df_metadata.head()
 </code></pre></div>
                 
               

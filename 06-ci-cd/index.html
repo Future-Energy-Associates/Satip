@@ -134,13 +134,13 @@
     
       <div class="md-header-nav__source">
         
-<a href="https://github.com/Future-Energy-Associates/satip/" title="Go to repository" class="md-source">
+<a href="https://github.com/openclimatefix/satip/" title="Go to repository" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
-    Future-Energy-Associates/satip
+    openclimatefix/satip
   </div>
 </a>
       </div>
@@ -250,13 +250,13 @@
   
     <div class="md-nav__source">
       
-<a href="https://github.com/Future-Energy-Associates/satip/" title="Go to repository" class="md-source">
+<a href="https://github.com/openclimatefix/satip/" title="Go to repository" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
-    Future-Energy-Associates/satip
+    openclimatefix/satip
   </div>
 </a>
     </div>
@@ -336,6 +336,30 @@
     <li class="md-nav__item">
       <a href="../103_loading/" class="md-nav__link">
         Loading from Zarr
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../104_ts_analysis/" class="md-nav__link">
+        Extracting Time-Series
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../105_summary/" class="md-nav__link">
+        Database Summary
       </a>
     </li>
   
@@ -557,114 +581,114 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/Future-Energy-Associates/satip/edit/master/docs/06-ci-cd.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/openclimatefix/satip/edit/master/docs/06-ci-cd.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
                 <h1 id="cicd">CI/CD<a class="headerlink" href="#cicd" title="Permanent link">&para;</a></h1>
-<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">import</span> <span class="nn">typer</span>
-<span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">from</span> <span class="nn">warnings</span> <span class="kn">import</span> <span class="n">warn</span>
-<span class="kn">from</span> <span class="nn">configparser</span> <span class="kn">import</span> <span class="n">ConfigParser</span>
+<div class="highlight"><pre><span></span><code>#exports
+import os
+import re
+import typer
+import logging
+from warnings import warn
+from configparser import ConfigParser
 </code></pre></div>
 <p><br></p>
 <h3 id="initialising-cli">Initialising CLI<a class="headerlink" href="#initialising-cli" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
-<span class="n">app</span> <span class="o">=</span> <span class="n">typer</span><span class="o">.</span><span class="n">Typer</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><code>#exports
+app = typer.Typer()
 </code></pre></div>
 <p><br></p>
 <h3 id="incrementing-the-package-version">Incrementing the Package Version<a class="headerlink" href="#incrementing-the-package-version" title="Permanent link">&para;</a></h3>
 <p>We'll start by retrieving the current package version specified in <code>settings.ini</code></p>
-<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
-<span class="k">def</span> <span class="nf">get_current_package_version</span><span class="p">(</span><span class="n">settings_fp</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s1">&#39;settings.ini&#39;</span><span class="p">):</span>
-    <span class="n">config</span> <span class="o">=</span> <span class="n">ConfigParser</span><span class="p">(</span><span class="n">delimiters</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;=&#39;</span><span class="p">])</span>
-    <span class="n">config</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">settings_fp</span><span class="p">)</span>
-    <span class="n">version</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;DEFAULT&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code>#exports
+@app.command()
+def get_current_package_version(settings_fp: str=&#39;settings.ini&#39;):
+    config = ConfigParser(delimiters=[&#39;=&#39;])
+    config.read(settings_fp)
+    version = config.get(&#39;DEFAULT&#39;, &#39;version&#39;)
 
-    <span class="k">return</span> <span class="n">version</span>
+    return version
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="n">settings_fp</span> <span class="o">=</span> <span class="s1">&#39;../settings.ini&#39;</span>
+<div class="highlight"><pre><span></span><code>settings_fp = &#39;../settings.ini&#39;
 
-<span class="n">original_version</span> <span class="o">=</span> <span class="n">get_current_package_version</span><span class="p">(</span><span class="n">settings_fp</span><span class="p">)</span>
+original_version = get_current_package_version(settings_fp)
 
-<span class="n">original_version</span>
+original_version
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>&#39;1.0.2&#39;
 </code></pre></div>
 <p><br></p>
 <p>We'll now increment the package version</p>
-<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
-<span class="k">def</span> <span class="nf">increment_package_version</span><span class="p">(</span><span class="n">old_version</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">increment_level</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s1">&#39;micro&#39;</span><span class="p">):</span>
-    <span class="n">increment</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">rev</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">rev</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code>#exports
+@app.command()
+def increment_package_version(old_version: str, increment_level: str=&#39;micro&#39;):
+    increment = lambda rev: str(int(rev)+1)
 
-    <span class="n">major</span><span class="p">,</span> <span class="n">minor</span><span class="p">,</span> <span class="n">micro</span> <span class="o">=</span> <span class="n">old_version</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span> <span class="c1"># naming from - https://the-hitchhikers-guide-to-packaging.readthedocs.io/en/latest/specification.html#sequence-based-scheme</span>
+    major, minor, micro = old_version.split(&#39;.&#39;) # naming from - https://the-hitchhikers-guide-to-packaging.readthedocs.io/en/latest/specification.html#sequence-based-scheme
 
-    <span class="k">if</span> <span class="n">increment_level</span> <span class="o">==</span> <span class="s1">&#39;major&#39;</span><span class="p">:</span>
-        <span class="n">major</span> <span class="o">=</span> <span class="n">increment</span><span class="p">(</span><span class="n">major</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">increment_level</span> <span class="o">==</span> <span class="s1">&#39;minor&#39;</span><span class="p">:</span>
-        <span class="n">minor</span> <span class="o">=</span> <span class="n">increment</span><span class="p">(</span><span class="n">minor</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">increment_level</span> <span class="o">==</span> <span class="s1">&#39;micro&#39;</span><span class="p">:</span>
-        <span class="n">micro</span> <span class="o">=</span> <span class="n">increment</span><span class="p">(</span><span class="n">micro</span><span class="p">)</span>
+    if increment_level == &#39;major&#39;:
+        major = increment(major)
+    elif increment_level == &#39;minor&#39;:
+        minor = increment(minor)
+    elif increment_level == &#39;micro&#39;:
+        micro = increment(micro)
 
-    <span class="n">new_version</span> <span class="o">=</span> <span class="s1">&#39;.&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">major</span><span class="p">,</span> <span class="n">minor</span><span class="p">,</span> <span class="n">micro</span><span class="p">])</span>
+    new_version = &#39;.&#39;.join([major, minor, micro])
 
-    <span class="k">return</span> <span class="n">new_version</span>
+    return new_version
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="n">increment_package_version</span><span class="p">(</span><span class="n">original_version</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code>increment_package_version(original_version)
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>&#39;1.0.3&#39;
 </code></pre></div>
 <p><br></p>
 <p>But what about if we've made large changes to the code-base and wish to express the size of these revisions in the version? For that we can specify the <code>increment_level</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="n">increment_package_version</span><span class="p">(</span><span class="n">original_version</span><span class="p">,</span> <span class="n">increment_level</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code>increment_package_version(original_version, increment_level=&#39;major&#39;)
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>&#39;2.0.2&#39;
 </code></pre></div>
 <p><br></p>
 <p>And finally we can set the version</p>
-<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
-<span class="k">def</span> <span class="nf">set_current_package_version</span><span class="p">(</span><span class="n">version</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">settings_fp</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s1">&#39;settings.ini&#39;</span><span class="p">):</span>
-    <span class="n">version</span> <span class="o">=</span> <span class="n">version</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;v&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code>#exports
+@app.command()
+def set_current_package_version(version: str, settings_fp: str=&#39;settings.ini&#39;):
+    version = version.replace(&#39;v&#39;, &#39;&#39;)
 
-    <span class="n">config</span> <span class="o">=</span> <span class="n">ConfigParser</span><span class="p">(</span><span class="n">delimiters</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;=&#39;</span><span class="p">])</span>
-    <span class="n">config</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">settings_fp</span><span class="p">)</span>
+    config = ConfigParser(delimiters=[&#39;=&#39;])
+    config.read(settings_fp)
 
-    <span class="n">config</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;DEFAULT&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">,</span> <span class="n">version</span><span class="p">)</span>
+    config.set(&#39;DEFAULT&#39;, &#39;version&#39;, version)
 
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">settings_fp</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">configfile</span><span class="p">:</span>
-        <span class="n">config</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">configfile</span><span class="p">)</span>
+    with open(settings_fp, &#39;w&#39;) as configfile:
+        config.write(configfile)
 
-    <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;package_release&#39;</span><span class="p">)</span>
-    <span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="s1">&#39;INFO&#39;</span><span class="p">)</span>
-    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The package version has to be updated to </span><span class="si">{</span><span class="n">version</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    logger = logging.getLogger(&#39;package_release&#39;)
+    logger.setLevel(&#39;INFO&#39;)
+    logger.info(f&#39;The package version has to be updated to {version}&#39;)
 
-    <span class="k">return</span> 
+    return 
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="n">set_current_package_version</span><span class="p">(</span><span class="s1">&#39;9.9.9&#39;</span><span class="p">,</span> <span class="n">settings_fp</span><span class="p">)</span>
-<span class="n">get_current_package_version</span><span class="p">(</span><span class="n">settings_fp</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code>set_current_package_version(&#39;9.9.9&#39;, settings_fp)
+get_current_package_version(settings_fp)
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>&#39;9.9.9&#39;
 </code></pre></div>
 <p><br></p>
 <p>Before we move on we'll change the version on file back to the original</p>
-<div class="highlight"><pre><span></span><code><span class="n">set_current_package_version</span><span class="p">(</span><span class="n">original_version</span><span class="p">,</span> <span class="n">settings_fp</span><span class="p">)</span>
-<span class="n">get_current_package_version</span><span class="p">(</span><span class="n">settings_fp</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code>set_current_package_version(original_version, settings_fp)
+get_current_package_version(settings_fp)
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>&#39;1.0.2&#39;
 </code></pre></div>
 <p><br></p>
 <p>Finally we need to ensure the CLI app is available when the module is loaded.</p>
 <p>N.b. we've included the condition <code>'__file__' in globals()</code> to make sure this isn't when inside the notebook</p>
-<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span> <span class="ow">and</span> <span class="s1">&#39;__file__&#39;</span> <span class="ow">in</span> <span class="nb">globals</span><span class="p">():</span>
-    <span class="n">app</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><code>#exports
+if __name__ == &#39;__main__&#39; and &#39;__file__&#39; in globals():
+    app()
 </code></pre></div>
                 
               

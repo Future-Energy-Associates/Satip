@@ -134,13 +134,13 @@
     
       <div class="md-header-nav__source">
         
-<a href="https://github.com/Future-Energy-Associates/satip/" title="Go to repository" class="md-source">
+<a href="https://github.com/openclimatefix/satip/" title="Go to repository" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
-    Future-Energy-Associates/satip
+    openclimatefix/satip
   </div>
 </a>
       </div>
@@ -252,13 +252,13 @@
   
     <div class="md-nav__source">
       
-<a href="https://github.com/Future-Energy-Associates/satip/" title="Go to repository" class="md-source">
+<a href="https://github.com/openclimatefix/satip/" title="Go to repository" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
-    Future-Energy-Associates/satip
+    openclimatefix/satip
   </div>
 </a>
     </div>
@@ -338,6 +338,30 @@
     <li class="md-nav__item">
       <a href="../103_loading/" class="md-nav__link">
         Loading from Zarr
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../104_ts_analysis/" class="md-nav__link">
+        Extracting Time-Series
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../105_summary/" class="md-nav__link">
+        Database Summary
       </a>
     </li>
   
@@ -634,32 +658,157 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/Future-Energy-Associates/satip/edit/master/docs/04_gcp.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/openclimatefix/satip/edit/master/docs/04_gcp.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
                 <h1 id="eumetsat-and-google-cloud-platform-gcp">EUMETSAT and Google Cloud Platform (GCP)<a class="headerlink" href="#eumetsat-and-google-cloud-platform-gcp" title="Permanent link">&para;</a></h1>
+<p>The intention is to run a DAG using Airflow that:  </p>
+<ol>
+<li>Uses the EUMETSAT DownloadManager will check for available files over a time period.  </li>
+<li>Compares with already downloaded files in a GCP bucket</li>
+<li>Downloads any files not already downloaded, compressed using <code>pbzip2</code></li>
+</ol>
+<p>Run on europe-west4 (Netherlands) by preference.  </p>
+<p>Our bucket and an example folder prefix is defined below.  </p>
+<p>The data is stored in the format <code>gs://solar-pv-nowcasting-data/satellite/EUMETSAT/SEVIRI_RSS/native/&lt;year&gt;/&lt;month&gt;/&lt;day&gt;/&lt;hour&gt;/&lt;minute&gt;/</code> as per the existing files.</p>
 <h3 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h3>
-<h2 id="gcp-helpers">GCP Helpers<a class="headerlink" href="#gcp-helpers" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
+<span class="kn">from</span> <span class="nn">google.cloud</span> <span class="kn">import</span> <span class="n">storage</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">dotenv</span>
+<span class="kn">import</span> <span class="nn">pandas_gbq</span>
+</code></pre></div>
+<p><br></p>
+<h3 id="gcp-helpers">GCP Helpers<a class="headerlink" href="#gcp-helpers" title="Permanent link">&para;</a></h3>
 <p>First need a couple of helper functions to work with Google Cloud Platform.<br />
 Ideally the principles will transfer easily to other cloud providers if necessary. </p>
 <p>First we want to be able to list files ('blobs') in a Google Cloud storage bucket, and get the metadata for a specific file ('blob').</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># You may need to run the following to create locally stored account credentials</span>
+<span class="c1"># https://googleapis.dev/python/google-api-core/latest/auth.html</span>
+<span class="c1"># !gcloud auth application-default login</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
+<span class="k">def</span> <span class="nf">list_blobs_with_prefix</span><span class="p">(</span><span class="n">bucket_name</span><span class="p">,</span> <span class="n">prefix</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Lists all the blobs in the bucket that begin with the prefix.</span>
+
+<span class="sd">    This can be used to list all blobs in a &quot;folder&quot;, e.g. &quot;public/&quot;.</span>
+
+<span class="sd">    The delimiter argument can be used to restrict the results to only the</span>
+<span class="sd">    &quot;files&quot; in the given &quot;folder&quot;. Without the delimiter, the entire tree under</span>
+<span class="sd">    the prefix is returned. For example, given these blobs:</span>
+
+<span class="sd">        a/1.txt</span>
+<span class="sd">        a/b/2.txt</span>
+
+<span class="sd">    If you just specify prefix = &#39;a&#39;, you&#39;ll get back:</span>
+
+<span class="sd">        a/1.txt</span>
+<span class="sd">        a/b/2.txt</span>
+
+<span class="sd">    However, if you specify prefix=&#39;a&#39; and delimiter=&#39;/&#39;, you&#39;ll get back:</span>
+
+<span class="sd">        a/1.txt</span>
+
+<span class="sd">    Additionally, the same request will return blobs.prefixes populated with:</span>
+
+<span class="sd">        a/b/</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">storage_client</span> <span class="o">=</span> <span class="n">storage</span><span class="o">.</span><span class="n">Client</span><span class="p">()</span>
+
+    <span class="c1"># Note: Client.list_blobs requires at least package version 1.17.0.</span>
+    <span class="n">blobs</span> <span class="o">=</span> <span class="n">storage_client</span><span class="o">.</span><span class="n">list_blobs</span><span class="p">(</span><span class="n">bucket_name</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="n">prefix</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="n">delimiter</span><span class="p">)</span>
+
+    <span class="n">names</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">blob</span> <span class="ow">in</span> <span class="n">blobs</span><span class="p">:</span>
+        <span class="n">names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">names</span>
+
+
+<span class="k">def</span> <span class="nf">blob_metadata</span><span class="p">(</span><span class="n">bucket_name</span><span class="p">,</span> <span class="n">blob_name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Prints out a blob&#39;s metadata.&quot;&quot;&quot;</span>
+    <span class="c1"># bucket_name = &#39;your-bucket-name&#39;</span>
+    <span class="c1"># blob_name = &#39;your-object-name&#39;</span>
+
+    <span class="n">storage_client</span> <span class="o">=</span> <span class="n">storage</span><span class="o">.</span><span class="n">Client</span><span class="p">()</span>
+    <span class="n">bucket</span> <span class="o">=</span> <span class="n">storage_client</span><span class="o">.</span><span class="n">bucket</span><span class="p">(</span><span class="n">bucket_name</span><span class="p">)</span>
+    <span class="n">blob</span> <span class="o">=</span> <span class="n">bucket</span><span class="o">.</span><span class="n">get_blob</span><span class="p">(</span><span class="n">blob_name</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Blob: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Bucket: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">bucket</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Storage class: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">storage_class</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ID: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">id</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Size: </span><span class="si">{}</span><span class="s2"> bytes&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">size</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Updated: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">updated</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Generation: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">generation</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Metageneration: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">metageneration</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Etag: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">etag</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Owner: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">owner</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Component count: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">component_count</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Crc32c: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">crc32c</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;md5_hash: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">md5_hash</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cache-control: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">cache_control</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Content-type: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">content_type</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Content-disposition: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">content_disposition</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Content-encoding: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">content_encoding</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Content-language: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">content_language</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Metadata: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">metadata</span><span class="p">))</span>
+</code></pre></div>
+<p><br></p>
 <p>We also want to be able to upload a file ('blob') to a storage bucket in an efficient way.</p>
-<h2 id="checking-existing-saved-data-in-google-cloud-storage">Checking existing saved data in Google Cloud Storage<a class="headerlink" href="#checking-existing-saved-data-in-google-cloud-storage" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
+<span class="k">def</span> <span class="nf">upload_blob</span><span class="p">(</span><span class="n">bucket_name</span><span class="p">,</span> <span class="n">source_file_name</span><span class="p">,</span> <span class="n">destination_blob_name</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Uploads a file to the bucket.&quot;&quot;&quot;</span>
+    <span class="c1"># bucket_name = &quot;your-bucket-name&quot;</span>
+    <span class="c1"># source_file_name = &quot;local/path/to/file&quot;</span>
+    <span class="c1"># destination_blob_name = &quot;storage-object-name&quot;</span>
+
+    <span class="k">if</span> <span class="n">prefix</span><span class="p">:</span>
+        <span class="n">destination_blob_name</span> <span class="o">=</span> <span class="n">prefix</span> <span class="o">+</span> <span class="n">destination_blob_name</span>
+
+    <span class="n">storage_client</span> <span class="o">=</span> <span class="n">storage</span><span class="o">.</span><span class="n">Client</span><span class="p">()</span>
+    <span class="n">bucket</span> <span class="o">=</span> <span class="n">storage_client</span><span class="o">.</span><span class="n">bucket</span><span class="p">(</span><span class="n">bucket_name</span><span class="p">)</span>
+    <span class="n">blob</span> <span class="o">=</span> <span class="n">bucket</span><span class="o">.</span><span class="n">blob</span><span class="p">(</span><span class="n">destination_blob_name</span><span class="p">)</span>
+
+    <span class="c1"># For slow upload speed</span>
+    <span class="n">storage</span><span class="o">.</span><span class="n">blob</span><span class="o">.</span><span class="n">_DEFAULT_CHUNKSIZE</span> <span class="o">=</span> <span class="mi">2097152</span> <span class="c1"># 1024 * 1024 B * 2 = 2 MB</span>
+    <span class="n">storage</span><span class="o">.</span><span class="n">blob</span><span class="o">.</span><span class="n">_MAX_MULTIPART_SIZE</span> <span class="o">=</span> <span class="mi">2097152</span> <span class="c1"># 2 MB</span>
+
+    <span class="n">blob</span><span class="o">.</span><span class="n">upload_from_filename</span><span class="p">(</span><span class="n">source_file_name</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="s2">&quot;File </span><span class="si">{}</span><span class="s2"> uploaded to </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">source_file_name</span><span class="p">,</span> <span class="n">destination_blob_name</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="n">log</span><span class="p">:</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;File </span><span class="si">{}</span><span class="s2"> uploaded to </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">source_file_name</span><span class="p">,</span> <span class="n">destination_blob_name</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+</code></pre></div>
+<p><br></p>
+<h3 id="checking-existing-saved-data-in-google-cloud-storage">Checking existing saved data in Google Cloud Storage<a class="headerlink" href="#checking-existing-saved-data-in-google-cloud-storage" title="Permanent link">&para;</a></h3>
 <p>Finding out how much data has been downloaded for different years in the OCF native data bucket.</p>
 <div class="highlight"><pre><span></span><code><span class="n">BUCKET_NAME</span> <span class="o">=</span> <span class="s2">&quot;solar-pv-nowcasting-data&quot;</span>
 <span class="n">PREFIX</span> <span class="o">=</span> <span class="s2">&quot;satellite/EUMETSAT/SEVIRI_RSS/native/2019/01/01&quot;</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="n">blobs</span> <span class="o">=</span> <span class="n">list_blobs_with_prefix</span><span class="p">(</span><span class="n">BUCKET_NAME</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="n">PREFIX</span><span class="p">)</span>
+<span class="n">blobs</span> <span class="o">=</span> <span class="n">list_blobs_with_prefix</span><span class="p">(</span><span class="n">BUCKET_NAME</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="n">PREFIX</span><span class="p">)</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;There are </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">blobs</span><span class="p">)</span><span class="si">}</span><span class="s1"> files&#39;</span><span class="p">)</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>There are 277 files
 </code></pre></div>
+<p><br></p>
 <p>Lets see how large the data for the whole of 2018 is - this may take a few minutes to run. </p>
 <div class="highlight"><pre><span></span><code><span class="n">storage_client</span> <span class="o">=</span> <span class="n">storage</span><span class="o">.</span><span class="n">Client</span><span class="p">()</span>
-<span class="n">PREFIX</span> <span class="o">=</span> <span class="s2">&quot;satellite/EUMETSAT/SEVIRI_RSS/native/2018/&quot;</span>
+<span class="n">PREFIX</span> <span class="o">=</span> <span class="s2">&quot;satellite/EUMETSAT/SEVIRI_RSS/native/2021/&quot;</span>
 
 <span class="c1"># Note: Client.list_blobs requires at least package version 1.17.0.</span>
 <span class="n">blobs_</span> <span class="o">=</span> <span class="n">storage_client</span><span class="o">.</span><span class="n">list_blobs</span><span class="p">(</span><span class="n">BUCKET_NAME</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="n">PREFIX</span><span class="p">)</span>
@@ -671,15 +820,21 @@ Ideally the principles will transfer easily to other cloud providers if necessar
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="nb">sum</span><span class="p">(</span><span class="n">sizes</span><span class="p">)</span> <span class="o">/</span> <span class="mf">1e9</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>2443.493799523
+<div class="highlight"><pre><span></span><code>226.886050375
 </code></pre></div>
+<p><br></p>
 <p>2018 contains 2.4TB of data</p>
 <p>Note that using the storage client to return blobs returns an iterable of blob metadata objects.<br />
 From those we've extracted the names. We can go backwards from the names to interact with the blobs. </p>
+<div class="highlight"><pre><span></span><code><span class="n">BUCKET_NAME</span> <span class="o">=</span> <span class="s2">&quot;solar-pv-nowcasting-data&quot;</span>
+<span class="n">PREFIX</span> <span class="o">=</span> <span class="s2">&quot;satellite/EUMETSAT/SEVIRI_RSS/native/2021&quot;</span>
+<span class="n">blobs</span> <span class="o">=</span> <span class="n">list_blobs_with_prefix</span><span class="p">(</span><span class="n">BUCKET_NAME</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="n">PREFIX</span><span class="p">)</span>
+</code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">blobs</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;blobs&#39;</span><span class="p">])</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;blobs&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.nat.bz2&#39;</span><span class="p">)]</span> <span class="c1"># only compressed data files</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;datetime&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;blobs&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">slice</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">37</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mi">53</span><span class="p">),</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;%Y/%m/</span><span class="si">%d</span><span class="s2">/%H/%M&quot;</span><span class="p">)</span>
 </code></pre></div>
+<p><br></p>
 <p>It is helpful to see by month how many data files already exist as compressed .nat files.<br />
 Note that this is not looking at files reprojected and stored in the Zarr database.</p>
 <div class="highlight"><pre><span></span><code><span class="n">months_in_order</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;January&#39;</span><span class="p">,</span> <span class="s1">&#39;February&#39;</span><span class="p">,</span> <span class="s1">&#39;March&#39;</span><span class="p">,</span> <span class="s1">&#39;April&#39;</span><span class="p">,</span> <span class="s1">&#39;May&#39;</span><span class="p">,</span> <span class="s1">&#39;June&#39;</span><span class="p">,</span> <span class="s1">&#39;July&#39;</span><span class="p">,</span> <span class="s1">&#39;August&#39;</span><span class="p">,</span> <span class="s1">&#39;September&#39;</span><span class="p">,</span> <span class="s1">&#39;October&#39;</span><span class="p">,</span> <span class="s1">&#39;November&#39;</span><span class="p">,</span> <span class="s1">&#39;December&#39;</span><span class="p">]</span>
@@ -698,17 +853,17 @@ Note that this is not looking at files reprojected and stored in the Zarr databa
 <thead>
 <tr>
 <th align="left">('year', 'month')</th>
-<th align="right">('2019', 'Unnamed: 1_level_1')</th>
+<th align="right">('2021', 'Unnamed: 1_level_1')</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td align="left">January</td>
-<td align="right">276</td>
+<td align="right">6695</td>
 </tr>
 <tr>
 <td align="left">February</td>
-<td align="right">nan</td>
+<td align="right">289</td>
 </tr>
 <tr>
 <td align="left">March</td>
@@ -752,6 +907,7 @@ Note that this is not looking at files reprojected and stored in the Zarr databa
 </tr>
 </tbody>
 </table>
+<p><br></p>
 <p>And lets plot this </p>
 <div class="highlight"><pre><span></span><code><span class="c1"># credit: https://dfrieds.com/data-visualizations/visualize-historical-time-comparisons.html</span>
 
@@ -763,30 +919,103 @@ Note that this is not looking at files reprojected and stored in the Zarr databa
 <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">);</span>
 </code></pre></div>
 <p><img alt="png" src="../img/nbs/output_21_0.png" /></p>
+<p><br></p>
 <p>Sometimes we'll want all of the original (uncompressed) filenames - for example to compare with the results of the EUMETSAT API so we can work out whether we should request a file or not.<br />
 We'll make a function to get original filenames from compressed or uncompressed files stored as blobs on GCP.</p>
 <div class="highlight"><pre><span></span><code><span class="n">filenames</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;blobs&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.bz2&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
+<span class="k">def</span> <span class="nf">get_eumetsat_filenames</span><span class="p">(</span><span class="n">bucket_name</span><span class="p">,</span> <span class="n">prefix</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Lists all the blobs in the bucket that begin with the prefix.</span>
+
+<span class="sd">    This can be used to list all blobs in a &quot;folder&quot;, e.g. &quot;public/&quot;.</span>
+
+<span class="sd">    The delimiter argument can be used to restrict the results to only the</span>
+<span class="sd">    &quot;files&quot; in the given &quot;folder&quot;. Without the delimiter, the entire tree under</span>
+<span class="sd">    the prefix is returned. For example, given these blobs:</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">storage_client</span> <span class="o">=</span> <span class="n">storage</span><span class="o">.</span><span class="n">Client</span><span class="p">()</span>
+
+    <span class="c1"># Note: Client.list_blobs requires at least package version 1.17.0.</span>
+    <span class="n">blobs</span> <span class="o">=</span> <span class="n">storage_client</span><span class="o">.</span><span class="n">list_blobs</span><span class="p">(</span><span class="n">bucket_name</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="n">prefix</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="n">delimiter</span><span class="p">)</span>
+
+    <span class="n">names</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">blob</span> <span class="ow">in</span> <span class="n">blobs</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">blob</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.nat.bz2&#39;</span><span class="p">):</span>
+            <span class="n">filename</span> <span class="o">=</span> <span class="n">blob</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.bz2&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+            <span class="n">names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">names</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="n">PREFIX</span> <span class="o">=</span> <span class="s2">&quot;satellite/EUMETSAT/SEVIRI_RSS/native/2019/10/01&quot;</span>
 <span class="n">filenames</span> <span class="o">=</span> <span class="n">get_eumetsat_filenames</span><span class="p">(</span><span class="n">BUCKET_NAME</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="n">PREFIX</span><span class="p">)</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="nb">len</span><span class="p">(</span><span class="n">filenames</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>68202
+<div class="highlight"><pre><span></span><code>288
 </code></pre></div>
 <h2 id="write-metadata-to-bigquery">Write metadata to bigquery<a class="headerlink" href="#write-metadata-to-bigquery" title="Permanent link">&para;</a></h2>
 <p>For cloud storage functions, storing metadata in a RDBS seems useful. BigQuery is a low hassle way to achieve this and can scale to lots of data with ease.<br />
 Downsides are rather inflexible migrations and updates.  </p>
-<div class="highlight"><pre><span></span><code><span class="c1"># write_metadata_to_gcp(df, &#39;test&#39;, &#39;solar-pv-nowcasting&#39;)</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># exports</span>
+<span class="k">def</span> <span class="nf">write_metadata_to_gcp</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">table_id</span><span class="p">,</span> <span class="n">project_id</span><span class="p">,</span> <span class="n">credentials</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">append</span><span class="p">:</span>
+        <span class="n">if_exists</span> <span class="o">=</span> <span class="s2">&quot;append&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">if_exists</span> <span class="o">=</span> <span class="s2">&quot;fail&quot;</span>
+
+    <span class="k">if</span> <span class="n">credentials</span><span class="p">:</span>
+        <span class="n">pandas_gbq</span><span class="o">.</span><span class="n">to_gbq</span><span class="p">(</span>
+            <span class="n">df</span><span class="p">,</span>
+            <span class="n">table_id</span><span class="p">,</span>
+            <span class="n">project_id</span><span class="o">=</span><span class="n">project_id</span><span class="p">,</span>
+            <span class="n">credentials</span><span class="o">=</span><span class="n">credentials</span><span class="p">,</span>
+            <span class="n">if_exists</span><span class="o">=</span><span class="n">if_exists</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">pandas_gbq</span><span class="o">.</span><span class="n">to_gbq</span><span class="p">(</span>
+            <span class="n">df</span><span class="p">,</span>
+            <span class="n">table_id</span><span class="p">,</span>
+            <span class="n">project_id</span><span class="o">=</span><span class="n">project_id</span><span class="p">,</span>
+            <span class="n">if_exists</span><span class="o">=</span><span class="n">if_exists</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s2"> rows written to BQ </span><span class="si">{</span><span class="n">table_id</span><span class="si">}</span><span class="s2">, append=</span><span class="si">{</span><span class="n">append</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="p">)</span>
 </code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">write_metadata_now</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="k">if</span> <span class="n">write_metadata_now</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">write_metadata_to_gcp</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="s1">&#39;solar-pv-nowcasting&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p><br></p>
 <p>As well as writing to BigQuery, we also want to query it. We'll write a small wrapper that allows us to send any SQL query and get results as a pandas DataFrame. Naturally we need to know the GCP project id, and the BigQuery table name.</p>
-<div class="highlight"><pre><span></span><code>Downloading: 100%|â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ| 1/1 [00:00&lt;00:00,  1.30rows/s]
+<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
+<span class="k">def</span> <span class="nf">query</span><span class="p">(</span><span class="n">sql_query</span><span class="p">,</span> <span class="n">project_id</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Wrapper around BigQuery for a given Google project</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pandas.DataFrame of the query results</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pandas_gbq</span><span class="o">.</span><span class="n">read_gbq</span><span class="p">(</span><span class="n">sql_query</span><span class="p">,</span> <span class="n">project_id</span><span class="o">=</span><span class="n">project_id</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">df</span>
+
+<span class="n">sql_query</span> <span class="o">=</span> <span class="s1">&#39;select * from eumetsat.metadata where result_time = (select max(result_time) from eumetsat.metadata)&#39;</span>
+<span class="n">project_id</span> <span class="o">=</span> <span class="s1">&#39;solar-pv-nowcasting&#39;</span>
+
+<span class="n">query</span><span class="p">(</span><span class="n">sql_query</span><span class="p">,</span> <span class="n">project_id</span><span class="p">)[</span><span class="s1">&#39;result_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M&#39;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Downloading: 100%|â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ| 1/1 [00:00&lt;00:00,  4.09rows/s]
 
 
 
 
 
-&#39;2020-12-03 19:14&#39;
+&#39;2021-02-02 08:44&#39;
 </code></pre></div>
                 
               
